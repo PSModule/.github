@@ -16,12 +16,6 @@ The framework sets standard when it comes to code structure and quality so that 
         <th width="10%">Version</th>
     </tr>
     <tr>
-        <td><a href="https://github.com/PSModule/New-PSModule">New&#8209;PSModule</a></td>
-        <td>Creates a repo from a template to get started with development. Set up necessary teams and adds it to the list of PowerShell modules.</td>
-        <td><a href="https://github.com/PSModule/New-PSModule/actions/workflows/Action-Test.yml?query=branch%3Amain"><img src="https://img.shields.io/github/actions/workflow/status/psmodule/New-PSModule/Action-Test.yml?branch=main&style=flat-square&label=" alt="GitHub Actions Workflow Status"></a></td>
-        <td><a href="https://github.com/PSModule/New-PSModule/releases/latest"><img src="https://img.shields.io/github/v/release/PSModule/New-PSModule?style=flat-square&logo=github&logoColor=a0a0a0&label=&labelColor=505050&color=blue" alt="GitHub Release"></a></td>
-    </tr>
-    <tr>
         <td><a href="https://github.com/PSModule/Process-PSModule">Process&#8209;PSModule</a></td>
         <td>A GitHub workflow that is used as a template in PowerShell module repos to build, test and publish the module using the PSModule framework.</td>
         <td><a href="https://github.com/PSModule/Process-PSModule/actions/workflows/Workflow-Test.yml?query=branch%3Amain"><img src="https://img.shields.io/github/actions/workflow/status/psmodule/Process-PSModule/Workflow-Test.yml?branch=main&style=flat-square&label=" alt="GitHub Actions Workflow Status"></a></td>
