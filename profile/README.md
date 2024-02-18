@@ -136,6 +136,10 @@ The framework sets standard when it comes to code structure and quality so that 
     </tr>
 </table>
 
+## Design decisions
+
+- A repo manages ONE module.
+
 ## Supporting actions
 
 <table>
