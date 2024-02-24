@@ -182,6 +182,12 @@ The framework sets standard when it comes to code structure and quality so that 
 - Have a `readme.md` file in the action folder that explains the action and how to use it.
 - Have a Action-Test workflow file that tests the action.
 - Use the `Auto-Release` action for automating the release of the action via pull requeusts.
+- Actions versions must be available as vX, vX.Y and vX.Y.Z tags, where they get the updates on their respective version.
+  - vX automatically gets all the feature and patch updates until a breaking change is introduced.
+  - vX.Y automatically gets all the patch updates until a new feature is introduced.
+  - vX.Y.Z is locked to the exact version and will not get any updates.
+- Older version of the action are not updates on their given track. i.e., if an older version of the action has bugs or a security issue,
+  the fix will be implemented on the latest version and the user will have to update to the latest version to get the fix.
 
 ## 🌈 Contribution guidelines
 
