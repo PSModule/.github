@@ -181,6 +181,7 @@ The framework sets standard when it comes to code structure and quality so that 
 - Prefix the environment variable with `GITHUB_ACTION_INPUT_` followed by the name of the action input to avoid collision with other environment variables.
 - Have a `readme.md` file in the action folder that explains the action and how to use it.
 - Have a Action-Test workflow file that tests the action.
+- Use the `Auto-Release` action for automating the release of the action via pull requeusts.
 
 ## 🌈 Contribution guidelines
 
