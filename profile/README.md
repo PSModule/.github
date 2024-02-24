@@ -172,6 +172,16 @@ The framework sets standard when it comes to code structure and quality so that 
 ```powershell
 ``` -->
 
+# Action design decisions
+
+- Use the composite action to load prerequisite modules. I.e., 'Utilities'.
+- Run the main functionality from a `main.ps1` file located in a `scripts` folder.
+- The action inputs are written in PascalCase and uses the natural language name of the input.
+- Use envvironment variables to pass data between the composite action and the `main.ps1` file.
+- Prefix the environment variable with `GITHUB_ACTION_INPUT_` followed by the name of the action input to avoid collision with other environment variables.
+- Have a `readme.md` file in the action folder that explains the action and how to use it.
+- Have a Action-Test workflow file that tests the action.
+
 ## 🌈 Contribution guidelines
 
 Feel free to submit issues, PRs what have you. Also feel free to use as you like; be that the functions or modules we maintain here.
