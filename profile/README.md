@@ -146,7 +146,7 @@ The framework sets standard when it comes to code structure and quality so that 
     <tr>
         <td><a href="https://github.com/PSModule/Auto-Release/">Auto&#8209;Release</a></td>
         <td>Handles release of a GitHub repo using PR based triggered Actions and labels in the PR.</td>
-        <td><a href="https://github.com/PSModule/Auto-Release/actions/workflows/Auto-Release.yml?query=branch%3Amain"><img src="https://img.shields.io/github/actions/workflow/status/psmodule/Auto-Release/Auto-Release.yml?query=branch%3Amain&style=flat-square&label=" alt="Auto-Release"></a></td>
+        <td><a href="https://github.com/PSModule/Auto-Release/actions/workflows/Auto-Release.yml"><img src="https://img.shields.io/github/actions/workflow/status/psmodule/Auto-Release/Auto-Release.yml?style=flat-square&label=" alt="Auto-Release"></a></td>
         <td><a href="https://github.com/PSModule/Auto-Release/releases/latest"><img src="https://img.shields.io/github/v/release/psmodule/Auto-Release?style=flat-square&logo=github&logoColor=a0a0a0&label=&labelColor=505050&color=blue" alt="GitHub release (with filter)"></a></td>
     </tr>
 </table>
