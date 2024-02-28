@@ -102,15 +102,6 @@ The framework sets standard when it comes to code structure and quality so that 
         </td>
     </tr>
     <tr>
-        <td><a href="https://github.com/PSModule/PSModule.FX">PSModule.FX</a></td>
-        <td>The PSModule framework as a PowerShell module.</td>
-        <td><a href="https://github.com/PSModule/PSModule.FX/actions/workflows/Process-PSModule.yml?query=branch%3Amain"><img src="https://img.shields.io/github/actions/workflow/status/psmodule/PSModule.FX/Process-PSModule.yml?query=branch%3Amain&style=flat-square&label=" alt="Process-PSModule"></a></td>
-        <td>
-            <a href="https://github.com/PSModule/PSModule.FX/releases/latest"><img src="https://img.shields.io/github/v/release/psmodule/PSModule.FX?style=flat-square&logo=github&logoColor=a0a0a0&label=&labelColor=505050&color=blue" alt="GitHub release (with filter)"></a>
-            <a href="https://www.powershellgallery.com/packages/PSModule.FX/"><img src="https://img.shields.io/powershellgallery/v/PSModule.FX?style=flat-square&logo=powershell&logoColor=a0a0a0&label=&labelColor=505050&color=blue" alt="PowerShell Gallery Version"></a>
-        </td>
-    </tr>
-    <tr>
         <td><a href="https://github.com/PSModule/PublicIP">PublicIP</a></td>
         <td>Find your public IP using IPInfo or MyIP.</td>
         <td><a href="https://github.com/PSModule/PublicIP/actions/workflows/Process-PSModule.yml?query=branch%3Amain"><img src="https://img.shields.io/github/actions/workflow/status/psmodule/PublicIP/Process-PSModule.yml?query=branch%3Amain&style=flat-square&label=" alt="Process-PSModule"></a></td>
