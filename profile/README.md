@@ -119,6 +119,15 @@ The framework sets standard when it comes to code structure and quality so that 
             <a href="https://www.powershellgallery.com/packages/Utilities/"><img src="https://img.shields.io/powershellgallery/v/Utilities?style=flat-square&logo=powershell&logoColor=a0a0a0&label=&labelColor=505050&color=blue" alt="PowerShell Gallery Version"></a>
         </td>
     </tr>
+        <tr>
+        <td><a href="https://github.com/PSModule/WoW">WoW</a></td>
+        <td>Assorted powershell functions that lets you interact with WoW web-based API.</td>
+        <td><a href="https://github.com/PSModule/WoW/actions/workflows/Process-PSModule.yml?query=branch%3Amain"><img src="https://img.shields.io/github/actions/workflow/status/psmodule/WoW/Process-PSModule.yml?query=branch%3Amain&style=flat-square&label=" alt="Process-PSModule"></a></td>
+        <td>
+            <a href="https://github.com/PSModule/WoW/releases/latest"><img src="https://img.shields.io/github/v/release/psmodule/WoW?style=flat-square&logo=github&logoColor=a0a0a0&label=&labelColor=505050&color=blue" alt="GitHub release (with filter)"></a>
+            <a href="https://www.powershellgallery.com/packages/WoW/"><img src="https://img.shields.io/powershellgallery/v/WoW?style=flat-square&logo=powershell&logoColor=a0a0a0&label=&labelColor=505050&color=blue" alt="PowerShell Gallery Version"></a>
+        </td>
+    </tr>
 </table>
 
 ## Design decisions
