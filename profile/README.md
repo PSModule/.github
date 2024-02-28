@@ -18,31 +18,31 @@ The framework sets standard when it comes to code structure and quality so that 
     <tr>
         <td><a href="https://github.com/PSModule/Process-PSModule">Process&#8209;PSModule</a></td>
         <td>A GitHub workflow that is used as a template in PowerShell module repos to build, test and publish the module using the PSModule framework.</td>
-        <td><a href="https://github.com/PSModule/Process-PSModule/actions/workflows/Workflow-Test.yml"><img src="https://img.shields.io/github/actions/workflow/status/psmodule/Process-PSModule/Workflow-Test.yml?branch=main&style=flat-square&label=" alt="GitHub Actions Workflow Status"></a></td>
+        <td><a href="https://github.com/PSModule/Process-PSModule/actions/workflows/Workflow-Test.yml"><img src="https://img.shields.io/github/actions/workflow/status/psmodule/Process-PSModule/Workflow-Test.yml?style=flat-square&label=" alt="GitHub Actions Workflow Status"></a></td>
         <td><a href="https://github.com/PSModule/Process-PSModule/releases/latest"><img src="https://img.shields.io/github/v/release/PSModule/Process-PSModule?style=flat-square&logo=github&logoColor=a0a0a0&label=&labelColor=505050&color=blue" alt="GitHub Release"></a></td>
     </tr>
     <tr>
         <td><a href="https://github.com/PSModule/Initialize-PSModule">Initialize&#8209;PSModule</a></td>
         <td>An action that is used to prepare the GitHub runner for the PSModule framework.</td>
-        <td><a href="https://github.com/PSModule/Initialize-PSModule/actions/workflows/Action-Test.yml"><img src="https://img.shields.io/github/actions/workflow/status/psmodule/Initialize-PSModule/Action-Test.yml?branch=main&style=flat-square&label=" alt="GitHub Actions Workflow Status"></a></td>
+        <td><a href="https://github.com/PSModule/Initialize-PSModule/actions/workflows/Action-Test.yml"><img src="https://img.shields.io/github/actions/workflow/status/psmodule/Initialize-PSModule/Action-Test.yml?style=flat-square&label=" alt="GitHub Actions Workflow Status"></a></td>
         <td><a href="https://github.com/PSModule/Initialize-PSModule/releases/latest"><img src="https://img.shields.io/github/v/release/PSModule/Initialize-PSModule?style=flat-square&logo=github&logoColor=a0a0a0&label=&labelColor=505050&color=blue" alt="GitHub Release"></a></td>
     </tr>
     <tr>
         <td><a href="https://github.com/PSModule/Build-PSModule">Build&#8209;PSModule</a></td>
         <td>Build the project from different files and structures dynamically based on the defaults defined in the framework. The results of the build should be a module that runs and is ready to be published to PowerShell Gallery with documentation ready to be published on GitHub Pages.</td>
-        <td><a href="https://github.com/PSModule/Build-PSModule/actions/workflows/Action-Test.yml"><img src="https://img.shields.io/github/actions/workflow/status/psmodule/Build-PSModule/Action-Test.yml?branch=main&style=flat-square&label=" alt="GitHub Actions Workflow Status"></a></td>
+        <td><a href="https://github.com/PSModule/Build-PSModule/actions/workflows/Action-Test.yml"><img src="https://img.shields.io/github/actions/workflow/status/psmodule/Build-PSModule/Action-Test.yml?style=flat-square&label=" alt="GitHub Actions Workflow Status"></a></td>
         <td><a href="https://github.com/PSModule/Build-PSModule/releases/latest"><img src="https://img.shields.io/github/v/release/PSModule/Build-PSModule?style=flat-square&logo=github&logoColor=a0a0a0&label=&labelColor=505050&color=blue" alt="GitHub Release"></a></td>
     </tr>
     <tr>
         <td><a href="https://github.com/PSModule/Test-PSModule">Test&#8209;PSModule</a></td>
         <td>Runs static code analysis and pester tests on source code or a built module. The tests are some framework specific tests and tests from within the module repo.</td>
-        <td><a href="https://github.com/PSModule/Test-PSModule/actions/workflows/Action-Test.yml"><img src="https://img.shields.io/github/actions/workflow/status/psmodule/Test-PSModule/Action-Test.yml?branch=main&style=flat-square&label=" alt="GitHub Actions Workflow Status"></a></td>
+        <td><a href="https://github.com/PSModule/Test-PSModule/actions/workflows/Action-Test.yml"><img src="https://img.shields.io/github/actions/workflow/status/psmodule/Test-PSModule/Action-Test.yml?style=flat-square&label=" alt="GitHub Actions Workflow Status"></a></td>
         <td><a href="https://github.com/PSModule/Test-PSModule/releases/latest"><img src="https://img.shields.io/github/v/release/PSModule/Test-PSModule?style=flat-square&logo=github&logoColor=a0a0a0&label=&labelColor=505050&color=blue" alt="GitHub Release"></a></td>
     </tr>
     <tr>
         <td><a href="https://github.com/PSModule/Publish-PSModule">Publish&#8209;PSModule</a></td>
         <td>Calculates the version number, updates module files with version, create a repo release and finally publish module to PowerShell Gallery and documentation to GitHub Pages.</td>
-        <td><a href="https://github.com/PSModule/Publish-PSModule/actions/workflows/Action-Test.yml"><img src="https://img.shields.io/github/actions/workflow/status/psmodule/Publish-PSModule/Action-Test.yml?branch=main&style=flat-square&label=" alt="GitHub Actions Workflow Status"></a></td>
+        <td><a href="https://github.com/PSModule/Publish-PSModule/actions/workflows/Action-Test.yml"><img src="https://img.shields.io/github/actions/workflow/status/psmodule/Publish-PSModule/Action-Test.yml?style=flat-square&label=" alt="GitHub Actions Workflow Status"></a></td>
         <td><a href="https://github.com/PSModule/Publish-PSModule/releases/latest"><img src="https://img.shields.io/github/v/release/PSModule/Publish-PSModule?style=flat-square&logo=github&logoColor=a0a0a0&label=&labelColor=505050&color=blue" alt="GitHub Release"></a></td>
     </tr>
 </table>
