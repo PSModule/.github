@@ -133,7 +133,25 @@ The framework sets standard when it comes to code structure and quality so that 
 
 ## Design decisions
 
-- A repo manages ONE module.
+### Modules
+
+### Manifest
+
+### Actions
+
+- A repository manages ONE module.
+- The ModuleVersion is generated from the Publish-PSModule function, based on available version and lables on PRs, not from the module manifest.
+- Modules are default located under the '.\src' folder which is the root of the repo.
+- Module name = the name of the folder under src.
+- The module manifest file = name of the folder.
+- The manifest file = name of the folder.
+- The basis of the module manifest comes from the source manifest file.
+- Values that are not defined in the module manifest file are generated from reading the module files and github repository properties.
+- If no RootModule is defined in the manifest file, we assume a .psm1 file with the same name as the module is on root.
+- The output folder = .\outputs on the root of the repo.
+- The module that is build is stored under the output folder in a folder with the same name as the module.
+- A new module manifest file is created every time to get a new GUID, so that the specific version of the module can be imported.
+
 
 ## Supporting actions
 
