@@ -4,12 +4,12 @@ PSModule simplifies how to go from idea to having a module published with decent
 This is done using a collection of GitHub Actions and PowerShell modules that build, test and publish PowerShell modules.
 The framework sets standard when it comes to code structure and quality so that its easy to build automation around it to handles the tedious tasks, and as a developer you can focus on the code.
 
-[PSModule on the GitHub Marketplace](https://github.com/marketplace?&verification=&query=publisher%3Apsmodule)
-
 <!-- TODO: Diagram of the flow of the framework. -->
 <!-- TODO: Add Compatability shields - [Compatability shields](https://learn.microsoft.com/en-us/powershell/gallery/concepts/publishing-guidelines?view=powershellget-3.x#tag-your-package-with-the-compatible-pseditions-and-platforms) -->
 
 ## GitHub Actions and Workflows
+
+[PSModule on the GitHub Marketplace](https://github.com/marketplace?&verification=&query=publisher%3Apsmodule)
 
 <table>
     <tr>
@@ -17,6 +17,12 @@ The framework sets standard when it comes to code structure and quality so that 
         <th width="70%">Description</th>
         <th width="10%">Tests</th>
         <th width="10%">Version</th>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/PSModule/Auto-Release/">Auto&#8209;Release</a></td>
+        <td>Handles release of a GitHub repo using PR based triggered Actions and labels in the PR.</td>
+        <td><a href="https://github.com/PSModule/Auto-Release/actions/workflows/Auto-Release.yml"><img src="https://img.shields.io/github/actions/workflow/status/psmodule/Auto-Release/Auto-Release.yml?style=flat-square&label=" alt="Auto-Release"></a></td>
+        <td><a href="https://github.com/PSModule/Auto-Release/releases/latest"><img src="https://img.shields.io/github/v/release/psmodule/Auto-Release?style=flat-square&logo=github&logoColor=a0a0a0&label=&labelColor=505050&color=blue" alt="GitHub release (with filter)"></a></td>
     </tr>
     <tr>
         <td><a href="https://github.com/PSModule/Process-PSModule">Process&#8209;PSModule</a></td>
@@ -153,24 +159,6 @@ The framework sets standard when it comes to code structure and quality so that 
 - The output folder = .\outputs on the root of the repo.
 - The module that is build is stored under the output folder in a folder with the same name as the module.
 - A new module manifest file is created every time to get a new GUID, so that the specific version of the module can be imported.
-
-
-## Supporting actions
-
-<table>
-    <tr>
-        <th width="10%">Name</th>
-        <th width="70%">Description</th>
-        <th width="10%">Tests</th>
-        <th width="10%">Version</th>
-    </tr>
-    <tr>
-        <td><a href="https://github.com/PSModule/Auto-Release/">Auto&#8209;Release</a></td>
-        <td>Handles release of a GitHub repo using PR based triggered Actions and labels in the PR.</td>
-        <td><a href="https://github.com/PSModule/Auto-Release/actions/workflows/Auto-Release.yml"><img src="https://img.shields.io/github/actions/workflow/status/psmodule/Auto-Release/Auto-Release.yml?style=flat-square&label=" alt="Auto-Release"></a></td>
-        <td><a href="https://github.com/PSModule/Auto-Release/releases/latest"><img src="https://img.shields.io/github/v/release/psmodule/Auto-Release?style=flat-square&logo=github&logoColor=a0a0a0&label=&labelColor=505050&color=blue" alt="GitHub release (with filter)"></a></td>
-    </tr>
-</table>
 
 ## Developer handbook
 
