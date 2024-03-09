@@ -284,7 +284,7 @@ If you think you should be mentioned, create [an issue](https://github.com/PSMod
 - [PoshCode Actions | GitHub](https://github.com/PoshCode/Actions) - Did not know this existed untill i started making my own. Approaches are different however.
 - [PoshCode ModuleBuilder | GitHub](https://github.com/PoshCode/ModuleBuilder)
 
-## Gihub Pages Resources
+## GitHub Pages Resources
 
 - [GitHub Pages | GitHub Docs](https://docs.github.com/en/pages)
 - [GitHub Pages | GitHub Help](https://help.github.com/en/github/working-with-github-pages)
