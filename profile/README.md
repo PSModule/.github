@@ -216,6 +216,7 @@ If you think you should be mentioned, create [an issue](https://github.com/PSMod
 
 ## 🗂️ Powershell Resources
 
+- [Awsome-Powershell](https://github.com/janikvonrotz/awesome-powershell)
 - [PowerShell Module Browser | Microsoft Learn](https://learn.microsoft.com/en-us/powershell/module/)
   - Azure PowerShell
     - Namespace: `Az` & `Az.*` namespace
