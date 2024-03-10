@@ -6,8 +6,8 @@
 
 <!-- Use the check-boxes [x] on the options that are relevant. -->
 
-- [ ] 📖 [Doc update]
-- [ ] 🪲 [Bugfix]
+- [ ] 📖 [Docs]
+- [ ] 🪲 [Fix]
 - [ ] 🩹 [Patch]
 - [ ] ⚠️ [Security fix]
 - [ ] 🚀 [Feature]
