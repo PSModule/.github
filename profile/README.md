@@ -144,6 +144,8 @@ The framework sets standard when it comes to code structure and quality so that 
 ### Repository
 
 - A repository manages ONE module.
+- A repository has releases that are in line with the version of the published package.
+- The version of a repository follows semver 2.0.0 based on the changes to the module, and not the framework or any other external factor from the module.
 
 ### Repository structure
 
