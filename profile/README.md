@@ -120,6 +120,15 @@ The framework sets standard when it comes to code structure and quality so that 
         </td>
     </tr>
     <tr>
+        <td><a href="https://github.com/PSModule/Store">Store</a></td>
+        <td>Find your public IP using IPInfo or MyIP.</td>
+        <td><a href="https://github.com/PSModule/Store/actions/workflows/Process-PSModule.yml"><img src="https://img.shields.io/github/actions/workflow/status/psmodule/Store/Process-PSModule.yml?style=flat-square&label=" alt="Process-PSModule"></a></td>
+        <td>
+            <a href="https://github.com/PSModule/Store/releases/latest"><img src="https://img.shields.io/github/v/release/psmodule/Store?style=flat-square&logo=github&logoColor=a0a0a0&label=&labelColor=505050&color=blue" alt="GitHub release (with filter)"></a>
+            <a href="https://www.powershellgallery.com/packages/Store/"><img src="https://img.shields.io/powershellgallery/v/Store?style=flat-square&logo=powershell&logoColor=a0a0a0&label=&labelColor=505050&color=blue" alt="PowerShell Gallery Version"></a>
+        </td>
+    </tr>
+    <tr>
         <td><a href="https://github.com/PSModule/Utilities">Utilities</a></td>
         <td>Assorted powershell functions that I have made or harvested from different sources that really should have been a part of PowerShell to start with.</td>
         <td><a href="https://github.com/PSModule/Utilities/actions/workflows/Process-PSModule.yml"><img src="https://img.shields.io/github/actions/workflow/status/psmodule/Utilities/Process-PSModule.yml?style=flat-square&label=" alt="Process-PSModule"></a></td>
