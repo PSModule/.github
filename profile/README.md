@@ -14,44 +14,37 @@ The framework sets standard when it comes to code structure and quality so that 
 <table>
     <tr>
         <th width="10%">Name</th>
-        <th width="70%">Description</th>
-        <th width="10%">Tests</th>
+        <th width="80%">Description</th>
         <th width="10%">Version</th>
     </tr>
     <tr>
         <td><a href="https://github.com/PSModule/Auto-Release/">Auto&#8209;Release</a></td>
         <td>Handles release of a GitHub repo using PR based triggered Actions and labels in the PR.</td>
-        <td><a href="https://github.com/PSModule/Auto-Release/actions/workflows/Auto-Release.yml"><img src="https://img.shields.io/github/actions/workflow/status/psmodule/Auto-Release/Auto-Release.yml?style=flat-square&label=" alt="Auto-Release"></a></td>
         <td><a href="https://github.com/PSModule/Auto-Release/releases/latest"><img src="https://img.shields.io/github/v/release/psmodule/Auto-Release?style=flat-square&logo=github&logoColor=a0a0a0&label=&labelColor=505050&color=blue" alt="GitHub release (with filter)"></a></td>
     </tr>
     <tr>
         <td><a href="https://github.com/PSModule/Process-PSModule">Process&#8209;PSModule</a></td>
         <td>A GitHub workflow that is used as a template in PowerShell module repos to build, test and publish the module using the PSModule framework.</td>
-        <td><a href="https://github.com/PSModule/Process-PSModule/actions/workflows/Workflow-Test.yml"><img src="https://img.shields.io/github/actions/workflow/status/psmodule/Process-PSModule/Workflow-Test.yml?style=flat-square&label=" alt="GitHub Actions Workflow Status"></a></td>
         <td><a href="https://github.com/PSModule/Process-PSModule/releases/latest"><img src="https://img.shields.io/github/v/release/PSModule/Process-PSModule?style=flat-square&logo=github&logoColor=a0a0a0&label=&labelColor=505050&color=blue" alt="GitHub Release"></a></td>
     </tr>
     <tr>
         <td><a href="https://github.com/PSModule/Initialize-PSModule">Initialize&#8209;PSModule</a></td>
         <td>An action that is used to prepare the GitHub runner for the PSModule framework.</td>
-        <td><a href="https://github.com/PSModule/Initialize-PSModule/actions/workflows/Action-Test.yml"><img src="https://img.shields.io/github/actions/workflow/status/psmodule/Initialize-PSModule/Action-Test.yml?style=flat-square&label=" alt="GitHub Actions Workflow Status"></a></td>
         <td><a href="https://github.com/PSModule/Initialize-PSModule/releases/latest"><img src="https://img.shields.io/github/v/release/PSModule/Initialize-PSModule?style=flat-square&logo=github&logoColor=a0a0a0&label=&labelColor=505050&color=blue" alt="GitHub Release"></a></td>
     </tr>
     <tr>
         <td><a href="https://github.com/PSModule/Build-PSModule">Build&#8209;PSModule</a></td>
         <td>Build the project from different files and structures dynamically based on the defaults defined in the framework. The results of the build should be a module that runs and is ready to be published to PowerShell Gallery with documentation ready to be published on GitHub Pages.</td>
-        <td><a href="https://github.com/PSModule/Build-PSModule/actions/workflows/Action-Test.yml"><img src="https://img.shields.io/github/actions/workflow/status/psmodule/Build-PSModule/Action-Test.yml?style=flat-square&label=" alt="GitHub Actions Workflow Status"></a></td>
         <td><a href="https://github.com/PSModule/Build-PSModule/releases/latest"><img src="https://img.shields.io/github/v/release/PSModule/Build-PSModule?style=flat-square&logo=github&logoColor=a0a0a0&label=&labelColor=505050&color=blue" alt="GitHub Release"></a></td>
     </tr>
     <tr>
         <td><a href="https://github.com/PSModule/Test-PSModule">Test&#8209;PSModule</a></td>
         <td>Runs static code analysis and pester tests on source code or a built module. The tests are some framework specific tests and tests from within the module repo.</td>
-        <td><a href="https://github.com/PSModule/Test-PSModule/actions/workflows/Action-Test.yml"><img src="https://img.shields.io/github/actions/workflow/status/psmodule/Test-PSModule/Action-Test.yml?style=flat-square&label=" alt="GitHub Actions Workflow Status"></a></td>
         <td><a href="https://github.com/PSModule/Test-PSModule/releases/latest"><img src="https://img.shields.io/github/v/release/PSModule/Test-PSModule?style=flat-square&logo=github&logoColor=a0a0a0&label=&labelColor=505050&color=blue" alt="GitHub Release"></a></td>
     </tr>
     <tr>
         <td><a href="https://github.com/PSModule/Publish-PSModule">Publish&#8209;PSModule</a></td>
         <td>Calculates the version number, updates module files with version, create a repo release and finally publish module to PowerShell Gallery and documentation to GitHub Pages.</td>
-        <td><a href="https://github.com/PSModule/Publish-PSModule/actions/workflows/Action-Test.yml"><img src="https://img.shields.io/github/actions/workflow/status/psmodule/Publish-PSModule/Action-Test.yml?style=flat-square&label=" alt="GitHub Actions Workflow Status"></a></td>
         <td><a href="https://github.com/PSModule/Publish-PSModule/releases/latest"><img src="https://img.shields.io/github/v/release/PSModule/Publish-PSModule?style=flat-square&logo=github&logoColor=a0a0a0&label=&labelColor=505050&color=blue" alt="GitHub Release"></a></td>
     </tr>
 </table>
@@ -61,14 +54,12 @@ The framework sets standard when it comes to code structure and quality so that 
 <table>
     <tr>
         <th width="10%">Name</th>
-        <th width="70%">Description</th>
-        <th width="10%">Tests</th>
+        <th width="80%">Description</th>
         <th width="10%">Version</th>
     </tr>
     <tr>
         <td><a href="https://github.com/PSModule/AzureDevOps">AzureDevOps</a></td>
         <td>A PowerShell module to interact with the Azure DevOps REST API.</td>
-        <td><a href="https://github.com/PSModule/AzureDevOps/actions/workflows/Process-PSModule.yml"><img src="https://img.shields.io/github/actions/workflow/status/psmodule/AzureDevOps/Process-PSModule.yml?style=flat-square&label=" alt="Process-PSModule"></a></td>
         <td>
             <a href="https://github.com/PSModule/AzureDevOps/releases/latest"><img src="https://img.shields.io/github/v/release/psmodule/AzureDevOps?style=flat-square&logo=github&logoColor=a0a0a0&label=&labelColor=505050&color=blue" alt="GitHub release (with filter)"></a>
             <a href="https://www.powershellgallery.com/packages/AzureDevOps/"><img src="https://img.shields.io/powershellgallery/v/AzureDevOps?style=flat-square&logo=powershell&logoColor=a0a0a0&label=&labelColor=505050&color=blue" alt="PowerShell Gallery Version"></a>
@@ -77,7 +68,6 @@ The framework sets standard when it comes to code structure and quality so that 
         <tr>
         <td><a href="https://github.com/PSModule/DynamicParams">DynamicParams</a></td>
         <td>A PowerShell module that makes it easier to use dynamic params.</td>
-        <td><a href="https://github.com/PSModule/DynamicParams/actions/workflows/Process-PSModule.yml"><img src="https://img.shields.io/github/actions/workflow/status/psmodule/DynamicParams/Process-PSModule.yml?style=flat-square&label=" alt="Process-PSModule"></a></td>
         <td>
             <a href="https://github.com/PSModule/DynamicParams/releases/latest"><img src="https://img.shields.io/github/v/release/psmodule/DynamicParams?style=flat-square&logo=github&logoColor=a0a0a0&label=&labelColor=505050&color=blue" alt="GitHub release (with filter)"></a>
             <a href="https://www.powershellgallery.com/packages/DynamicParams/"><img src="https://img.shields.io/powershellgallery/v/DynamicParams?style=flat-square&logo=powershell&logoColor=a0a0a0&label=&labelColor=505050&color=blue" alt="PowerShell Gallery Version"></a>
@@ -86,7 +76,6 @@ The framework sets standard when it comes to code structure and quality so that 
     <tr>
         <td><a href="https://github.com/PSModule/Fonts">Fonts</a></td>
         <td>A PowerShell module for managing fonts.</td>
-        <td><a href="https://github.com/PSModule/Fonts/actions/workflows/Process-PSModule.yml"><img src="https://img.shields.io/github/actions/workflow/status/psmodule/Fonts/Process-PSModule.yml?style=flat-square&label=" alt="Process-PSModule"></a></td>
         <td>
             <a href="https://github.com/PSModule/Fonts/releases/latest"><img src="https://img.shields.io/github/v/release/psmodule/Fonts?style=flat-square&logo=github&logoColor=a0a0a0&label=&labelColor=505050&color=blue" alt="GitHub release (with filter)"></a>
             <a href="https://www.powershellgallery.com/packages/Fonts/"><img src="https://img.shields.io/powershellgallery/v/Fonts?style=flat-square&logo=powershell&logoColor=a0a0a0&label=&labelColor=505050&color=blue" alt="PowerShell Gallery Version"></a>
@@ -95,7 +84,6 @@ The framework sets standard when it comes to code structure and quality so that 
     <tr>
         <td><a href="https://github.com/PSModule/GitHub">GitHub</a></td>
         <td>A PowerShell module to interact with the GitHub API.</td>
-        <td><a href="https://github.com/PSModule/GitHub/actions/workflows/Process-PSModule.yml"><img src="https://img.shields.io/github/actions/workflow/status/psmodule/GitHub/Process-PSModule.yml?style=flat-square&label=" alt="Process-PSModule"></a></td>
         <td>
             <a href="https://github.com/PSModule/GitHub/releases/latest"><img src="https://img.shields.io/github/v/release/psmodule/GitHub?style=flat-square&logo=github&logoColor=a0a0a0&label=&labelColor=505050&color=blue" alt="GitHub release (with filter)"></a>
             <a href="https://www.powershellgallery.com/packages/GitHub/"><img src="https://img.shields.io/powershellgallery/v/GitHub?style=flat-square&logo=powershell&logoColor=a0a0a0&label=&labelColor=505050&color=blue" alt="PowerShell Gallery Version"></a>
@@ -104,7 +92,6 @@ The framework sets standard when it comes to code structure and quality so that 
     <tr>
         <td><a href="https://github.com/PSModule/GoogleFonts">GoogleFonts</a></td>
         <td>A PowerShell module to download and install fonts from GoogleFonts.</td>
-        <td><a href="https://github.com/PSModule/GoogleFonts/actions/workflows/Process-PSModule.yml"><img src="https://img.shields.io/github/actions/workflow/status/psmodule/GoogleFonts/Process-PSModule.yml?style=flat-square&label=" alt="Process-PSModule"></a></td>
         <td>
             <a href="https://github.com/PSModule/GoogleFonts/releases/latest"><img src="https://img.shields.io/github/v/release/psmodule/GoogleFonts?style=flat-square&logo=github&logoColor=a0a0a0&label=&labelColor=505050&color=blue" alt="GitHub release (with filter)"></a>
             <a href="https://www.powershellgallery.com/packages/GoogleFonts/"><img src="https://img.shields.io/powershellgallery/v/GoogleFonts?style=flat-square&logo=powershell&logoColor=a0a0a0&label=&labelColor=505050&color=blue" alt="PowerShell Gallery Version"></a>
@@ -113,7 +100,6 @@ The framework sets standard when it comes to code structure and quality so that 
     <tr>
         <td><a href="https://github.com/PSModule/NerdFonts">NerdFonts</a></td>
         <td>A PowerShell module to download and install fonts from NerdFonts.</td>
-        <td><a href="https://github.com/PSModule/NerdFonts/actions/workflows/Process-PSModule.yml"><img src="https://img.shields.io/github/actions/workflow/status/psmodule/NerdFonts/Process-PSModule.yml?style=flat-square&label=" alt="Process-PSModule"></a></td>
         <td>
             <a href="https://github.com/PSModule/NerdFonts/releases/latest"><img src="https://img.shields.io/github/v/release/psmodule/NerdFonts?style=flat-square&logo=github&logoColor=a0a0a0&label=&labelColor=505050&color=blue" alt="GitHub release (with filter)"></a>
             <a href="https://www.powershellgallery.com/packages/NerdFonts/"><img src="https://img.shields.io/powershellgallery/v/NerdFonts?style=flat-square&logo=powershell&logoColor=a0a0a0&label=&labelColor=505050&color=blue" alt="PowerShell Gallery Version"></a>
@@ -122,7 +108,6 @@ The framework sets standard when it comes to code structure and quality so that 
     <tr>
         <td><a href="https://github.com/PSModule/PATH">PATH</a></td>
         <td>A PowerShell module to manage the PATH environment variable on Windows.</td>
-        <td><a href="https://github.com/PSModule/PATH/actions/workflows/Process-PSModule.yml"><img src="https://img.shields.io/github/actions/workflow/status/psmodule/PATH/Process-PSModule.yml?style=flat-square&label=" alt="Process-PSModule"></a></td>
         <td>
             <a href="https://github.com/PSModule/PATH/releases/latest"><img src="https://img.shields.io/github/v/release/psmodule/PATH?style=flat-square&logo=github&logoColor=a0a0a0&label=&labelColor=505050&color=blue" alt="GitHub release (with filter)"></a>
             <a href="https://www.powershellgallery.com/packages/PATH/"><img src="https://img.shields.io/powershellgallery/v/PATH?style=flat-square&logo=powershell&logoColor=a0a0a0&label=&labelColor=505050&color=blue" alt="PowerShell Gallery Version"></a>
@@ -131,7 +116,6 @@ The framework sets standard when it comes to code structure and quality so that 
     <tr>
         <td><a href="https://github.com/PSModule/PowerShellGallery">PowerShellGallery</a></td>
         <td>A PowerShell module for interacting with the PowerShell Gallery.</td>
-        <td><a href="https://github.com/PSModule/PowerShellGallery/actions/workflows/Process-PSModule.yml"><img src="https://img.shields.io/github/actions/workflow/status/psmodule/PowerShellGallery/Process-PSModule.yml?style=flat-square&label=" alt="Process-PSModule"></a></td>
         <td>
             <a href="https://github.com/PSModule/PowerShellGallery/releases/latest"><img src="https://img.shields.io/github/v/release/psmodule/PowerShellGallery?style=flat-square&logo=github&logoColor=a0a0a0&label=&labelColor=505050&color=blue" alt="GitHub release (with filter)"></a>
             <a href="https://www.powershellgallery.com/packages/PowerShellGallery/"><img src="https://img.shields.io/powershellgallery/v/PowerShellGallery?style=flat-square&logo=powershell&logoColor=a0a0a0&label=&labelColor=505050&color=blue" alt="PowerShell Gallery Version"></a>
@@ -140,7 +124,6 @@ The framework sets standard when it comes to code structure and quality so that 
     <tr>
         <td><a href="https://github.com/PSModule/PSSemVer">PSSemVer</a></td>
         <td>A PowerShell module adding a SemVer compatible class and functions.</td>
-        <td><a href="https://github.com/PSModule/PSSemVer/actions/workflows/Process-PSModule.yml"><img src="https://img.shields.io/github/actions/workflow/status/psmodule/PSSemVer/Process-PSModule.yml?style=flat-square&label=" alt="Process-PSModule"></a></td>
         <td>
             <a href="https://github.com/PSModule/PSSemVer/releases/latest"><img src="https://img.shields.io/github/v/release/psmodule/PSSemVer?style=flat-square&logo=github&logoColor=a0a0a0&label=&labelColor=505050&color=blue" alt="GitHub release (with filter)"></a>
             <a href="https://www.powershellgallery.com/packages/PSSemVer/"><img src="https://img.shields.io/powershellgallery/v/PSSemVer?style=flat-square&logo=powershell&logoColor=a0a0a0&label=&labelColor=505050&color=blue" alt="PowerShell Gallery Version"></a>
@@ -149,7 +132,6 @@ The framework sets standard when it comes to code structure and quality so that 
     <tr>
         <td><a href="https://github.com/PSModule/PublicIP">PublicIP</a></td>
         <td>A PowerShell module that helps getting info about your public IP.</td>
-        <td><a href="https://github.com/PSModule/PublicIP/actions/workflows/Process-PSModule.yml"><img src="https://img.shields.io/github/actions/workflow/status/psmodule/PublicIP/Process-PSModule.yml?style=flat-square&label=" alt="Process-PSModule"></a></td>
         <td>
             <a href="https://github.com/PSModule/PublicIP/releases/latest"><img src="https://img.shields.io/github/v/release/psmodule/PublicIP?style=flat-square&logo=github&logoColor=a0a0a0&label=&labelColor=505050&color=blue" alt="GitHub release (with filter)"></a>
             <a href="https://www.powershellgallery.com/packages/PublicIP/"><img src="https://img.shields.io/powershellgallery/v/PublicIP?style=flat-square&logo=powershell&logoColor=a0a0a0&label=&labelColor=505050&color=blue" alt="PowerShell Gallery Version"></a>
@@ -158,7 +140,6 @@ The framework sets standard when it comes to code structure and quality so that 
     <tr>
         <td><a href="https://github.com/PSModule/Store">Store</a></td>
         <td>A PowerShell module that manages a store of secrets and variables.</td>
-        <td><a href="https://github.com/PSModule/Store/actions/workflows/Process-PSModule.yml"><img src="https://img.shields.io/github/actions/workflow/status/psmodule/Store/Process-PSModule.yml?style=flat-square&label=" alt="Process-PSModule"></a></td>
         <td>
             <a href="https://github.com/PSModule/Store/releases/latest"><img src="https://img.shields.io/github/v/release/psmodule/Store?style=flat-square&logo=github&logoColor=a0a0a0&label=&labelColor=505050&color=blue" alt="GitHub release (with filter)"></a>
             <a href="https://www.powershellgallery.com/packages/Store/"><img src="https://img.shields.io/powershellgallery/v/Store?style=flat-square&logo=powershell&logoColor=a0a0a0&label=&labelColor=505050&color=blue" alt="PowerShell Gallery Version"></a>
@@ -167,7 +148,6 @@ The framework sets standard when it comes to code structure and quality so that 
     <tr>
         <td><a href="https://github.com/PSModule/Utilities">Utilities</a></td>
         <td>A PowerShell module with a collection of functions that should have been in PowerShell to start with.</td>
-        <td><a href="https://github.com/PSModule/Utilities/actions/workflows/Process-PSModule.yml"><img src="https://img.shields.io/github/actions/workflow/status/psmodule/Utilities/Process-PSModule.yml?style=flat-square&label=" alt="Process-PSModule"></a></td>
         <td>
             <a href="https://github.com/PSModule/Utilities/releases/latest"><img src="https://img.shields.io/github/v/release/psmodule/Utilities?style=flat-square&logo=github&logoColor=a0a0a0&label=&labelColor=505050&color=blue" alt="GitHub release (with filter)"></a>
             <a href="https://www.powershellgallery.com/packages/Utilities/"><img src="https://img.shields.io/powershellgallery/v/Utilities?style=flat-square&logo=powershell&logoColor=a0a0a0&label=&labelColor=505050&color=blue" alt="PowerShell Gallery Version"></a>
@@ -176,7 +156,6 @@ The framework sets standard when it comes to code structure and quality so that 
         <tr>
         <td><a href="https://github.com/PSModule/WoW">WoW</a></td>
         <td>A PowerShell module containing utilities for World of Warcraft.</td>
-        <td><a href="https://github.com/PSModule/WoW/actions/workflows/Process-PSModule.yml"><img src="https://img.shields.io/github/actions/workflow/status/psmodule/WoW/Process-PSModule.yml?style=flat-square&label=" alt="Process-PSModule"></a></td>
         <td>
             <a href="https://github.com/PSModule/WoW/releases/latest"><img src="https://img.shields.io/github/v/release/psmodule/WoW?style=flat-square&logo=github&logoColor=a0a0a0&label=&labelColor=505050&color=blue" alt="GitHub release (with filter)"></a>
             <a href="https://www.powershellgallery.com/packages/WoW/"><img src="https://img.shields.io/powershellgallery/v/WoW?style=flat-square&logo=powershell&logoColor=a0a0a0&label=&labelColor=505050&color=blue" alt="PowerShell Gallery Version"></a>
