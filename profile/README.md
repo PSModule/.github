@@ -58,6 +58,14 @@ The framework sets standard when it comes to code structure and quality so that 
         <th width="10%">Version</th>
     </tr>
     <tr>
+        <td><a href="https://github.com/PSModule/Admin">Admin</a></td>
+        <td>A PowerShell module working with the admin role.</td>
+        <td>
+            <a href="https://github.com/PSModule/Admin/releases/latest"><img src="https://img.shields.io/github/v/release/psmodule/Admin?style=flat-square&logo=github&logoColor=a0a0a0&label=&labelColor=505050&color=blue" alt="GitHub release (with filter)"></a>
+            <a href="https://www.powershellgallery.com/packages/Admin/"><img src="https://img.shields.io/powershellgallery/v/Admin?style=flat-square&logo=powershell&logoColor=a0a0a0&label=&labelColor=505050&color=blue" alt="PowerShell Gallery Version"></a>
+        </td>
+    </tr>
+    <tr>
         <td><a href="https://github.com/PSModule/AzureDevOps">AzureDevOps</a></td>
         <td>A PowerShell module to interact with the Azure DevOps REST API.</td>
         <td>
@@ -65,7 +73,7 @@ The framework sets standard when it comes to code structure and quality so that 
             <a href="https://www.powershellgallery.com/packages/AzureDevOps/"><img src="https://img.shields.io/powershellgallery/v/AzureDevOps?style=flat-square&logo=powershell&logoColor=a0a0a0&label=&labelColor=505050&color=blue" alt="PowerShell Gallery Version"></a>
         </td>
     </tr>
-        <tr>
+    <tr>
         <td><a href="https://github.com/PSModule/DynamicParams">DynamicParams</a></td>
         <td>A PowerShell module that makes it easier to use dynamic params.</td>
         <td>
