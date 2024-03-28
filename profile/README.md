@@ -74,6 +74,15 @@ The framework sets standard when it comes to code structure and quality so that 
             <a href="https://www.powershellgallery.com/packages/AzureDevOps/"><img src="https://img.shields.io/powershellgallery/v/AzureDevOps?style=flat-square&logo=powershell&logoColor=a0a0a0&label=&labelColor=505050&color=blue" alt="PowerShell Gallery Version"></a>
         </td>
     </tr>
+        <tr>
+        <td><a href="https://github.com/PSModule/DynamicParams">DynamicParams</a></td>
+        <td>A PowerShell module that makes it easier to use dynamic params.</td>
+        <td><a href="https://github.com/PSModule/DynamicParams/actions/workflows/Process-PSModule.yml"><img src="https://img.shields.io/github/actions/workflow/status/psmodule/DynamicParams/Process-PSModule.yml?style=flat-square&label=" alt="Process-PSModule"></a></td>
+        <td>
+            <a href="https://github.com/PSModule/DynamicParams/releases/latest"><img src="https://img.shields.io/github/v/release/psmodule/DynamicParams?style=flat-square&logo=github&logoColor=a0a0a0&label=&labelColor=505050&color=blue" alt="GitHub release (with filter)"></a>
+            <a href="https://www.powershellgallery.com/packages/DynamicParams/"><img src="https://img.shields.io/powershellgallery/v/DynamicParams?style=flat-square&logo=powershell&logoColor=a0a0a0&label=&labelColor=505050&color=blue" alt="PowerShell Gallery Version"></a>
+        </td>
+    </tr>
     <tr>
         <td><a href="https://github.com/PSModule/Fonts">Fonts</a></td>
         <td>A module to help install, uninstall and list current fonts for Windows.</td>
