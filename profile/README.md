@@ -40,14 +40,14 @@ The framework sets standard when it comes to code structure and quality so that 
         <td><a href="https://github.com/PSModule/Initialize-PSModule/releases/latest"><img src="https://img.shields.io/github/v/release/PSModule/Initialize-PSModule?style=flat-square&logo=github&logoColor=a0a0a0&label=&labelColor=505050&color=blue" alt="GitHub Release"></a></td>
     </tr>
     <tr>
-        <td><a href="https://github.com/PSModule/Build-PSModule">Build&#8209;PSModule</a></td>
-        <td>Build the project from different files and structures dynamically based on the defaults defined in the framework. The results of the build should be a module that runs and is ready to be published to PowerShell Gallery with documentation ready to be published on GitHub Pages.</td>
-        <td><a href="https://github.com/PSModule/Build-PSModule/releases/latest"><img src="https://img.shields.io/github/v/release/PSModule/Build-PSModule?style=flat-square&logo=github&logoColor=a0a0a0&label=&labelColor=505050&color=blue" alt="GitHub Release"></a></td>
-    </tr>
-    <tr>
         <td><a href="https://github.com/PSModule/Test-PSModule">Test&#8209;PSModule</a></td>
         <td>Runs static code analysis and pester tests on source code or a built module. The tests are some framework specific tests and tests from within the module repo.</td>
         <td><a href="https://github.com/PSModule/Test-PSModule/releases/latest"><img src="https://img.shields.io/github/v/release/PSModule/Test-PSModule?style=flat-square&logo=github&logoColor=a0a0a0&label=&labelColor=505050&color=blue" alt="GitHub Release"></a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/PSModule/Build-PSModule">Build&#8209;PSModule</a></td>
+        <td>Build the project from different files and structures dynamically based on the defaults defined in the framework. The results of the build should be a module that runs and is ready to be published to PowerShell Gallery with documentation ready to be published on GitHub Pages.</td>
+        <td><a href="https://github.com/PSModule/Build-PSModule/releases/latest"><img src="https://img.shields.io/github/v/release/PSModule/Build-PSModule?style=flat-square&logo=github&logoColor=a0a0a0&label=&labelColor=505050&color=blue" alt="GitHub Release"></a></td>
     </tr>
     <tr>
         <td><a href="https://github.com/PSModule/Publish-PSModule">Publish&#8209;PSModule</a></td>
