@@ -4,6 +4,14 @@ PSModule simplifies how to go from idea to having a module published with decent
 This is done using a collection of GitHub Actions and PowerShell modules that build, test and publish PowerShell modules.
 The framework sets standard when it comes to code structure and quality so that its easy to build automation around it to handles the tedious tasks, and as a developer you can focus on the code.
 
+## Core practices
+
+- **Everything as code**
+- **Automate everything**
+- **Simplify**
+- **Optimize**
+- **Streamline**
+
 <!-- TODO: Diagram of the flow of the framework. -->
 <!-- TODO: Add Compatability shields - [Compatability shields](https://learn.microsoft.com/en-us/powershell/gallery/concepts/publishing-guidelines?view=powershellget-3.x#tag-your-package-with-the-compatible-pseditions-and-platforms) -->
 
