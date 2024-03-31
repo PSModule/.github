@@ -340,16 +340,6 @@ If you think you should be mentioned, create [an issue](https://github.com/PSMod
 - [PoshCode Actions | GitHub](https://github.com/PoshCode/Actions) - Did not know this existed untill i started making my own. Approaches are different however.
 - [PoshCode ModuleBuilder | GitHub](https://github.com/PoshCode/ModuleBuilder)
 
-## GitHub Pages Resources
-
-- [GitHub Pages | GitHub Docs](https://docs.github.com/en/pages)
-- [GitHub Pages | GitHub Help](https://help.github.com/en/github/working-with-github-pages)
-- [GitHub Pages | GitHub Learning Lab](https://lab.github.com/githubtraining/github-pages)
-
-Projects using GitHub Pages:
-
-- [Code With Engineering Playbook](https://github.com/microsoft/code-with-engineering-playbook)
-
 ### Outdated resources
 - [psake, A build automation tool written in PowerShell | GitHub](https://github.com/psake/psake)
 - http://ramblingcookiemonster.github.io/
