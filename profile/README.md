@@ -289,6 +289,7 @@ To be filled later.
 - Code With Engineering Playbook
   - [Docs](https://microsoft.github.io/code-with-engineering-playbook/)
   - [GitHub repo](https://github.com/microsoft/code-with-engineering-playbook)
+- [Microsoft Writing Style Guide](https://learn.microsoft.com/en-us/style-guide/welcome/)
 
 ### Process
 
