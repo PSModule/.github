@@ -4,13 +4,11 @@ PSModule simplifies how to go from idea to having a module published with decent
 This is done using a collection of GitHub Actions and PowerShell modules that build, test and publish PowerShell modules.
 The framework sets standard when it comes to code structure and quality so that its easy to build automation around it to handles the tedious tasks, and as a developer you can focus on the code.
 
-## Core practices
+## Core practices and principles
 
 - **Everything as code**
-- **Automate everything**
-- **Simplify**
-- **Optimize**
-- **Streamline**
+- **Simplify by automating everything**
+- **Standardize and enforce good practices**
 
 <!-- TODO: Diagram of the flow of the framework. -->
 
@@ -250,7 +248,7 @@ To be filled later.
 - If no RootModule is defined in the manifest file, a file with the name of the folder is searched for with a compatible file extension.
 - A new module manifest file is created every time to get a new GUID, so that the specific version of the module can be imported.
 
-### Actions
+### Actions and reusable workflows
 
 - Use the composite action to load prerequisite modules. I.e., 'Utilities'.
 - Run the main functionality from a `main.ps1` file located in a `scripts` folder.
@@ -258,7 +256,7 @@ To be filled later.
 - Use envvironment variables to pass data between the composite action and the `main.ps1` file.
 - Prefix the environment variable with `GITHUB_ACTION_INPUT_` followed by the name of the action input to avoid collision with other environment variables.
 - Have a `readme.md` file in the action folder that explains the action and how to use it.
-- Have a Action-Test workflow file that tests the action.
+- Have a `Action-Test` workflow file that tests the action.
 - Use the `Auto-Release` action for automating the release of the action via pull requeusts.
 - Actions versions must be available as vX, vX.Y and vX.Y.Z tags, where they get the updates on their respective version.
   - vX automatically gets all the feature and patch updates until a breaking change is introduced.
@@ -266,6 +264,23 @@ To be filled later.
   - vX.Y.Z is locked to the exact version and will not get any updates.
 - Older version of the action are not updates on their given track. i.e., if an older version of the action has bugs or a security issue,
   the fix will be implemented on the latest version and the user will have to update to the latest version to get the fix.
+
+#### Configuration
+
+- Actions should have parameters to configure the action with smart default values.
+- Actions should also be able to take a configuration file as a yaml file, that is stored in the repository's `.github` folder.
+- The configuration should also be able to be stored in the organizations `.github` repository, to simplify configuration control for all the repositories in the organization.
+- The configuration should be called the name of the action/workflow and be a yaml file.
+- Configuration precedence is as follows:
+  1. Action inputs, over
+  1. Repository configuration, over
+  1. Organization configuration, over
+  1. Action inputs default values.
+- Configuration processing is as follows:
+  1. Start with defaults from the action.
+  1. Load the configuration from the organization `.github` repository, overwriting defined values only.
+  1. Load the configuration from the repository `.github` folder, overwriting defined values only.
+  1. Load the configuration from the action inputs, overwriting defined values only.
 
 ## Developer handbook
 
