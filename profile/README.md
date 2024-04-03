@@ -4,6 +4,21 @@ PSModule simplifies how to go from idea to having a module published with decent
 This is done using a collection of GitHub Actions and PowerShell modules that build, test and publish PowerShell modules.
 The framework sets standard when it comes to code structure and quality so that its easy to build automation around it to handles the tedious tasks, and as a developer you can focus on the code.
 
+## How to get started
+
+1. Create a repository based on the template [PSModuleTemplate](https://github.com/PSModule/PSModuleTemplate). Name the repo the same name of the module you want to create. See [Process-PSModule](https://github.com/PSModule/Process-PSModule) for more info on choosing another name than the repo name.
+1. Create a repository or organization secret called `APIKEY`, holding the API key for the PowerShell Gallery.
+1. Configure the settings you want for the repository including a branch policy for the `main` branch.
+1. On a topic branch:
+   1. develop the code you want to add to your module.
+   1. delete the parts you do not need.
+   1. update the tests in the `tests` folder.
+1. Create a PR (this should trigger the Process-PSModule workflow. Add a label to the PR depending on what you want to do:
+   - "Prerelease" = CI will create a prerelease of the module using the branch name as a prerelease tag in the version.
+   - "Major" - Will create a major release (vX.0.0) when merged. If specified with "Prerelease", a major versjon will be created using the prerelease tag (vX.0.0-<branchName>).
+   - "Minor" - Will create a minor release (vX.Y.0) when merged. If specified with "Prerelease", a minor versjon will be created using the prerelease tag (vX.Y.0-<branchName>).
+   - "Patch" - Will create a minor release (vX.Y.Z) when merged. If specified with "Prerelease", a minor versjon will be created using the prerelease tag (vX.Y.Z-<branchName>). A patch version bump is the default if nothing is specified for the PR.
+
 ## Core practices and principles
 
 - **Everything as code**
