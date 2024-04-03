@@ -4,6 +4,12 @@ PSModule simplifies how to go from idea to having a module published with decent
 This is done using a collection of GitHub Actions and PowerShell modules that build, test and publish PowerShell modules.
 The framework sets standard when it comes to code structure and quality so that its easy to build automation around it to handles the tedious tasks, and as a developer you can focus on the code.
 
+## Core practices and principles
+
+- **Everything as code**
+- **Simplify by automating everything**
+- **Standardize and enforce good practices**
+
 ## How to get started
 
 1. Create a repository based on the template [PSModuleTemplate](https://github.com/PSModule/PSModuleTemplate). Name the repo the same name of the module you want to create. See [Process-PSModule](https://github.com/PSModule/Process-PSModule) for more info on choosing another name than the repo name.
@@ -13,17 +19,13 @@ The framework sets standard when it comes to code structure and quality so that 
    1. develop the code you want to add to your module.
    1. delete the parts you do not need.
    1. update the tests in the `tests` folder.
-1. Create a PR (this should trigger the Process-PSModule workflow. Add a label to the PR depending on what you want to do:
-   - "Prerelease" = CI will create a prerelease of the module using the branch name as a prerelease tag in the version.
+1. Create a PR. Add a label to the PR depending on what you want to do.
+   - "Prerelease" = CI will create a prerelease of the module using the branch name as a prerelease tag in the version. This will create both a repo release and a prerelease version of the module on the PowerShell Gallery.
    - "Major" - Will create a major release (vX.0.0) when merged. If specified with "Prerelease", a major versjon will be created using the prerelease tag (vX.0.0-<branchName>).
    - "Minor" - Will create a minor release (vX.Y.0) when merged. If specified with "Prerelease", a minor versjon will be created using the prerelease tag (vX.Y.0-<branchName>).
    - "Patch" - Will create a minor release (vX.Y.Z) when merged. If specified with "Prerelease", a minor versjon will be created using the prerelease tag (vX.Y.Z-<branchName>). A patch version bump is the default if nothing is specified for the PR.
-
-## Core practices and principles
-
-- **Everything as code**
-- **Simplify by automating everything**
-- **Standardize and enforce good practices**
+1. Once the PR is created, the Process-PSModule workflow will trigger.
+1. When the PR is merged, a release will be created and the module will be published to the PowerShell Gallery with a stable version based on the version bump indicator the PR was was labeled with. Prerelease tags will be cleaned up on the repository.
 
 <!-- TODO: Diagram of the flow of the framework. -->
 
