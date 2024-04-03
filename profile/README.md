@@ -21,9 +21,9 @@ The framework sets standard when it comes to code structure and quality so that 
    1. update the tests in the `tests` folder.
 1. Create a PR. Add a label to the PR depending on what you want to do.
    - "Prerelease" = CI will create a prerelease of the module using the branch name as a prerelease tag in the version. This will create both a repo release and a prerelease version of the module on the PowerShell Gallery.
-   - "Major" - Will create a major release (vX.0.0) when merged. If specified with "Prerelease", a major versjon will be created using the prerelease tag (vX.0.0-<branchName>).
-   - "Minor" - Will create a minor release (vX.Y.0) when merged. If specified with "Prerelease", a minor versjon will be created using the prerelease tag (vX.Y.0-<branchName>).
-   - "Patch" - Will create a minor release (vX.Y.Z) when merged. If specified with "Prerelease", a minor versjon will be created using the prerelease tag (vX.Y.Z-<branchName>). A patch version bump is the default if nothing is specified for the PR.
+   - "Major" - Will create a major release (vX.0.0) when merged. If specified with "Prerelease", a major version will be created using the prerelease tag (vX.0.0-<branchName>).
+   - "Minor" - Will create a minor release (vX.Y.0) when merged. If specified with "Prerelease", a minor version will be created using the prerelease tag (vX.Y.0-<branchName>).
+   - "Patch" - Will create a minor release (vX.Y.Z) when merged. If specified with "Prerelease", a minor version will be created using the prerelease tag (vX.Y.Z-<branchName>). A patch version bump is the default if nothing is specified for the PR.
 1. Once the PR is created, the Process-PSModule workflow will trigger.
 1. When the PR is merged, a release will be created and the module will be published to the PowerShell Gallery with a stable version based on the version bump indicator the PR was was labeled with. Prerelease tags will be cleaned up on the repository.
 
