@@ -414,6 +414,18 @@ paths and calculations are based on this structure. Not following this might res
 
 To be filled later.
 
+### Functions
+
+...
+
+#### Documentation
+
+- Documentation uses comment-based documentation, placed first in the function block.
+- Documentations contains synopsis, description (not copy paste from synopsis), atleast one example.
+  - If the function generates outputs, the output should be documented using the `.OUTPUT <OutputType>` doc tag.
+  - If the function takes input by pipeline, the input should be documented using the `.INPUT <InputType>` doc tag. 
+- Parameter documentation that are not dynamic, exists inside the `param()` block, above the function.
+
 ### Manifest
 
 - The `ModuleVersion` is generated from the `Publish-PSModule` function, based on available version and lables on PRs, not from the module manifest.
