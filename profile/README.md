@@ -423,7 +423,7 @@ To be filled later.
 - Documentation uses comment-based documentation, placed first in the function block.
 - Documentations contains synopsis, description (not copy paste from synopsis), atleast one example.
   - If the function generates outputs, the output should be documented using the `.OUTPUT <OutputType>` doc tag.
-  - If the function takes input by pipeline, the input should be documented using the `.INPUT <InputType>` doc tag. 
+  - If the function takes input by pipeline, the input should be documented using the `.INPUT <InputType>` doc tag.
 - Parameter documentation that are not dynamic, exists inside the `param()` block, above the function.
 
 ### Manifest
@@ -506,7 +506,7 @@ If you think you should be mentioned, create [an issue](https://github.com/PSMod
 - https://github.com/PowerShell/PowerShellGallery/issues
 
 
-## 🗂️ Powershell Resources
+## 🗂️ Powershell inspiration and resources
 
 - [Awsome-Powershell](https://github.com/janikvonrotz/awesome-powershell)
 - [PowerShell Module Browser | Microsoft Learn](https://learn.microsoft.com/en-us/powershell/module/)
@@ -526,6 +526,7 @@ If you think you should be mentioned, create [an issue](https://github.com/PSMod
 - [PoshCode | GitHub](https://github.com/PoshCode)
 - [PoshCode Actions | GitHub](https://github.com/PoshCode/Actions) - Did not know this existed untill i started making my own. Approaches are different however.
 - [PoshCode ModuleBuilder | GitHub](https://github.com/PoshCode/ModuleBuilder)
+- [Evotec | GitHub](https://github.com/EvotecIT)
 
 ### Outdated resources
 - [psake, A build automation tool written in PowerShell | GitHub](https://github.com/psake/psake)
