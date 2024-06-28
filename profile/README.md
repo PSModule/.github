@@ -486,7 +486,7 @@ To be filled later.
 - Run the main functionality from a `main.ps1` file located in a `scripts` folder.
 - The action inputs are written in PascalCase and uses the natural language name of the input.
 - Use envvironment variables to pass data between the composite action and the `main.ps1` file.
-- Prefix the environment variable with `GITHUB_ACTION_INPUT_` followed by the name of the action input to avoid collision with other environment variables.
+- Prefix the environment variable with `GITHUB_ACTION_INPUT_` followed by the name of the action input to avoid collision with other environment variables. https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions#understanding-the-risk-of-script-injections
 - Have a `readme.md` file in the action folder that explains the action and how to use it.
 - Have a `Action-Test` workflow file that tests the action.
 - Use the `Auto-Release` action for automating the release of the action via pull requeusts.
