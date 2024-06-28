@@ -146,7 +146,7 @@ The framework sets standard when it comes to code structure and quality so that 
     </tr>
 </table>
 
-## Modules we deliver on PowerShell Gallery
+## Modules delivered on the [PowerShell Gallery](https://www.powershellgallery.com/profiles/PSModule.io)
 
 <table>
     <tr>
