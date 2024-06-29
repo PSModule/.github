@@ -9,7 +9,20 @@ By leveraging the GitHub platform and PowerShell, we aim to automate the repetit
 <details>
    <summary>Create a new PowerShell module</summary>
 <p>
-   ...
+1. Create a repository based on the template [PSModuleTemplate](https://github.com/PSModule/PSModuleTemplate). The module will by default use the name of the repository. See [Process-PSModule](https://github.com/PSModule/Process-PSModule) for more info on choosing another name than the repository name.
+1. Create a repository or organization secret called `APIKEY`, holding the API key for the PowerShell Gallery.
+1. Configure the settings you want for the repository including a branch policy for the `main` branch.
+1. On a topic branch:
+   1. develop the code you want to add to your module.
+   1. delete the parts you do not need.
+   1. update the tests in the `tests` folder.
+1. Create a PR. Add a label to the PR depending on what you want to do.
+   - `Major` - Will create a major release (vX.0.0) when merged. If specified with "Prerelease", a major version will be created using the prerelease tag (vX.0.0-\<branchName\>).
+   - `Minor` - Will create a minor release (vX.Y.0) when merged. If specified with "Prerelease", a minor version will be created using the prerelease tag (vX.Y.0-\<branchName\>).
+   - `Patch` - Will create a minor release (vX.Y.Z) when merged. If specified with "Prerelease", a minor version will be created using the prerelease tag (vX.Y.Z-\<branchName\>). A patch version bump is the default if nothing is specified for the PR.
+   - `Prerelease` - CI will create a prerelease of the module using the branch name as a prerelease tag in the version. This will create both a repository release and a prerelease version of the module on the PowerShell Gallery.
+1. Once the PR is created, the Process-PSModule workflow will trigger.
+1. When the PR is merged, a release will be created and the module will be published to the PowerShell Gallery with a stable version based on the version bump indicator the PR was was labeled with. Prerelease tags will be cleaned up on the repository.
 </p>
 </details>
 
@@ -27,20 +40,13 @@ By leveraging the GitHub platform and PowerShell, we aim to automate the repetit
 </p>
 </details>
 
-1. Create a repository based on the template [PSModuleTemplate](https://github.com/PSModule/PSModuleTemplate). The module will by default use the name of the repository. See [Process-PSModule](https://github.com/PSModule/Process-PSModule) for more info on choosing another name than the repository name.
-1. Create a repository or organization secret called `APIKEY`, holding the API key for the PowerShell Gallery.
-1. Configure the settings you want for the repository including a branch policy for the `main` branch.
-1. On a topic branch:
-   1. develop the code you want to add to your module.
-   1. delete the parts you do not need.
-   1. update the tests in the `tests` folder.
-1. Create a PR. Add a label to the PR depending on what you want to do.
-   - "Major" - Will create a major release (vX.0.0) when merged. If specified with "Prerelease", a major version will be created using the prerelease tag (vX.0.0-\<branchName\>).
-   - "Minor" - Will create a minor release (vX.Y.0) when merged. If specified with "Prerelease", a minor version will be created using the prerelease tag (vX.Y.0-\<branchName\>).
-   - "Patch" - Will create a minor release (vX.Y.Z) when merged. If specified with "Prerelease", a minor version will be created using the prerelease tag (vX.Y.Z-\<branchName\>). A patch version bump is the default if nothing is specified for the PR.
-   - "Prerelease" - CI will create a prerelease of the module using the branch name as a prerelease tag in the version. This will create both a repository release and a prerelease version of the module on the PowerShell Gallery.
-1. Once the PR is created, the Process-PSModule workflow will trigger.
-1. When the PR is merged, a release will be created and the module will be published to the PowerShell Gallery with a stable version based on the version bump indicator the PR was was labeled with. Prerelease tags will be cleaned up on the repository.
+<details>
+   <summary>Contribute to a project</summary>
+<p>
+   ![image](https://github.com/PSModule/.github/assets/17722253/f3c2cd95-4b5c-4a0c-a20a-590db8a7e90b)
+</p>
+</details>
+
 
 <!-- TODO: Diagram of the flow of the framework. -->
 
