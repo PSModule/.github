@@ -1,16 +1,31 @@
-# <img src="https://github.com/PSModule/.github/raw/main/profile/ps_metro_black.png" alt="PowerShell" height="24"/> A GitHub based PowerShell module development framework
+# <img src="https://github.com/PSModule/.github/raw/main/profile/ps_metro_black.png" alt="PowerShell" height="24"/> A GitHub & PowerShell development framework
 
-PSModule simplifies how to go from idea to having a module published with decent standards and practices.
-This is done using a collection of GitHub Actions and PowerShell modules that build, test and publish PowerShell modules.
-The framework sets standard when it comes to code structure and quality so that its easy to build automation around it to handles the tedious tasks, and as a developer you can focus on the code.
-
-## Core practices and principles
-
-- **Everything as code**
-- **Simplify by automating everything**
-- **Standardize and enforce good practices**
+We empower PowerShell-savvy developers to effortlessly transform their ideas into impactful solutions. 
+Our approach centers around a development framework that allows developers to focus on delivering value through their code.
+By leveraging the GitHub platform and PowerShell, we aim to automate the repetitive tasks, enabling developers — whether as consumers or contributors — to concentrate on coding without distractions.
 
 ## How to get started
+
+<details>
+   <summary>Create a new PowerShell module</summary>
+<p>
+   ...
+</p>
+</details>
+
+<details>
+   <summary>Create a new GitHub Action</summary>
+<p>
+   ...
+</p>
+</details>
+
+<details>
+   <summary>Create a new GitHub Workflow</summary>
+<p>
+   ...
+</p>
+</details>
 
 1. Create a repository based on the template [PSModuleTemplate](https://github.com/PSModule/PSModuleTemplate). The module will by default use the name of the repository. See [Process-PSModule](https://github.com/PSModule/Process-PSModule) for more info on choosing another name than the repository name.
 1. Create a repository or organization secret called `APIKEY`, holding the API key for the PowerShell Gallery.
