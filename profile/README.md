@@ -52,6 +52,8 @@ By leveraging the GitHub platform and PowerShell, we aim to automate the repetit
 
 ## GitHub Actions and Workflows on the [GitHub Marketplace](https://github.com/marketplace?&verification=&query=publisher%3Apsmodule)
 
+<details>
+   <summary>Click to expand</summary>
 <table>
     <tr>
         <th width="10%">Name</th>
@@ -164,8 +166,13 @@ By leveraging the GitHub platform and PowerShell, we aim to automate the repetit
         <td><a href="https://github.com/PSModule/Publish-PSModule/releases/latest"><img src="https://img.shields.io/github/v/release/PSModule/Publish-PSModule?style=flat-square&logo=github&logoColor=a0a0a0&label=&labelColor=505050&color=blue" alt="GitHub Release"></a></td>
     </tr>
 </table>
+   
+</details>
 
 ## Modules delivered on the [PowerShell Gallery](https://www.powershellgallery.com/profiles/PSModule.io)
+
+<details>
+   <summary>Click to expand</summary>
 
 <table>
     <tr>
@@ -414,6 +421,8 @@ By leveraging the GitHub platform and PowerShell, we aim to automate the repetit
         </td>
     </tr>
 </table>
+
+</details>
 
 ## Design decisions
 
