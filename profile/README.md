@@ -1,6 +1,6 @@
 # <img src="https://github.com/PSModule/.github/raw/main/profile/ps_metro_black.png" alt="PowerShell" height="24"/> A GitHub & PowerShell development framework
 
-We empower PowerShell-savvy developers to effortlessly transform their ideas into impactful solutions. 
+We empower PowerShell-savvy developers to effortlessly transform their ideas into impactful solutions.
 Our approach centers around a development framework that allows developers to focus on delivering value through their code.
 By leveraging the GitHub platform and PowerShell, we aim to automate the repetitive tasks, enabling developers — whether as consumers or contributors — to concentrate on coding without distractions.
 
@@ -8,9 +8,9 @@ By leveraging the GitHub platform and PowerShell, we aim to automate the repetit
 
 <details>
    <summary>Contribute to a project</summary>
-<p>
-   <img src="https://github.com/PSModule/.github/assets/17722253/f3c2cd95-4b5c-4a0c-a20a-590db8a7e90b" alt="Contribution flow">
-</p>
+
+   ![Contribution flow](./contributionflow.png)
+
 </details>
 
 <details>
@@ -166,7 +166,7 @@ By leveraging the GitHub platform and PowerShell, we aim to automate the repetit
         <td><a href="https://github.com/PSModule/Publish-PSModule/releases/latest"><img src="https://img.shields.io/github/v/release/PSModule/Publish-PSModule?style=flat-square&logo=github&logoColor=a0a0a0&label=&labelColor=505050&color=blue" alt="GitHub Release"></a></td>
     </tr>
 </table>
-   
+
 </details>
 
 ## Modules delivered on the [PowerShell Gallery](https://www.powershellgallery.com/profiles/PSModule.io)
