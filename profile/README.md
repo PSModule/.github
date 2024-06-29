@@ -426,6 +426,9 @@ By leveraging the GitHub platform and PowerShell, we aim to automate the repetit
 
 ## Design decisions
 
+<details>
+   <summary>PowerShell projects</summary>
+
 ### Repository
 
 - A repository manages ONE module.
@@ -508,6 +511,11 @@ To be filled later.
 - If no RootModule is defined in the manifest file, a file with the name of the folder is searched for with a compatible file extension.
 - A new module manifest file is created every time to get a new GUID, so that the specific version of the module can be imported.
 
+</details>
+
+<details>
+   <summary>GitHub Action and workflow projects</summary>
+
 ### Actions and reusable workflows
 
 - Use the composite action to load prerequisite modules. I.e., 'Utilities'.
@@ -541,6 +549,8 @@ To be filled later.
   1. Load the configuration from the organization `.github` repository, overwriting defined values only.
   1. Load the configuration from the repository `.github` folder, overwriting defined values only.
   1. Load the configuration from the action inputs, overwriting defined values only.
+
+</details>
 
 ## Developer handbook
 
