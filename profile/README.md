@@ -8,7 +8,7 @@ By leveraging the GitHub platform and PowerShell, we aim to automate the repetit
 
 <details>
    <summary>Create a new PowerShell module</summary>
-<p>
+
 1. Create a repository based on the template [PSModuleTemplate](https://github.com/PSModule/PSModuleTemplate). The module will by default use the name of the repository. See [Process-PSModule](https://github.com/PSModule/Process-PSModule) for more info on choosing another name than the repository name.
 1. Create a repository or organization secret called `APIKEY`, holding the API key for the PowerShell Gallery.
 1. Configure the settings you want for the repository including a branch policy for the `main` branch.
@@ -23,7 +23,7 @@ By leveraging the GitHub platform and PowerShell, we aim to automate the repetit
    - `Prerelease` - CI will create a prerelease of the module using the branch name as a prerelease tag in the version. This will create both a repository release and a prerelease version of the module on the PowerShell Gallery.
 1. Once the PR is created, the Process-PSModule workflow will trigger.
 1. When the PR is merged, a release will be created and the module will be published to the PowerShell Gallery with a stable version based on the version bump indicator the PR was was labeled with. Prerelease tags will be cleaned up on the repository.
-</p>
+
 </details>
 
 <details>
