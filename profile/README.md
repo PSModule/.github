@@ -50,9 +50,7 @@ By leveraging the GitHub platform and PowerShell, we aim to automate the repetit
 
 <!-- TODO: Diagram of the flow of the framework. -->
 
-## GitHub Actions and Workflows
-
-[PSModule on the GitHub Marketplace](https://github.com/marketplace?&verification=&query=publisher%3Apsmodule)
+## GitHub Actions and Workflows on the [GitHub Marketplace](https://github.com/marketplace?&verification=&query=publisher%3Apsmodule)
 
 <table>
     <tr>
