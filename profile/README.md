@@ -7,6 +7,13 @@ By leveraging the GitHub platform and PowerShell, we aim to automate the repetit
 ## How to get started
 
 <details>
+   <summary>Contribute to a project</summary>
+<p>
+   <img src="https://github.com/PSModule/.github/assets/17722253/f3c2cd95-4b5c-4a0c-a20a-590db8a7e90b" alt="Contribution flow">
+</p>
+</details>
+
+<details>
    <summary>Create a new PowerShell module</summary>
 
 1. Create a repository based on the template [PSModuleTemplate](https://github.com/PSModule/PSModuleTemplate). The module will by default use the name of the repository. See [Process-PSModule](https://github.com/PSModule/Process-PSModule) for more info on choosing another name than the repository name.
@@ -37,13 +44,6 @@ By leveraging the GitHub platform and PowerShell, we aim to automate the repetit
    <summary>Create a new GitHub Workflow</summary>
 <p>
    ...
-</p>
-</details>
-
-<details>
-   <summary>Contribute to a project</summary>
-<p>
-   <img src="https://github.com/PSModule/.github/assets/17722253/f3c2cd95-4b5c-4a0c-a20a-590db8a7e90b" alt="Contribution flow">
 </p>
 </details>
 
