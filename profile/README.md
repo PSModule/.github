@@ -43,7 +43,7 @@ By leveraging the GitHub platform and PowerShell, we aim to automate the repetit
 <details>
    <summary>Contribute to a project</summary>
 <p>
-   ![image](https://github.com/PSModule/.github/assets/17722253/f3c2cd95-4b5c-4a0c-a20a-590db8a7e90b)
+   <img src="https://github.com/PSModule/.github/assets/17722253/f3c2cd95-4b5c-4a0c-a20a-590db8a7e90b" alt="Contribution flow">
 </p>
 </details>
 
