@@ -520,6 +520,16 @@ paths and calculations are based on this structure. Not following this might res
 
 To be filled later.
 
+#### API specs to PowerShell
+
+| PowerShell verb | API Method | Description |
+|-|-|-|
+|Get|Get|Gets one or more of a given item|
+|Update|||
+|Set|Mix|Declare the settings for the resource|
+|Add|Put/Post| Create a new update|
+|Remove|Delete| Remove the resource from existence|
+
 ### Functions
 
 ...
