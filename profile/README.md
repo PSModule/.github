@@ -505,6 +505,19 @@ paths and calculations are based on this structure. Not following this might res
 
 ### Modules
 
+#### Principles for module design
+
+- Plain function names regarding resources that is managed by a function
+- Plain parameter names matching the typical names used by the API but "normalized" to human language + PowerShell common guidelines (i.e. casing)
+- Pipelining and parallel processing by default
+- Use modern authentication where available
+- Built in support to be run locally as well as on a CI/CD runner
+- Allow sessions to reuse existing auth (no reauth required)
+- Telemetry built in (use a common library, powershell module)
+- Logging built in (use a common library, powershell module)
+
+<!-- https://techcommunity.microsoft.com/t5/microsoft-entra-blog/introducing-the-microsoft-entra-powershell-module/ba-p/4173546 -->
+
 To be filled later.
 
 ### Functions
