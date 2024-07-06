@@ -530,6 +530,10 @@ To be filled later.
 |Add|Put/Post| Create a new update|
 |Remove|Delete| Remove the resource from existence|
 
+#### What-if for any state changing functions
+
+All functions must support a what-if functionality that shows the change that is happening via Get, and mocking the new object + doing a comparison. The what-if object should be able to be retrieved by a the caller.
+
 ### Functions
 
 ...
@@ -608,11 +612,6 @@ To be filled later.
 4. Streamline and improve the cycle time.
 5. Automate.
 
-<!-- ## 📦 Module structure
-
-```powershell
-``` -->
-
 ## 🌈 Contribution guidelines
 
 Feel free to submit issues, PRs what have you. Also feel free to use as you like; be that the functions or modules we maintain here.
@@ -627,31 +626,3 @@ If you think you should be mentioned, create [an issue](https://github.com/PSMod
 
 - cgadmin@microsoft.com
 - https://github.com/PowerShell/PowerShellGallery/issues
-
-
-## 🗂️ Powershell inspiration and resources
-
-- [Awsome-Powershell](https://github.com/janikvonrotz/awesome-powershell)
-- [PowerShell Module Browser | Microsoft Learn](https://learn.microsoft.com/en-us/powershell/module/)
-  - Azure PowerShell
-    - Namespace: `Az` & `Az.*` namespace
-    - [Docs | Microsoft Learn](https://learn.microsoft.com/en-us/powershell/azure)
-    - [PowerShell | GitHub](https://github.com/Azure/azure-powershell)
-    - [CLI | GitHub](https://github.com/Azure/azure-cli)
-  - Microsoft Graph PowerShell
-    - Namespace: `Microsoft.Graph` & `Microsoft.Graph.*`
-    - [Microsoft Docs](https://learn.microsoft.com/en-us/powershell/microsoftgraph)
-    - [PowerShell | GitHub](https://github.com/microsoftgraph/msgraph-sdk-powershell)
-    - [CLI | GitHub](https://github.com/microsoftgraph/msgraph-cli)
-- [gaelcolas/Sampler | GitHub](https://github.com/gaelcolas/Sampler) - Inspiration on bits and pieces that should be included in a generic PowerShell module repo, and best practices to follow (even though not all are followed here).
-- [FriedrichWeinmann | GitHub](https://github.com/FriedrichWeinmann)
-- [PowershellFrameworkCollective | GitHub](https://github.com/PowershellFrameworkCollective)
-- [PoshCode | GitHub](https://github.com/PoshCode)
-- [PoshCode Actions | GitHub](https://github.com/PoshCode/Actions) - Did not know this existed untill i started making my own. Approaches are different however.
-- [PoshCode ModuleBuilder | GitHub](https://github.com/PoshCode/ModuleBuilder)
-- [Evotec | GitHub](https://github.com/EvotecIT)
-
-### Outdated resources
-- [psake, A build automation tool written in PowerShell | GitHub](https://github.com/psake/psake)
-- http://ramblingcookiemonster.github.io/
-- https://github.com/RamblingCookieMonster/
