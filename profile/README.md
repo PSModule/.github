@@ -21,7 +21,10 @@ By leveraging the GitHub platform and PowerShell, we aim to automate the repetit
 1. Review your own PR first, when you are happy with it, mark it as "Ready for review".
 1. Review and address comments on your pull request. We do not want to close PRs directly if we disagree on a specific approach.
   Lets discuss it instead. We are happy to help you with your changes if there are some difficult points in the code or framework.
-1. Be sure to update your branch with the latest changes from `upstream/main` before your PR is merged.
+
+> [!IMPORTANT]
+> Be sure to update your branch with the latest changes from `upstream/main` before your PR is merged.
+
 1. Once your pull request is approved, it will be merged and a new feature will be released immediately.
 
 In rare occation we might create a release branch and do a release from that branch, but that is more for bigger changes.
