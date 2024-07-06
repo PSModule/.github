@@ -50,6 +50,13 @@ These branches might also run with a prerelease tag, so that we can test the cha
 </details>
 
 <details>
+   <summary>Create a new PowerShell based Function App</summary>
+<p>
+   ...
+</p>
+</details>
+
+<details>
    <summary>Create a new GitHub Action</summary>
 <p>
    ...
@@ -439,171 +446,6 @@ These branches might also run with a prerelease tag, so that we can test the cha
 </table>
 
 </details>
-
-## Design decisions
-
-<details>
-   <summary>PowerShell projects</summary>
-
-### Repository
-
-- A repository manages ONE module.
-- A repository has releases that are in line with the version of the published package.
-- The version of a repository follows semver 2.0.0 based on the changes to the module, and not the framework or any other external factor from the module.
-
-### Repository structure
-
-- The output folder = .\outputs on the root of the repo.
-- The module that is build is stored under the output folder in a folder with the same name as the module.
-
-The test and build process is based on the following repository structure. The [PSModule framework](https://github.com/PSModule) is expecting the modules to follow this structure as some of the
-paths and calculations are based on this structure. Not following this might result in the build process not working as expected.
-
-```tree
-.
-├─ .github/
-│  └- workflows/
-│     └- Process-PSModule.yml              # The workflow file based on [Process-PSModule](https://github.com/PSModule/Process-PSModule) template.
-├─ .vscode/                                # The settings for the Visual Studio Code aligned with the PSModule framework formatting and linting practices.
-├─ icon/
-|  └- <icon>.png                           # Icon file automatically used in the module manifest file if nothing else is specified.
-├─ outputs/                                # The output folder created during build. This is a temporary folder that should not be committed to the repository.
-|  ├─ docs/                                # The output folder for the documentation.
-|  |  └─ ModuleName/                       # The output folder for the module.
-|  └─ modules/                             # The output folder for the module.
-|     └─ ModuleName/                       # The output folder for the module.
-├─ src/                                    # The source code for the module.
-│  ├─ ModuleName/                          # The source code folder for the module. Kept like this for ease of testing. This folder can be loaded as a module.
-│  │  ├─ assembly/                         # All .dll files are collected to RequiredAssemblies
-│  │  │  └─ <dlls>                         # loaded during import via RequiredAssemblies
-│  │  ├─ classes/                          # All .ps1 files are collected to ScriptsToProcess and loaded to the caller session (parent of module session)
-│  │  │  ├─ <ClassName>.ps1                # loaded during import via ScritsToProcess
-│  │  │  ├─ <ClassName>.Format.ps1xml      # loaded during import via FormatsToProcess (collected based on *.Formats.ps1xml files in the root of the folder)
-│  │  │  └─ <ClassName>.Types.ps1xml       # loaded during import via TypesToProcess (collected based on *.Types.ps1xml files in the root of the folder)
-│  │  ├─ data/                             # Loads .psd1 files into the module session.
-│  │  ├─ en/
-│  │  |  ├─ en-US/                         # Search here first for OS = en-US, then parent, en. Get-Help and platyPS reads this.
-│  │  │  └─ about_<ComponentName>.help.txt
-│  │  ├─ init/                             # All .ps1 files are added to the root module and can contain scripts that run during import before functions are loaded.
-│  │  ├─ modules/                          # All .dll, psm1 and ps1 files are collected to NestedModules and loaded to the module session.
-│  │  ├─ private/                          # All .ps1 files are added to the root module, but not exported to the caller session.
-│  │  ├─ public/                           # All .ps1 files are added to the root module, and exported to the caller session.
-|  |  ├─ resources/                        # All .psm1 files are collected to DscResourcesToExport and loaded to the module session.
-│  │  ├─ scripts/                          # All .ps1 files are collected to ScriptsToProcess and loaded to the caller session (parent of module session)
-|  |  ├─ <ScriptName>.ps1                  # All *.ps1 files are added to the root module last and can contain scripts that run during import after functions are loaded.
-|  |  ├─ header.ps1                        # Added to the root module first. Typically for Pester supressions and [CmdletBinding()].
-│  │  ├─ ModuleName.psd1                   # The module manifest file, if not present, it is generated.
-│  │  └- ModuleName.psm1                   # The root module file, if not present, it is generated from the source files.
-├─ tests/
-│  └- ModuleName/
-│     └- ModuleName.Tests.ps1
-├─ .gitattributes
-├─ .gitignore
-├─ LICENSE                                 -> The license file for the module. Used in the module manifest file.
-└─ README.md
-```
-
-### Modules
-
-#### Principles for module design
-
-- Plain function names regarding resources that is managed by a function
-- Plain parameter names matching the typical names used by the API but "normalized" to human language + PowerShell common guidelines (i.e. casing)
-- Pipelining and parallel processing by default
-- Use modern authentication where available
-- Built in support to be run locally as well as on a CI/CD runner
-- Allow sessions to reuse existing auth (no reauth required)
-- Telemetry built in (use a common library, powershell module)
-- Logging built in (use a common library, powershell module)
-
-<!-- https://techcommunity.microsoft.com/t5/microsoft-entra-blog/introducing-the-microsoft-entra-powershell-module/ba-p/4173546 -->
-
-To be filled later.
-
-#### API specs to PowerShell
-
-| PowerShell verb | API Method | Description |
-|-|-|-|
-|Get|Get|Gets one or more of a given item|
-|Update|||
-|Set|Mix|Declare the settings for the resource|
-|Add|Put/Post| Create a new update|
-|Remove|Delete| Remove the resource from existence|
-
-#### What-if for any state changing functions
-
-All functions must support a what-if functionality that shows the change that is happening via Get, and mocking the new object + doing a comparison. The what-if object should be able to be retrieved by a the caller.
-
-### Functions
-
-...
-
-#### Documentation
-
-- Documentation uses comment-based documentation, placed first in the function block.
-- Documentations contains synopsis, description (not copy paste from synopsis), atleast one example.
-  - If the function generates outputs, the output should be documented using the `.OUTPUT <OutputType>` doc tag.
-  - If the function takes input by pipeline, the input should be documented using the `.INPUT <InputType>` doc tag.
-- Parameter documentation that are not dynamic, exists inside the `param()` block, above the function.
-
-### Manifest
-
-- The `ModuleVersion` is generated from the `Publish-PSModule` function, based on available version and lables on PRs, not from the module manifest.
-- The basis of the module manifest comes from the source manifest file.
-- Values that are not defined in the module manifest file are generated from reading the module files and github repository properties.
-- If no RootModule is defined in the manifest file, a file with the name of the folder is searched for with a compatible file extension.
-- A new module manifest file is created every time to get a new GUID, so that the specific version of the module can be imported.
-
-</details>
-
-<details>
-   <summary>GitHub Action and workflow projects</summary>
-
-### Actions and reusable workflows
-
-- Use the composite action to load prerequisite modules. I.e., 'Utilities'.
-- Run the main functionality from a `main.ps1` file located in a `scripts` folder.
-- The action inputs are written in PascalCase and uses the natural language name of the input.
-- Use envvironment variables to pass data between the composite action and the `main.ps1` file.
-- Prefix the environment variable with `GITHUB_ACTION_INPUT_` followed by the name of the action input to avoid collision with other environment variables. https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions#understanding-the-risk-of-script-injections
-- Have a `readme.md` file in the action folder that explains the action and how to use it.
-- Have a `Action-Test` workflow file that tests the action.
-- Use the `Auto-Release` action for automating the release of the action via pull requeusts.
-- Actions versions must be available as vX, vX.Y and vX.Y.Z tags, where they get the updates on their respective version.
-  - vX automatically gets all the feature and patch updates until a breaking change is introduced.
-  - vX.Y automatically gets all the patch updates until a new feature is introduced.
-  - vX.Y.Z is locked to the exact version and will not get any updates.
-- Older version of the action are not updates on their given track. i.e., if an older version of the action has bugs or a security issue,
-  the fix will be implemented on the latest version and the user will have to update to the latest version to get the fix.
-
-#### Configuration
-
-- Actions should have parameters to configure the action with smart default values.
-- Actions should also be able to take a configuration file as a yaml file, that is stored in the repository's `.github` folder.
-- The configuration should also be able to be stored in the organizations `.github` repository, to simplify configuration control for all the repositories in the organization.
-- The configuration should be called the name of the action/workflow and be a yaml file.
-- Configuration precedence is as follows:
-  1. Action inputs, over
-  1. Repository configuration, over
-  1. Organization configuration, over
-  1. Action inputs default values.
-- Configuration processing is as follows:
-  1. Start with defaults from the action.
-  1. Load the configuration from the organization `.github` repository, overwriting defined values only.
-  1. Load the configuration from the repository `.github` folder, overwriting defined values only.
-  1. Load the configuration from the action inputs, overwriting defined values only.
-
-</details>
-
-## 🌈 Contribution guidelines
-
-Feel free to submit issues, PRs what have you. Also feel free to use as you like; be that the functions or modules we maintain here.
-
-## 👩‍💻 Credits
-
-This project is not intented to be plagerising or stealing code from anyone without giving credit where credit is due. If any of these projects get recognition, it was achieved [by standing on the shoulders of giants].
-Credit regarding pieces of the framework will be listed here, and the module specific credits will be added in the different module repos.
-If you think you should be mentioned, create [an issue](https://github.com/PSModule/.github/issues).
 
 ### 🛟 PSGallery support
 
