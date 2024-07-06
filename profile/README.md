@@ -595,15 +595,6 @@ All functions must support a what-if functionality that shows the change that is
 
 </details>
 
-## Developer handbook
-
-- [PowerShell Practices and Style](https://github.com/PoshCode/PowerShellPracticeAndStyle)
-- [PowerShell Best Practices and Style Guide](https://poshcode.gitbooks.io/powershell-practice-and-style/content/)
-- Code With Engineering Playbook
-  - [Docs](https://microsoft.github.io/code-with-engineering-playbook/)
-  - [GitHub repo](https://github.com/microsoft/code-with-engineering-playbook)
-- [Microsoft Writing Style Guide](https://learn.microsoft.com/en-us/style-guide/welcome/)
-
 ### Process
 
 1. Question all requirements. Make sure the requirements are valid and necessary.
