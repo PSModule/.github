@@ -595,14 +595,6 @@ All functions must support a what-if functionality that shows the change that is
 
 </details>
 
-### Process
-
-1. Question all requirements. Make sure the requirements are valid and necessary.
-2. Remove things that should not be there. Delete the part or process, if things are not added back in, you are not deleting enough.
-3. Simplify or optimize, most common error is to optimize something that should not exist.
-4. Streamline and improve the cycle time.
-5. Automate.
-
 ## 🌈 Contribution guidelines
 
 Feel free to submit issues, PRs what have you. Also feel free to use as you like; be that the functions or modules we maintain here.
