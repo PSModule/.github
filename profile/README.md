@@ -4,10 +4,139 @@ We empower PowerShell-savvy developers to effortlessly transform their ideas int
 Our approach centers around a development framework that allows developers to focus on delivering value through their code.
 By leveraging the GitHub platform and PowerShell, we aim to automate the repetitive tasks, enabling developers — whether as consumers or contributors — to concentrate on coding without distractions.
 
-## How to get started
+## Project types
+
+### PowerShell modules
 
 <details>
-   <summary>Contribute to a project</summary>
+   <summary>About</summary>
+
+A PowerShell module is a set of functions, scripts, and cmdlets that are bundled together in a single package. Modules are used to organize and distribute code in a way that is easy to use and share. They can be used to extend the functionality of PowerShell, automate tasks, and create reusable code that can be shared with others.
+We have created a framework that automates the process of creating, testing, and publishing PowerShell modules to the PowerShell Gallery. This framework is designed to make it easy for developers to create and share their PowerShell modules with the community.
+
+</details>
+
+<details>
+   <summary>How we do it in PSModule</summary>
+
+Projects based on the `Template-PSModule` repository template will automatically have the necessary workflows and configurations set up to automate the process of creating, testing, and publishing PowerShell modules to the PowerShell Gallery. This includes workflows for building, testing, and releasing the module, as well as a configuration file for setting up the module's metadata and dependencies.
+Using custom properties we set `RepoType` to `Module`.
+We use branch policies to control the flow of changes to the `main` branch, and we use labels to control the versioning of the module when a pull request is merged.
+
+</details>
+
+<details>
+   <summary>Create a new project</summary>
+
+1. Create a repository based on the template [Template-PSModule](https://github.com/PSModule/Template-PSModule). The module will by default use the name of the repository. See [Process-PSModule](https://github.com/PSModule/Process-PSModule) for more info on choosing another name than the repository name.
+1. Create a repository or organization secret called `APIKEY`, holding the API key for the PowerShell Gallery.
+1. Configure the settings you want for the repository including a branch policy for the `main` branch.
+1. On a topic branch:
+   1. develop the code you want to add to your module.
+   1. delete the parts you do not need.
+   1. update the tests in the `tests` folder.
+1. Create a PR. Add a label to the PR depending on what you want to do.
+   - `Major` - Will create a major release (vX.0.0) when merged. If specified with "Prerelease", a major version will be created using the prerelease tag (vX.0.0-\<branchName\>).
+   - `Minor` - Will create a minor release (vX.Y.0) when merged. If specified with "Prerelease", a minor version will be created using the prerelease tag (vX.Y.0-\<branchName\>).
+   - `Patch` - Will create a minor release (vX.Y.Z) when merged. If specified with "Prerelease", a minor version will be created using the prerelease tag (vX.Y.Z-\<branchName\>). A patch version bump is the default if nothing is specified for the PR.
+   - `Prerelease` - CI will create a prerelease of the module using the branch name as a prerelease tag in the version. This will create both a repository release and a prerelease version of the module on the PowerShell Gallery.
+1. Once the PR is created, the [Process-PSModule](https://github.com/PSModule/Process-PSModule) workflow will trigger.
+1. When the PR is merged, a release will be created and the module will be published to the PowerShell Gallery with a stable version based on the version bump indicator the PR was was labeled with. Prerelease tags will be cleaned up on the repository.
+
+</details>
+
+### PowerShell based Azure Function Apps
+
+<details>
+   <summary>About</summary>
+
+A PowerShell based Azure Function App is a serverless compute service that enables you to run event-driven code without having to manage the infrastructure. Azure Functions are ideal for processing data, integrating systems, and building simple APIs or microservices. They can be triggered by a variety of events, such as HTTP requests, timers, or messages from Azure services like Azure Storage, Event Grid, or Service Bus.
+We have created a framework that automates the process of creating, testing, and deploying PowerShell based Azure Function Apps to Azure. This framework is designed to make it easy for developers to create and deploy their Azure Function Apps without having to worry about the underlying infrastructure.
+
+</details>
+
+<details>
+   <summary>How we do it in PSModule</summary>
+
+Projects based on the `Template-FunctionApp` repository template will automatically have the necessary workflows and configurations set up to automate the process of creating, testing, and deploying PowerShell based Azure Function Apps to Azure. This includes workflows for building, testing, and deploying the function app, as well as a configuration file for setting up the function app's metadata and dependencies.
+Using custom properties we set `RepoType` to `FunctionApp`.
+We use branch policies to control the flow of changes to the `main` branch, and we use labels to control the versioning of the module when a pull request is merged.
+
+</details>
+
+<details>
+   <summary>Create a new project</summary>
+
+1. Create a repository based on the template [Template-FunctionApp](https://github.com/PSModule/Template-FunctionApp). The module will by default use the name of the repository.
+1. Create a repository or organization secret called `AZURE_CREDENTIALS`, holding the credentials for the Azure service principal.
+1. Configure the settings you want for the repository including a branch policy for the `main` branch.
+1. On a topic branch:
+   1. develop the code you want to add to your function app.
+   1. delete the parts you do not need.
+   1. update the tests in the `tests` folder.
+1. Create a PR. Add a label to the PR depending on what you want to do.
+    - `Major` - Will create a major release (vX.0.0) when merged. If specified with "Prerelease", a major version will be created using the prerelease tag (vX.0.0-\<branchName\>).
+    - `Minor` - Will create a minor release (vX.Y.0) when merged. If specified with "Prerelease", a minor version will be created using the prerelease tag (vX.Y.0-\<branchName\>).
+    - `Patch` - Will create a minor release (vX.Y.Z) when merged. If specified with "Prerelease", a minor version will be created using the prerelease tag (vX.Y.Z-\<branchName\>). A patch version bump is the default if nothing is specified for the PR.
+    - `Prerelease` - CI will create a prerelease of the module using the branch name as a prerelease tag in the version. This will create both a repository release and a prerelease version of the module on the PowerShell Gallery.
+1. Once the PR is created, the [Process-FunctionApp](https://github.com/PSModule/Process-FunctionApp) workflow will trigger.
+1. When the PR is merged, a release will be created and the function app will be deployed to Azure with a stable version based on the version bump indicator the PR was was labeled with. Prerelease tags will be cleaned up on the repository.
+
+</details>
+
+### PowerShell based GitHub Actions (composite action)
+
+<details>
+   <summary>About</summary>
+
+A composite action is a reusable action that is made up of one or more steps. Composite actions can be used to encapsulate common tasks or workflows that can be reused across multiple repositories. They are a great way to share code and best practices with the community, and they can help to streamline the development process by providing a consistent way to perform common tasks.
+We have created a framework that automates the process of creating, testing, and publishing PowerShell based GitHub Actions to the GitHub Marketplace. This framework is designed to make it easy for developers to create and share their GitHub Actions with the community.
+
+</details>
+
+<details>
+   <summary>How we do it in PSModule</summary>
+
+Projects are based on the `Template-Action` repository template will automatically have the necessary workflows and configurations set up to automate the process of creating, testing, and deploying PowerShell based Azure Function Apps to Azure. This includes workflows for building, testing, and deploying the function app, as well as a configuration file for setting up the function app's metadata and dependencies.
+Using custom properties we set `RepoType` to `FunctionApp`.
+We use branch policies to control the flow of changes to the `main` branch, and we use labels to control the versioning of the module when a pull request is merged.
+
+</details>
+
+<details>
+   <summary>Create a new project</summary>
+
+1. Create a repository based on the template [Template-Action](https://github.com/PSModule/Template-Action).
+
+</details>
+
+### Reusable workflows
+
+<details>
+   <summary>About</summary>
+
+Reusable workflows are a way to define a workflow in one repository and use it in multiple repositories. They can be used to automate common tasks, such as building, testing, and deploying code, and they can help to streamline the development process by providing a consistent way to perform these tasks across multiple repositories.
+We have created a framework that automates the process of creating, testing, and deploying reusable workflows in a organization. This framework is designed to make it easy for developers to create and share their workflows with the community.
+
+</details>
+
+<details>
+   <summary>How we do it in PSModule</summary>
+
+Projects are based on the `Template-Workflow` repository template will automatically have the necessary workflows and configurations set up to automate the process of creating, testing, and deploying reusable workflows in a organization. This includes workflows for building, testing, and deploying the workflows, as well as a configuration file for setting up the workflows metadata and dependencies.
+Using custom properties we set `RepoType` to `Workflow`.
+We use branch policies to control the flow of changes to the `main` branch, and we use labels to control the versioning of the module when a pull request is merged.
+
+</details>
+
+<details>
+   <summary>Create a new project</summary>
+
+1. Create a repository based on the template [Template-Action](https://github.com/PSModule/Template-Action).
+
+</details>
+
+## Contribution guidelines
 
 ![Contributing flow](../profile/contributionflow.png)
 
@@ -21,57 +150,14 @@ By leveraging the GitHub platform and PowerShell, we aim to automate the repetit
 1. Review your own PR first, when you are happy with it, mark it as "Ready for review".
 1. Review and address comments on your pull request. We do not want to close PRs directly if we disagree on a specific approach.
   Lets discuss it instead. We are happy to help you with your changes if there are some difficult points in the code or framework.
-1. Be sure to update your branch with the latest changes from `upstream/main` before your PR is merged.
+
+> [!IMPORTANT]
+> Be sure to update your branch with the latest changes from `upstream/main` before your PR is merged.
+
 1. Once your pull request is approved, it will be merged and a new feature will be released immediately.
 
 In rare occation we might create a release branch and do a release from that branch, but that is more for bigger changes.
 These branches might also run with a prerelease tag, so that we can test the changes before we release it to the public.
-
-</details>
-
-<details>
-   <summary>Create a new PowerShell module</summary>
-
-1. Create a repository based on the template [PSModuleTemplate](https://github.com/PSModule/PSModuleTemplate). The module will by default use the name of the repository. See [Process-PSModule](https://github.com/PSModule/Process-PSModule) for more info on choosing another name than the repository name.
-1. Create a repository or organization secret called `APIKEY`, holding the API key for the PowerShell Gallery.
-1. Configure the settings you want for the repository including a branch policy for the `main` branch.
-1. On a topic branch:
-   1. develop the code you want to add to your module.
-   1. delete the parts you do not need.
-   1. update the tests in the `tests` folder.
-1. Create a PR. Add a label to the PR depending on what you want to do.
-   - `Major` - Will create a major release (vX.0.0) when merged. If specified with "Prerelease", a major version will be created using the prerelease tag (vX.0.0-\<branchName\>).
-   - `Minor` - Will create a minor release (vX.Y.0) when merged. If specified with "Prerelease", a minor version will be created using the prerelease tag (vX.Y.0-\<branchName\>).
-   - `Patch` - Will create a minor release (vX.Y.Z) when merged. If specified with "Prerelease", a minor version will be created using the prerelease tag (vX.Y.Z-\<branchName\>). A patch version bump is the default if nothing is specified for the PR.
-   - `Prerelease` - CI will create a prerelease of the module using the branch name as a prerelease tag in the version. This will create both a repository release and a prerelease version of the module on the PowerShell Gallery.
-1. Once the PR is created, the Process-PSModule workflow will trigger.
-1. When the PR is merged, a release will be created and the module will be published to the PowerShell Gallery with a stable version based on the version bump indicator the PR was was labeled with. Prerelease tags will be cleaned up on the repository.
-
-</details>
-
-<details>
-   <summary>Create a new PowerShell based Function App</summary>
-<p>
-   ...
-</p>
-</details>
-
-<details>
-   <summary>Create a new GitHub Action</summary>
-<p>
-   ...
-</p>
-</details>
-
-<details>
-   <summary>Create a new GitHub Workflow</summary>
-<p>
-   ...
-</p>
-</details>
-
-
-<!-- TODO: Diagram of the flow of the framework. -->
 
 ## GitHub Actions and Workflows on the [GitHub Marketplace](https://github.com/marketplace?&verification=&query=publisher%3Apsmodule)
 
