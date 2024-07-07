@@ -158,11 +158,9 @@ We use branch policies to control the flow of changes to the `main` branch, and 
 > In rare occation we might create a release branch and do a release from that branch, but that is more for bigger changes.
 > These branches might also run with a prerelease tag, so that we can test the changes before we release it to the public.
 
-
-## GitHub Actions and Workflows on the [GitHub Marketplace](https://github.com/marketplace?&verification=&query=publisher%3Apsmodule)
-
 <details>
-   <summary><h2>Click to expand</h2></summary>
+   <summary><h2>GitHub Actions and Workflows on the <a href="https://github.com/marketplace?&verification=&query=publisher%3Apsmodule">GitHub Marketplace</a></h2></summary>
+
 <table>
     <tr>
         <th width="10%">Name</th>
@@ -278,10 +276,8 @@ We use branch policies to control the flow of changes to the `main` branch, and 
 
 </details>
 
-## Modules delivered on the [PowerShell Gallery](https://www.powershellgallery.com/profiles/PSModule.io)
-
 <details>
-   <summary>Click to expand</summary>
+   <summary>Modules delivered on the <a href="https://www.powershellgallery.com/profiles/PSModule.io">PowerShell Gallery</a></summary>
 
 <table>
     <tr>
