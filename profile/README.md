@@ -277,7 +277,7 @@ We use branch policies to control the flow of changes to the `main` branch, and 
 </details>
 
 <details>
-   <summary>Modules delivered on the <a href="https://www.powershellgallery.com/profiles/PSModule.io">PowerShell Gallery</a></summary>
+   <summary><h2>Modules delivered on the <a href="https://www.powershellgallery.com/profiles/PSModule.io">PowerShell Gallery</a></h2></summary>
 
 <table>
     <tr>
