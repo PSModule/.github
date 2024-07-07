@@ -365,7 +365,7 @@ We use branch policies to control the flow of changes to the `main` branch, and 
 
 
 <details>
-   <summary><h4><h2>GitHub Actions and Workflows on the <a href="https://github.com/marketplace?&verification=&query=publisher%3Apsmodule">GitHub Marketplace</a></h2></h4></summary>
+   <summary><h4>GitHub Actions and Workflows on the <a href="https://github.com/marketplace?&verification=&query=publisher%3Apsmodule">GitHub Marketplace</a></h4></summary>
 
 <table>
     <tr>
