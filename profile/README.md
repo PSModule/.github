@@ -9,7 +9,7 @@ By leveraging the GitHub platform and PowerShell, we aim to automate the repetit
 ### PowerShell modules
 
 <details>
-   <summary><h4>About</h4></summary>
+   <summary>About</summary>
 
 A PowerShell module is a set of functions, scripts, and cmdlets that are bundled together in a single package. Modules are used to organize and distribute code in a way that is easy to use and share. They can be used to extend the functionality of PowerShell, automate tasks, and create reusable code that can be shared with others.
 We have created a framework that automates the process of creating, testing, and publishing PowerShell modules to the PowerShell Gallery. This framework is designed to make it easy for developers to create and share their PowerShell modules with the community.
@@ -17,7 +17,7 @@ We have created a framework that automates the process of creating, testing, and
 </details>
 
 <details>
-   <summary><h4>How we do it in PSModule</h4></summary>
+   <summary>How we do it in PSModule</summary>
 
 Projects based on the `Template-PSModule` repository template will automatically have the necessary workflows and configurations set up to automate the process of creating, testing, and publishing PowerShell modules to the PowerShell Gallery. This includes workflows for building, testing, and releasing the module, as well as a configuration file for setting up the module's metadata and dependencies.
 Using custom properties we set `RepoType` to `Module`.
@@ -26,7 +26,7 @@ We use branch policies to control the flow of changes to the `main` branch, and 
 </details>
 
 <details>
-   <summary><h4>Create a new project</h4></summary>
+   <summary>Create a new project</summary>
 
 1. [Create a repository based on the template Template-PSModule](https://github.com/new?template_name=Template-PSModule&template_owner=PSModule). The module will by default use the name of the repository. See [Process-PSModule](https://github.com/PSModule/Process-PSModule) for more info on choosing another name than the repository name.
 1. Create a repository or organization secret called `APIKEY` holding the API key for the PowerShell Gallery.
@@ -46,7 +46,7 @@ We use branch policies to control the flow of changes to the `main` branch, and 
 </details>
 
 <details>
-   <summary><h4>Modules delivered on the <a href="https://www.powershellgallery.com/profiles/PSModule.io">PowerShell Gallery</a></h4></summary>
+   <summary>Modules delivered on the <a href="https://www.powershellgallery.com/profiles/PSModule.io">PowerShell Gallery</a></summary>
 
 <table>
     <tr>
@@ -301,7 +301,7 @@ We use branch policies to control the flow of changes to the `main` branch, and 
 ### PowerShell based Azure Function Apps
 
 <details>
-   <summary><h4>About</h4></summary>
+   <summary>About</summary>
 
 A PowerShell based Azure Function App is a serverless compute service that enables you to run event-driven code without having to manage the infrastructure. Azure Functions are ideal for processing data, integrating systems, and building simple APIs or microservices. They can be triggered by a variety of events, such as HTTP requests, timers, or messages from Azure services like Azure Storage, Event Grid, or Service Bus.
 We have created a framework that automates the process of creating, testing, and deploying PowerShell based Azure Function Apps to Azure. This framework is designed to make it easy for developers to create and deploy their Azure Function Apps without having to worry about the underlying infrastructure.
@@ -309,7 +309,7 @@ We have created a framework that automates the process of creating, testing, and
 </details>
 
 <details>
-   <summary><h4>How we do it in PSModule</h4></summary>
+   <summary>How we do it in PSModule</summary>
 
 Projects based on the `Template-FunctionApp` repository template will automatically have the necessary workflows and configurations set up to automate the process of creating, testing, and deploying PowerShell based Azure Function Apps to Azure. This includes workflows for building, testing, and deploying the function app, as well as a configuration file for setting up the function app's metadata and dependencies.
 Using custom properties we set `RepoType` to `FunctionApp`.
@@ -318,7 +318,7 @@ We use branch policies to control the flow of changes to the `main` branch, and 
 </details>
 
 <details>
-   <summary><h4>Create a new project</h4></summary>
+   <summary>Create a new project</summary>
 
 1. Create a repository based on the template [Template-FunctionApp](https://github.com/PSModule/Template-FunctionApp). The module will by default use the name of the repository.
 1. Create a repository or organization secret called `AZURE_CREDENTIALS`, holding the credentials for the Azure service principal.
@@ -340,7 +340,7 @@ We use branch policies to control the flow of changes to the `main` branch, and 
 ### PowerShell based GitHub Actions (composite action)
 
 <details>
-   <summary><h4>About</h4></summary>
+   <summary>About</summary>
 
 A composite action is a reusable action that is made up of one or more steps. Composite actions can be used to encapsulate common tasks or workflows that can be reused across multiple repositories. They are a great way to share code and best practices with the community, and they can help to streamline the development process by providing a consistent way to perform common tasks.
 We have created a framework that automates the process of creating, testing, and publishing PowerShell based GitHub Actions to the GitHub Marketplace. This framework is designed to make it easy for developers to create and share their GitHub Actions with the community.
@@ -348,7 +348,7 @@ We have created a framework that automates the process of creating, testing, and
 </details>
 
 <details>
-   <summary><h4>How we do it in PSModule</h4></summary>
+   <summary>How we do it in PSModule</summary>
 
 Projects are based on the `Template-Action` repository template will automatically have the necessary workflows and configurations set up to automate the process of creating, testing, and deploying PowerShell based Azure Function Apps to Azure. This includes workflows for building, testing, and deploying the function app, as well as a configuration file for setting up the function app's metadata and dependencies.
 Using custom properties we set `RepoType` to `FunctionApp`.
@@ -357,7 +357,7 @@ We use branch policies to control the flow of changes to the `main` branch, and 
 </details>
 
 <details>
-   <summary><h4>Create a new project</h4></summary>
+   <summary>Create a new project</summary>
 
 1. Create a repository based on the template [Template-Action](https://github.com/PSModule/Template-Action).
 
@@ -365,7 +365,7 @@ We use branch policies to control the flow of changes to the `main` branch, and 
 
 
 <details>
-   <summary><h4>GitHub Actions and Workflows on the <a href="https://github.com/marketplace?&verification=&query=publisher%3Apsmodule">GitHub Marketplace</a></h4></summary>
+   <summary>GitHub Actions and Workflows on the <a href="https://github.com/marketplace?&verification=&query=publisher%3Apsmodule">GitHub Marketplace</a></summary>
 
 <table>
     <tr>
@@ -485,7 +485,7 @@ We use branch policies to control the flow of changes to the `main` branch, and 
 ### Reusable workflows
 
 <details>
-   <summary><h4>About</h4></summary>
+   <summary>About</summary>
 
 Reusable workflows are a way to define a workflow in one repository and use it in multiple repositories. They can be used to automate common tasks, such as building, testing, and deploying code, and they can help to streamline the development process by providing a consistent way to perform these tasks across multiple repositories.
 We have created a framework that automates the process of creating, testing, and deploying reusable workflows in a organization. This framework is designed to make it easy for developers to create and share their workflows with the community.
@@ -493,7 +493,7 @@ We have created a framework that automates the process of creating, testing, and
 </details>
 
 <details>
-   <summary><h4>How we do it in PSModule</h4></summary>
+   <summary>How we do it in PSModule</summary>
 
 Projects are based on the `Template-Workflow` repository template will automatically have the necessary workflows and configurations set up to automate the process of creating, testing, and deploying reusable workflows in a organization. This includes workflows for building, testing, and deploying the workflows, as well as a configuration file for setting up the workflows metadata and dependencies.
 Using custom properties we set `RepoType` to `Workflow`.
@@ -502,7 +502,7 @@ We use branch policies to control the flow of changes to the `main` branch, and 
 </details>
 
 <details>
-   <summary><h4>Create a new project</h4></summary>
+   <summary>Create a new project</summary>
 
 1. Create a repository based on the template [Template-Action](https://github.com/PSModule/Template-Action).
 
