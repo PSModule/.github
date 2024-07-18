@@ -510,7 +510,7 @@ We use branch policies to control the flow of changes to the `main` branch, and 
 
 ## Contribution guidelines
 
-![Contributing flow](../profile/contributionflow.png)
+![Contributing flow](contributionflow.png)
 
 1. Open an issue or indicate that you want any of the open issues, so others know what you are working on.
 1. Fork the repository.
@@ -532,5 +532,5 @@ We use branch policies to control the flow of changes to the `main` branch, and 
 
 ### 🛟 PSGallery support
 
-- cgadmin@microsoft.com
-- https://github.com/PowerShell/PowerShellGallery/issues
+- [📨 Mail](mailto:cgadmin@microsoft.com)
+- [PowerShell/PowerShellGallery - Issues](https://github.com/PowerShell/PowerShellGallery/issues)
