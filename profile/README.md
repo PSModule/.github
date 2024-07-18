@@ -1,4 +1,4 @@
-# <img src="https://github.com/PSModule/.github/raw/main/profile/ps_metro_black.png" alt="PowerShell" height="24"/> A GitHub & PowerShell development framework
+# A GitHub & PowerShell development framework
 
 We empower PowerShell-savvy developers to effortlessly transform their ideas into impactful solutions.
 Our approach centers around a development framework that allows developers to focus on delivering value through their code.
