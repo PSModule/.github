@@ -1,0 +1,24 @@
+name: Trigger Publish-Docs on psmodule.github.io
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  trigger_publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate a token
+        id: auth
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ vars.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+
+      - name: Trigger publish
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ steps.auth.outputs.token }}
+        run: |
+          gh workflow run --repo psmodule/.github Publish-Docs.yml
