@@ -21,4 +21,4 @@ jobs:
         env:
           GH_TOKEN: ${{ steps.auth.outputs.token }}
         run: |
-          gh workflow run --repo psmodule/.github Publish-Docs.yml
+          gh workflow run --repo psmodule/${{ github.repository_owner }}.github.io Publish-Docs.yml
