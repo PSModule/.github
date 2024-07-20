@@ -507,25 +507,3 @@ We use branch policies to control the flow of changes to the `main` branch, and 
 1. Create a repository based on the template [Template-Action](https://github.com/PSModule/Template-Action).
 
 </details>
-
-## Contribution guidelines
-
-![Contributing flow](contributionflow.png)
-
-1. Open an issue or indicate that you want any of the open issues, so others know what you are working on.
-1. Fork the repository.
-1. Create a branch from `main` and make your changes.
-   1. Write the tests showing the desired functionality first.
-   1. Write the code that makes the tests pass.
-1. Open a pull request towards `upstream/main` as a draft.
-   - Add any details using the PR template.
-   - Link the PR to the issue you opened by adding `Fixes #<issue_number>` so that the issue gets associated and closed with the PR.
-1. **Review your own PR first!** When you are happy with it, mark it as "Ready for review".
-1. Review and address comments on your pull request.
-   - We do not want to close PRs directly if we disagree on a specific approach. Lets discuss it instead. We are happy to help you with your changes if there are some difficult points in the code or framework.
-   - Update your branch with the latest changes from `upstream/main` before your PR is merged.
-1. Once your pull request is approved, it will be merged and a new feature will be released immediately.
-
-> [!IMPORTANT]
-> In rare occation we might create a release branch and do a release from that branch, but that is more for bigger changes.
-> These branches might also run with a prerelease tag, so that we can test the changes before we release it to the public.

@@ -11,7 +11,7 @@ Read our [Code of Conduct](./CODE_OF_CONDUCT.md) to keep our community approacha
 
 In this guide you will get an overview of the contribution workflow from opening an issue to get your contribution published.
 
-## New contributor guide
+## New contributors
 
 To get an overview of the project, read the [PSModule README](../profile/README.md).
 
@@ -22,22 +22,24 @@ Here are some resources to help you get started with open source contributions:
 - [GitHub flow](https://docs.github.com/get-started/quickstart/github-flow)
 - [Collaborating with pull requests](https://docs.github.com/github/collaborating-with-pull-requests)
 
-## Getting started
+## Contribution guidelines
 
 ![Contributing flow](../profile/contributionflow.png)
 
 1. Open an issue or indicate that you want any of the open issues, so others know what you are working on.
 1. Fork the repository.
 1. Create a branch from `main` and make your changes.
-   - In your changes, be sure to have a test that is covering the added functionality.
-1. Open a pull request towards `upstream/main`.
+   1. Write the tests showing the desired functionality first.
+   1. Write the code that makes the tests pass.
+1. Open a pull request towards `upstream/main` as a draft.
    - Add any details using the PR template.
-   - Link the PR to the issue you opened by adding `Fixes #<issue_number>` so that the issue gets associated and closed with the PR.
-1. Review your own PR first, when you are happy with it, mark it as "Ready for review".
-1. Review and address comments on your pull request. We do not want to close PRs directly if we disagree on a specific approach.
-  Lets discuss it instead. We are happy to help you with your changes if there are some difficult points in the code or framework.
-1. Be sure to update your branch with the latest changes from `upstream/main` before your PR is merged.
+   - Link the PR to the issue you opened by adding `- Fixes #<issue_number>` so that the issue gets associated and closed with the PR.
+1. **Review your own PR first!** When you are happy with it, mark it as "Ready for review".
+1. Review and address comments on your pull request.
+   - We do not want to close PRs directly if we disagree on a specific approach. Lets discuss it instead. We are happy to help you with your changes if there are some difficult points in the code or framework.
+   - Update your branch with the latest changes from `upstream/main` before your PR is merged.
 1. Once your pull request is approved, it will be merged and a new feature will be released immediately.
 
-In rare occation we might create a release branch and do a release from that branch, but that is more for bigger changes.
-These branches might also run with a prerelease tag, so that we can test the changes before we release it to the public.
+> [!IMPORTANT]
+> In rare occation we might create a release branch and do a release from that branch, but that is more for bigger changes.
+> These branches might also run with a prerelease tag, so that we can test the changes before we release it to the public.
