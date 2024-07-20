@@ -529,8 +529,3 @@ We use branch policies to control the flow of changes to the `main` branch, and 
 > [!IMPORTANT]
 > In rare occation we might create a release branch and do a release from that branch, but that is more for bigger changes.
 > These branches might also run with a prerelease tag, so that we can test the changes before we release it to the public.
-
-### 🛟 PSGallery support
-
-- [📨 Mail](mailto:cgadmin@microsoft.com)
-- [PowerShell/PowerShellGallery - Issues](https://github.com/PowerShell/PowerShellGallery/issues)

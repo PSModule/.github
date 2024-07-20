@@ -2,7 +2,7 @@
     https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/setting-guidelines-for-repository-contributors
 -->
 
-# Welcome to PSModule contributing guide <!-- omit in toc -->
+# Welcome to PSModule contributing guide
 
 Thank you for investing your time in contributing to this project!
 
