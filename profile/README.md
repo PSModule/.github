@@ -48,6 +48,8 @@ We use branch policies to control the flow of changes to the `main` branch, and 
 <details>
    <summary>Modules delivered on the <a href="https://www.powershellgallery.com/profiles/PSModule.io">PowerShell Gallery</a></summary>
 
+<!-- MODULE_LIST_START -->
+
 <table>
     <tr>
         <th width="10%">Name</th>
@@ -296,6 +298,8 @@ We use branch policies to control the flow of changes to the `main` branch, and 
     </tr>
 </table>
 
+<!-- MODULE_LIST_END -->
+
 </details>
 
 ### PowerShell based Azure Function Apps
@@ -366,6 +370,8 @@ We use branch policies to control the flow of changes to the `main` branch, and 
 
 <details>
    <summary>GitHub Actions and Workflows on the <a href="https://github.com/marketplace?&verification=&query=publisher%3Apsmodule">GitHub Marketplace</a></summary>
+
+<!-- ACTIONS_LIST_START -->
 
 <table>
     <tr>
@@ -479,6 +485,8 @@ We use branch policies to control the flow of changes to the `main` branch, and 
         <td><a href="https://github.com/PSModule/Publish-PSModule/releases/latest"><img src="https://img.shields.io/github/v/release/PSModule/Publish-PSModule?style=flat-square&logo=github&logoColor=a0a0a0&label=&labelColor=505050&color=blue" alt="GitHub Release"></a></td>
     </tr>
 </table>
+
+<!-- ACTION_LIST_END -->
 
 </details>
 
