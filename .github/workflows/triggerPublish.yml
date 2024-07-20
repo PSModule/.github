@@ -4,12 +4,16 @@ on:
   push:
     branches:
       - main
+    paths:
+      - docs/**
+      - .github/profile/readme.md
+      - .github/workflows/Publish-Docs.yml
 
 jobs:
   trigger_publish:
     runs-on: ubuntu-latest
     steps:
-      - name: Generate a token
+      - name: Authenticate GitHub App
         id: auth
         uses: actions/create-github-app-token@v1
         with:
