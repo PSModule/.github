@@ -29,13 +29,14 @@ jobs:
         run: |
           $app = gh api "/users/${{ steps.auth.outputs.app-slug }}[bot]" | ConvertFrom-Json
           Write-Verbose ($app | Format-List | Out-String) -Verbose
-        # run: echo "user-id=$(gh api "/users/${{ steps.generate-token.outputs.app-slug }}[bot]" --jq .id)" >> "$GITHUB_OUTPUT"
+          "id=$($app.id)" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+          "name=$($app.login)" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
 
-      # - run: |
-      #     git config --global user.name '${{steps.auth.outputs.app-slug}}[bot]'
-      #     git config --global user.email '${{steps.get-user-id.outputs.user-id}}+${{ steps.auth.outputs.app-slug }}[bot]@users.noreply.github.com>'
+      - run: |
+          git config --global user.name '${{steps.app.outputs.name}}'
+          git config --global user.email '${{steps.app.outputs.id}}+${{steps.app.outputs.name}}@users.noreply.github.com>'
 
-      # - run: |
-      #     git add .
-      #     git commit -m "Auto-generated changes"
-      #     git push
+      - run: |
+          git add .
+          git commit -m "Auto-generated changes"
+          git push
