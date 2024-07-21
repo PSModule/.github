@@ -26,7 +26,9 @@ jobs:
         shell: pwsh
         env:
           GH_TOKEN: ${{ steps.auth.outputs.token }}
-        run: gh api "/users/${{ steps.auth.outputs.app-slug }}[bot]"
+        run: |
+          $app = gh api "/users/${{ steps.auth.outputs.app-slug }}[bot]" | ConvertFrom-Json
+          Write-Verbose ($app|Format-Table) -Verbose
         # run: echo "user-id=$(gh api "/users/${{ steps.generate-token.outputs.app-slug }}[bot]" --jq .id)" >> "$GITHUB_OUTPUT"
 
       # - run: |
