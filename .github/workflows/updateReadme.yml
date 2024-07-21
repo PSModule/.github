@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: Authenticate GitHub App
         id: auth
-        uses: actions/create-github-auth@v1
+        uses: actions/create-github-app-token@v1
         with:
           app-id: ${{ secrets.APP_ID }}
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
