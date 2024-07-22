@@ -52,16 +52,16 @@ jobs:
         env:
           GH_TOKEN: ${{ steps.auth.outputs.token }}
         run: |
-          git add .
           $changedFiles = git diff --name-only
           $hasChanges = $null -ne $changedFiles
           "hasChanges=$hasChanges" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
 
           if (-not $hasChanges) {
-            Write-Host 'No changes detected'
+            Write-Host 'No automated changes detected'
             return
           }
 
+          git add .
           Write-Host '::group::Changed files [$($changedFiles.Count)]'
           $changedFiles | ForEach-Object { Write-Host $_ }
           Write-Host '::endgroup::'
