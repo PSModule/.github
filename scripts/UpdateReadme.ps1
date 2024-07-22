@@ -70,13 +70,13 @@ $actionTableRowTemplate = @'
 $actionTableRows = ''
 $repos | Where-Object { $_.Type -eq 'Action' } | ForEach-Object {
     $name_hyphened = ($_.Name).Replace('-', '&#8209;')
-    $actionTableRowTemplate = $actionTableRowTemplate.replace('{{ OWNER }}', $_.Owner)
-    $actionTableRowTemplate = $actionTableRowTemplate.replace('{{ NAME }}', $_.Name)
-    $actionTableRowTemplate = $actionTableRowTemplate.replace('{{ NAME_HYPHENED }}', $name_hyphened)
-    $actionTableRowTemplate = $actionTableRowTemplate.replace('{{ DESCRIPTION }}', $_.Description)
-    $actionTableRowTemplate = $actionTableRowTemplate.TrimEnd()
-    $actionTableRowTemplate += [Environment]::NewLine
-    $actionTableRows += $actionTableRowTemplate
+    $actionTableRow = $actionTableRowTemplate.replace('{{ OWNER }}', $_.Owner)
+    $actionTableRow = $actionTableRow.replace('{{ NAME }}', $_.Name)
+    $actionTableRow = $actionTableRow.replace('{{ NAME_HYPHENED }}', $name_hyphened)
+    $actionTableRow = $actionTableRow.replace('{{ DESCRIPTION }}', $_.Description)
+    $actionTableRow = $actionTableRow.TrimEnd()
+    $actionTableRow += [Environment]::NewLine
+    $actionTableRows += $actionTableRow
 }
 $actionTable = @"
 
