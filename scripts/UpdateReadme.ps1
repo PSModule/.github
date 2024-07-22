@@ -33,7 +33,7 @@ $moduleTableRowTemplate = @'
         </td>
     </tr>
 '@
-$moduleTableRows = ""
+$moduleTableRows = ''
 $repos | Where-Object { $_.Type -eq 'Module' } | ForEach-Object {
     $moduleTableRows += $moduleTableRowTemplate.replace('{{ OWNER }}', $_.Owner).replace('{{ NAME }}', $_.Name).replace('{{ DESCRIPTION }}', $_.Description).TrimEnd()
     $moduleTableRows += [Environment]::NewLine
@@ -52,7 +52,7 @@ $moduleTableRows</table>
 
 $actionTableRowTemplate = @'
     <tr>
-        <td><a href="https://github.com/{{ OWNER }}/{{ NAME }}/">{{ NAME }}</a></td>
+        <td><a href="https://github.com/{{ OWNER }}/{{ NAME }}/">{{ NAME_HYPHENED }}</a></td>
         <td>
             {{ DESCRIPTION }}
             <br>
@@ -67,10 +67,16 @@ $actionTableRowTemplate = @'
         </td>
     </tr>
 '@
-$actionTableRows = ""
+$actionTableRows = ''
 $repos | Where-Object { $_.Type -eq 'Action' } | ForEach-Object {
-    $actionTableRows += $actionTableRowTemplate.replace('{{ OWNER }}', $_.Owner).replace('{{ NAME }}', $_.Name).replace('{{ DESCRIPTION }}', $_.Description).TrimEnd()
-    $actionTableRows += [Environment]::NewLine
+    $name_hyphened = ($_.Name).Replace('-', '&#8209;')
+    $actionTableRowTemplate = $actionTableRowTemplate.replace('{{ OWNER }}', $_.Owner)
+    $actionTableRowTemplate = $actionTableRowTemplate.replace('{{ NAME }}', $_.Name)
+    $actionTableRowTemplate = $actionTableRowTemplate.replace('{{ NAME_HYPHENED }}', $name_hyphened)
+    $actionTableRowTemplate = $actionTableRowTemplate.replace('{{ DESCRIPTION }}', $_.Description)
+    $actionTableRowTemplate = $actionTableRowTemplate.TrimEnd()
+    $actionTableRowTemplate += [Environment]::NewLine
+    $actionTableRows += $actionTableRowTemplate
 }
 $actionTable = @"
 
