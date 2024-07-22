@@ -4,10 +4,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - docs/**
-      - .github/profile/readme.md
-      - .github/workflows/UpdateProfile.yml
 
 defaults:
   run:
