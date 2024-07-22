@@ -9,6 +9,10 @@ on:
       - .github/profile/readme.md
       - .github/workflows/UpdateProfile.yml
 
+defaults:
+  run:
+    shell: pwsh
+
 jobs:
   update_readme:
     name: Update Profile README
@@ -29,7 +33,6 @@ jobs:
 
       - name: Get GitHub App ID
         id: app
-        shell: pwsh
         env:
           GH_TOKEN: ${{ steps.auth.outputs.token }}
         run: |
@@ -39,14 +42,12 @@ jobs:
           "name=$($app.login)" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
 
       - name: Update README
-        shell: pwsh
         env:
           GH_TOKEN: ${{ steps.auth.outputs.token }}
         run: |
           . ".\scripts\UpdateReadme.ps1"
 
       - name: Configure Git
-        shell: pwsh
         run: |
           git config --global user.name '${{ steps.app.outputs.name }}'
           git config --global user.email '${{ steps.app.outputs.id }}+${{ steps.app.outputs.name }}@users.noreply.github.com>'
@@ -73,7 +74,6 @@ jobs:
 
       - name: Trigger publish
         if: ${{ success() && steps.hasChanges.outputs.hasChanges }}
-        shell: pwsh
         env:
           GH_TOKEN: ${{ steps.auth.outputs.token }}
         run: |
