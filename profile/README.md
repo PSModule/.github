@@ -405,6 +405,15 @@ We use branch policies to control the flow of changes to the `main` branch, and 
 
 </details>
 
+<details>
+   <summary>Function Apps we maintain</a></summary>
+
+<!-- FUNCTIONAPP_LIST_START -->
+
+<!-- FUNCTIONAPP_LIST_END -->
+
+</details>
+
 ### PowerShell based GitHub Actions (composite action)
 
 <details>
@@ -516,6 +525,15 @@ We use branch policies to control the flow of changes to the `main` branch, and 
 <details>
    <summary>Create a new project</summary>
 
-1. Create a repository based on the template [Template-Action](https://github.com/PSModule/Template-Action).
+1. Create a repository based on the template [Template-Workflow](https://github.com/PSModule/Template-Workflow).
+
+</details>
+
+<details>
+   <summary>Workflows we maintain</summary>
+
+<!-- WORKFLOW_LIST_START -->
+
+<!-- WORKFLOW_LIST_END -->
 
 </details>
