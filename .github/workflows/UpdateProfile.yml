@@ -65,7 +65,6 @@ jobs:
           Write-Host '::group::Changed files [$($changedFiles.Count)]'
           $changedFiles | ForEach-Object { Write-Host $_ }
           Write-Host '::endgroup::'
-          git add .
           git commit -m "Auto-generated changes"
           git push
 
