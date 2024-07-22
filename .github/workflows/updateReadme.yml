@@ -32,6 +32,11 @@ jobs:
           "id=$($app.id)" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
           "name=$($app.login)" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
 
+      - name: Update README
+        shell: pwsh
+        run: |
+          . ".\scripts\UpdateReadme.ps1"
+
       - name: Configure Git
         shell: pwsh
         run: |
