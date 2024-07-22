@@ -410,6 +410,14 @@ We use branch policies to control the flow of changes to the `main` branch, and 
 
 <!-- FUNCTIONAPP_LIST_START -->
 
+<table>
+    <tr>
+        <th width="10%">Name</th>
+        <th width="80%">Description</th>
+        <th width="10%">Version</th>
+    </tr>
+</table>
+
 <!-- FUNCTIONAPP_LIST_END -->
 
 </details>
@@ -533,6 +541,14 @@ We use branch policies to control the flow of changes to the `main` branch, and 
    <summary>Workflows we maintain</summary>
 
 <!-- WORKFLOW_LIST_START -->
+
+<table>
+    <tr>
+        <th width="10%">Name</th>
+        <th width="80%">Description</th>
+        <th width="10%">Version</th>
+    </tr>
+</table>
 
 <!-- WORKFLOW_LIST_END -->
 
