@@ -1,11 +1,17 @@
-# Write a github workflow that runs every day at 12:00 UTC and updates the README.md file with the current date and time using PowerShell.
-name: Update README
+name: Update profile
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - docs/**
+      - .github/profile/readme.md
+      - .github/workflows/UpdateProfile.yml
 
 jobs:
   update_readme:
+    name: Update Profile README
     runs-on: ubuntu-latest
     steps:
       - name: Authenticate GitHub App
@@ -27,7 +33,7 @@ jobs:
         env:
           GH_TOKEN: ${{ steps.auth.outputs.token }}
         run: |
-          gh api user
+          gh api "/apps/${{ steps.auth.outputs.app-slug }}[bot]" | ConvertFrom-Json
           $app = gh api "/users/${{ steps.auth.outputs.app-slug }}[bot]" | ConvertFrom-Json
           Write-Verbose ($app | Format-List | Out-String) -Verbose
           "id=$($app.id)" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
@@ -53,3 +59,22 @@ jobs:
           git add .
           git commit -m "Auto-generated changes"
           git push
+
+  trigger_publish:
+    runs-on: ubuntu-latest
+    needs: update_readme
+    steps:
+      - name: Authenticate GitHub App
+        id: auth
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+
+      - name: Trigger publish
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ steps.auth.outputs.token }}
+        run: |
+          gh workflow run --repo psmodule/${{ github.repository_owner }}.github.io Publish-Docs.yml
