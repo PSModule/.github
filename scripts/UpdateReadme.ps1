@@ -118,5 +118,5 @@ function Update-MDSection {
     Set-Content -Path $Path -Value $updatedContent
 }
 
-Update-MDSection -Path 'C:\Repos\GitHub\PSModule\Framework\.github\profile\README.md' -Name 'MODULE_LIST' -Content $moduleTable
-Update-MDSection -Path 'C:\Repos\GitHub\PSModule\Framework\.github\profile\README.md' -Name 'ACTION_LIST' -Content $actionTable
+Update-MDSection -Path '.\profile\README.md' -Name 'MODULE_LIST' -Content $moduleTable
+Update-MDSection -Path '.\profile\README.md' -Name 'ACTION_LIST' -Content $actionTable
