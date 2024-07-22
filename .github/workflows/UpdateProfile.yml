@@ -69,7 +69,6 @@ jobs:
           git push
 
       - name: Trigger publish
-        if: ${{ success() && steps.hasChanges.outputs.hasChanges }}
         env:
           GH_TOKEN: ${{ steps.auth.outputs.token }}
         run: |
