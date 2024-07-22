@@ -33,7 +33,6 @@ jobs:
         env:
           GH_TOKEN: ${{ steps.auth.outputs.token }}
         run: |
-          gh api "/apps/${{ steps.auth.outputs.app-slug }}" | ConvertFrom-Json
           $app = gh api "/users/${{ steps.auth.outputs.app-slug }}[bot]" | ConvertFrom-Json
           Write-Verbose ($app | Format-List | Out-String) -Verbose
           "id=$($app.id)" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
@@ -56,23 +55,24 @@ jobs:
         env:
           GH_TOKEN: ${{ steps.auth.outputs.token }}
         run: |
+          $changedFiles = git diff --name-only
+          $hasChanges = $null -ne $changedFiles
+          "hasChanges=$hasChanges" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+
+          if (-not $hasChanges) {
+            Write-Host 'No changes detected'
+            return
+          }
+
+          Write-Host '::group::Changed files [$($changedFiles.Count)]'
+          $changedFiles | ForEach-Object { Write-Host $_ }
+          Write-Host '::endgroup::'
           git add .
           git commit -m "Auto-generated changes"
           git push
 
-  trigger_publish:
-    runs-on: ubuntu-latest
-    needs: update_readme
-    steps:
-      - name: Authenticate GitHub App
-        id: auth
-        uses: actions/create-github-app-token@v1
-        with:
-          app-id: ${{ secrets.APP_ID }}
-          private-key: ${{ secrets.APP_PRIVATE_KEY }}
-          owner: ${{ github.repository_owner }}
-
       - name: Trigger publish
+        if: ${{ success() && steps.hasChanges.outputs.hasChanges }}
         shell: pwsh
         env:
           GH_TOKEN: ${{ steps.auth.outputs.token }}
