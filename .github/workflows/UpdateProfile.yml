@@ -33,7 +33,7 @@ jobs:
         env:
           GH_TOKEN: ${{ steps.auth.outputs.token }}
         run: |
-          gh api "/apps/${{ steps.auth.outputs.app-slug }}[bot]" | ConvertFrom-Json
+          gh api "/apps/${{ steps.auth.outputs.app-slug }}" | ConvertFrom-Json
           $app = gh api "/users/${{ steps.auth.outputs.app-slug }}[bot]" | ConvertFrom-Json
           Write-Verbose ($app | Format-List | Out-String) -Verbose
           "id=$($app.id)" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
