@@ -52,6 +52,7 @@ jobs:
         env:
           GH_TOKEN: ${{ steps.auth.outputs.token }}
         run: |
+          git add .
           $changedFiles = git diff --name-only
           $hasChanges = $null -ne $changedFiles
           "hasChanges=$hasChanges" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
