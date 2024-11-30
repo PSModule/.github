@@ -25,7 +25,24 @@ jobs:
           PrivateKey: ${{ secrets.APP_PRIVATE_KEY }}
           Script: |
             LogGroup "Connect to org [$env:GITHUB_REPOSITORY_OWNER]" {
-              Connect as app to this organization: ${{ github.repository_owner }}
+              $org = '${{ github.repository_owner }}'
+              $appContext = Get-GitHubConfig -Name DefaultContext
+              Write-Verbose (Get-GitHubContext | Select-Object *) -Verbose
+              $orgInstallations = Get-GitHubAppInstallation | Where-Object { $_.Target_type -eq 'Organization' }
+                            
+              $orgInstallations | ForEach-Object {
+                  $orgName = $_.account.login
+                  $orgInstallationID = $_.id
+                  Write-Host "Processing [$orgName] [$orgInstallationID]"
+                  Set-GitHubDefaultContext -Context $appContext
+                  $token = New-GitHubAppInstallationAccessToken -InstallationID $_.id | Select-Object -ExpandProperty Token
+                  Connect-GitHub -Token $token -Silent
+
+                  "<DO SOMETHING>"
+
+                  #Disconnect-GitHub
+              } 
+              #Disconnect-GitHub -Context $appContext
             }
 
             LogGroup 'Update README' {
