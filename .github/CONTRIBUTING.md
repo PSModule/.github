@@ -13,7 +13,7 @@ In this guide you will get an overview of the contribution workflow from opening
 
 ## New contributors
 
-To get an overview of the project, read the [PSModule README](../profile/README.md).
+To get an overview of the project, read the [PSModule readme](../profile/README.md).
 
 Here are some resources to help you get started with open source contributions:
 

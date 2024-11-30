@@ -5,6 +5,7 @@
         $result = foreach ($i in 1..$count) {
             $i
         }
+        $null = $result # just added for linter issues
     }
     '.Add(..) to List<T>'            = {
         param($count)

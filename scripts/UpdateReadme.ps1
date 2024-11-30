@@ -180,7 +180,7 @@ $workflowTableRows</table>
 
 #region Update README.md
 function Update-MDSection {
-    [CmdletBinding()]
+    [CmdletBinding(SupportsShouldProcess)]
     param(
         [Parameter()]
         [string] $Path = '.\profile\README.md',
@@ -209,7 +209,9 @@ function Update-MDSection {
     }
 
     $updatedContent = $currentContent[0..$startIndex] + $Content + $currentContent[($endIndex)..($currentContent.Length - 1)]
-    Set-Content -Path $Path -Value $updatedContent
+    if ($PSCmdlet.ShouldProcess('Readme section', 'Update')) {
+        Set-Content -Path $Path -Value $updatedContent
+    }
 }
 
 Update-MDSection -Path '.\profile\README.md' -Name 'MODULE_LIST' -Content $moduleTable

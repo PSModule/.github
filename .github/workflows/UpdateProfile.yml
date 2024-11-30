@@ -12,6 +12,9 @@ defaults:
   run:
     shell: pwsh
 
+permissions:
+  contents: read
+
 jobs:
   update_readme:
     name: Update Profile README
