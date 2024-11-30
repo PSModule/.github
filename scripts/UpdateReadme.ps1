@@ -1,8 +1,8 @@
-﻿$owner = 'PSModule'
-$rawRepos = gh repo list $owner --json 'name,description' --limit 100 | ConvertFrom-Json
+﻿$owner = $env:GITHUB_REPOSITORY_OWNER
+$rawRepos = Get-GitHubRepository -Owner $owner
 $repos = $rawRepos | ForEach-Object {
     $rawRepo = $_
-    $properties = gh api /repos/$owner/$($rawRepo.name)/properties/values | ConvertFrom-Json
+    $properties = Get-GitHubRepositoryCustomProperty -Owner $owner -Repo $rawRepo.name
     $properties | Where-Object { $_.property_name -eq 'Type' } | ForEach-Object {
         $type = $_.value
         [pscustomobject]@{
