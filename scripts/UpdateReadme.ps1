@@ -18,7 +18,7 @@ LogGroup "Connect to organization [$owner]" {
 
     $org = $orgInstallation.account
     $orgName = $org.login
-    $orgInstallationID = $org.id
+    $orgInstallationID = $orgInstallation.id
     Write-Host "Processing [$orgName] [$orgInstallationID]"
     $token = New-GitHubAppInstallationAccessToken -InstallationID $orgInstallationID | Select-Object -ExpandProperty Token
     Connect-GitHub -Token $token -Silent -Owner $orgName
