@@ -37,14 +37,12 @@ jobs:
               return
             }
 
-            Write-Host 'Changes detected:'
-            $changedFiles
-
             LogGroup "Changed files [$($changedFiles.Count)]" {
               $changedFiles | ForEach-Object { Write-Host $_ }
             }
 
-            Get-GitHubContext | Format-List
+            Get-GitHubContext | Format-Table
+            Get-GitHubGitConfig | Format-Table
 
             git add .
             git commit -m "Auto-generated changes"
