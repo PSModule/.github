@@ -33,10 +33,11 @@ jobs:
             "hasChanges=$hasChanges" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
 
             if (-not $hasChanges) {
-              Write-Host 'No automated changes detected'
+              Write-Host 'No change detected'
               return
             }
 
+            Write-Host 'Changes detected:'
             $changedFiles
 
             git add .
