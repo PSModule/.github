@@ -37,6 +37,8 @@ jobs:
               return
             }
 
+            $changedFiles
+
             # git add .
             # Write-Host '::group::Changed files [$($changedFiles.Count)]'
             # $changedFiles | ForEach-Object { Write-Host $_ }
