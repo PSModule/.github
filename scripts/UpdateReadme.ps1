@@ -23,12 +23,13 @@ LogGroup "Connect to organization [$owner]" {
     $token = New-GitHubAppInstallationAccessToken -InstallationID $orgInstallationID | Select-Object -ExpandProperty Token
     Connect-GitHub -Token $token -Silent -Owner $orgName
 
-    Write-Verbose "Owner: $owner"
+    Write-Host "Owner: $owner"
     $rawRepos = Get-GitHubRepository -Owner $owner
-    Write-Verbose "Found $($rawRepos.Count) repositories"
+    Write-Host "Found $($rawRepos.Count) repositories"
     $repos = $rawRepos | ForEach-Object {
         $rawRepo = $_
         $properties = Get-GitHubRepositoryCustomProperty -Owner $owner -Repo $rawRepo.name
+        Write-Verbose ($properties | Format-Table) -Verbose
         $properties | Where-Object { $_.property_name -eq 'Type' } | ForEach-Object {
             $type = $_.value
             [pscustomobject]@{
