@@ -29,9 +29,10 @@ jobs:
           ClientID: ${{ secrets.APP_ID }}
           PrivateKey: ${{ secrets.APP_PRIVATE_KEY }}
           Script: |
-            LogGroup "Connect to org [$($env:GITHUB_REPOSITORY_OWNER)]" {
+            LogGroup "Connect to org [$env:GITHUB_REPOSITORY_OWNER]" {
               Connect as app to this organization: ${{ github.repository_owner }}
             }
+
             LogGroup 'Update README' {
               . ".\scripts\UpdateReadme.ps1"
             }
