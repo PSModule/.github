@@ -5,41 +5,44 @@ $owner = $env:GITHUB_REPOSITORY_OWNER
 
 LogGroup "Connect to organization [$owner]" {
     $appContext = Get-GitHubConfig -Name DefaultContext
-    $orgInstallations = Get-GitHubAppInstallation | Where-Object { $_.Target_type -eq 'Organization' -and $_.account.login -eq $owner }
+    $orgInstallation = Get-GitHubAppInstallation | Where-Object { $_.Target_type -eq 'Organization' -and $_.account.login -eq $owner }
 
-    $orgInstallations | ForEach-Object {
-        $orgName = $_.account.login
-        $orgInstallationID = $_.id
-        Write-Host "Processing [$orgName] [$orgInstallationID]"
-        Set-GitHubDefaultContext -Context $appContext
-        $token = New-GitHubAppInstallationAccessToken -InstallationID $_.id | Select-Object -ExpandProperty Token
-        Connect-GitHub -Token $token -Silent
-
-        '<DO SOMETHING>'
-
-        #Disconnect-GitHub
+    if (-not $orgInstallation) {
+        Write-Error "Organization [$owner] not found"
+        return
     }
-    #Disconnect-GitHub -Context $appContext
+    if ($orgInstallation.Count -gt 1) {
+        Write-Error "Multiple installations found for organization [$owner]"
+        return
+    }
+
+    $org = $orgInstallation.account
+    $orgName = $org.login
+    $orgInstallationID = $org.id
+    Write-Host "Processing [$orgName] [$orgInstallationID]"
+    $token = New-GitHubAppInstallationAccessToken -InstallationID $_.id | Select-Object -ExpandProperty Token
+    Connect-GitHub -Token $token -Silent -Owner $orgName
+
+    Write-Verbose "Owner: $owner"
+    $rawRepos = Get-GitHubRepository -Owner $owner
+    Write-Verbose "Found $($rawRepos.Count) repositories"
+    $repos = $rawRepos | ForEach-Object {
+        $rawRepo = $_
+        $properties = Get-GitHubRepositoryCustomProperty -Owner $owner -Repo $rawRepo.name
+        $properties | Where-Object { $_.property_name -eq 'Type' } | ForEach-Object {
+            $type = $_.value
+            [pscustomobject]@{
+                Name        = $rawRepo.name
+                Owner       = $owner
+                Description = $rawRepo.description
+                Type        = $type
+            }
+        }
+    } | Sort-Object Type, Name
+    $repos | Format-Table -AutoSize
 }
 
 
-# Write-Verbose "Owner: $owner"
-# $rawRepos = Get-GitHubRepository -Owner $owner
-# Write-Verbose "Found $($rawRepos.Count) repositories"
-# $repos = $rawRepos | ForEach-Object {
-#     $rawRepo = $_
-#     $properties = Get-GitHubRepositoryCustomProperty -Owner $owner -Repo $rawRepo.name
-#     $properties | Where-Object { $_.property_name -eq 'Type' } | ForEach-Object {
-#         $type = $_.value
-#         [pscustomobject]@{
-#             Name        = $rawRepo.name
-#             Owner       = $owner
-#             Description = $rawRepo.description
-#             Type        = $type
-#         }
-#     }
-# } | Sort-Object Type, Name
-# $repos
 
 # #region PowerShell Modules
 # $moduleTableRowTemplate = @'
