@@ -40,10 +40,13 @@ jobs:
             Write-Host 'Changes detected:'
             $changedFiles
 
+            LogGroup "Changed files [$($changedFiles.Count)]" {
+              $changedFiles | ForEach-Object { Write-Host $_ }
+            }
+
+            Get-GitHubContext | Format-List
+
             git add .
-            Write-Host '::group::Changed files [$($changedFiles.Count)]'
-            $changedFiles | ForEach-Object { Write-Host $_ }
-            Write-Host '::endgroup::'
             git commit -m "Auto-generated changes"
             git push
 
