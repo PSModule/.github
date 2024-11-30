@@ -34,8 +34,8 @@ LogGroup "Connect to organization [$owner]" {
             [pscustomobject]@{
                 Name        = $rawRepo.name
                 Owner       = $owner
-                Description = $rawRepo.description
                 Type        = $type
+                Description = $rawRepo.description
             }
         }
     } | Sort-Object Type, Name
