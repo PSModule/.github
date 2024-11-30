@@ -29,7 +29,7 @@ LogGroup "Connect to organization [$owner]" {
     $repos = $rawRepos | ForEach-Object {
         $rawRepo = $_
         $properties = Get-GitHubRepositoryCustomProperty -Owner $owner -Repo $rawRepo.name
-        Write-Verbose ($properties | Format-Table) -Verbose
+        Write-Verbose ($properties | Format-Table | Out-String) -Verbose
         $properties | Where-Object { $_.property_name -eq 'Type' } | ForEach-Object {
             $type = $_.value
             [pscustomobject]@{
