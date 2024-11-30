@@ -1,5 +1,7 @@
 ﻿$owner = $env:GITHUB_REPOSITORY_OWNER
+Write-Verbose "Owner: $owner"
 $rawRepos = Get-GitHubRepository -Owner $owner
+Write-Verbose "Found $($rawRepos.Count) repositories"
 $repos = $rawRepos | ForEach-Object {
     $rawRepo = $_
     $properties = Get-GitHubRepositoryCustomProperty -Owner $owner -Repo $rawRepo.name

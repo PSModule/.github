@@ -25,7 +25,7 @@ jobs:
           PrivateKey: ${{ secrets.APP_PRIVATE_KEY }}
           Script: |
             LogGroup 'Update README' {
-              . ".\scripts\UpdateReadme.ps1"
+              . ".\scripts\UpdateReadme.ps1" -Verbose
             }
 
             $changedFiles = git diff --name-only
