@@ -39,7 +39,7 @@ LogGroup "Connect to organization [$owner]" {
             }
         }
     } | Sort-Object Type, Name
-    $repos
+    $repos | Format-Table -AutoSize
 }
 
 

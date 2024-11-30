@@ -76,11 +76,6 @@ We use branch policies to control the flow of changes to the `main` branch, and 
 
 <table>
     <tr>
-        <th width="10%">Name</th>
-        <th width="80%">Description</th>
-        <th width="10%">Version</th>
-    </tr>
-    <tr>
         <td><a href="https://github.com/PSModule/Admin">Admin</a></td>
         <td>A PowerShell module working with the admin role.
             <br>
