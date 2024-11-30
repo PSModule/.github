@@ -50,8 +50,6 @@ jobs:
             git commit -m "Auto-generated changes"
             git push
 
-      # - name: Trigger publish
-      #   env:
-      #     GH_TOKEN: ${{ steps.auth.outputs.token }}
-      #   run: |
-      #     gh workflow run --repo psmodule/${{ github.repository_owner }}.github.io Publish-Docs.yml
+            LogGroup 'Start GitHub Workflow PSModule/PSModule.github.io/Publish-Docs' {
+              Start-GitHubWorkflow -Owner PSModule -Repo PSModule.github.io -ID Publish-Docs.yml -Verbose
+            }
