@@ -2,11 +2,6 @@ name: Update profile
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
-  schedule:
-    - cron: '0 * * * *'
 
 defaults:
   run:
@@ -20,62 +15,41 @@ jobs:
     name: Update Profile README
     runs-on: ubuntu-latest
     steps:
-      - name: Authenticate GitHub App
-        id: auth
-        uses: actions/create-github-app-token@v1
-        with:
-          app-id: ${{ secrets.APP_ID }}
-          private-key: ${{ secrets.APP_PRIVATE_KEY }}
-          owner: ${{ github.repository_owner }}
-
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          token: ${{ steps.auth.outputs.token }}
-
-      - name: Get GitHub App ID
-        id: app
-        env:
-          GH_TOKEN: ${{ steps.auth.outputs.token }}
-        run: |
-          $app = gh api "/users/${{ steps.auth.outputs.app-slug }}[bot]" | ConvertFrom-Json
-          Write-Verbose ($app | Format-List | Out-String) -Verbose
-          "id=$($app.id)" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
-          "name=$($app.login)" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+          persist-credentials: false
 
       - name: Update README
-        env:
-          GH_TOKEN: ${{ steps.auth.outputs.token }}
-        run: |
-          . ".\scripts\UpdateReadme.ps1"
+        uses: PSModule/GitHub-Script@v1
+        with:
+          ClientID: ${{ secrets.APP_ID }}
+          PrivateKey: ${{ secrets.APP_PRIVATE_KEY }}
+          Script: |
+            LogGroup 'Update README' {
+              . ".\scripts\UpdateReadme.ps1"
+            }
 
-      - name: Configure Git
-        run: |
-          git config --global user.name '${{ steps.app.outputs.name }}'
-          git config --global user.email '${{ steps.app.outputs.id }}+${{ steps.app.outputs.name }}@users.noreply.github.com>'
+            $changedFiles = git diff --name-only
+            $hasChanges = $null -ne $changedFiles
+            "hasChanges=$hasChanges" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
 
-      - name: Push changes
-        env:
-          GH_TOKEN: ${{ steps.auth.outputs.token }}
-        run: |
-          $changedFiles = git diff --name-only
-          $hasChanges = $null -ne $changedFiles
-          "hasChanges=$hasChanges" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+            if (-not $hasChanges) {
+              Write-Host 'No change detected'
+              return
+            }
 
-          if (-not $hasChanges) {
-            Write-Host 'No automated changes detected'
-            return
-          }
+            LogGroup "Changed files [$($changedFiles.Count)]" {
+              $changedFiles | ForEach-Object { Write-Host $_ }
+            }
 
-          git add .
-          Write-Host '::group::Changed files [$($changedFiles.Count)]'
-          $changedFiles | ForEach-Object { Write-Host $_ }
-          Write-Host '::endgroup::'
-          git commit -m "Auto-generated changes"
-          git push
+            Get-GitHubContext | Format-Table
+            Get-GitHubGitConfig | Format-Table
 
-      - name: Trigger publish
-        env:
-          GH_TOKEN: ${{ steps.auth.outputs.token }}
-        run: |
-          gh workflow run --repo psmodule/${{ github.repository_owner }}.github.io Publish-Docs.yml
+            git add .
+            git commit -m "Auto-generated changes"
+            git push
+
+            LogGroup 'Start GitHub Workflow PSModule/PSModule.github.io/Publish-Docs' {
+              Start-GitHubWorkflow -Owner PSModule -Repo PSModule.github.io -ID Publish-Docs.yml -Verbose
+            }
