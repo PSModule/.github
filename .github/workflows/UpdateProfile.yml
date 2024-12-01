@@ -24,6 +24,7 @@ jobs:
       - name: Update README
         uses: PSModule/GitHub-Script@v1
         with:
+          Prerelease: true
           ClientID: ${{ secrets.APP_ID }}
           PrivateKey: ${{ secrets.APP_PRIVATE_KEY }}
           Script: . ".\scripts\UpdateReadme.ps1"
