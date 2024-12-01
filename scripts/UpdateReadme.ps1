@@ -248,6 +248,8 @@ Update-MDSection -Path '.\profile\README.md' -Name 'FUNCTIONAPP_LIST' -Content $
 Update-MDSection -Path '.\profile\README.md' -Name 'WORKFLOW_LIST' -Content $workflowTable
 #endregion
 
+git config --list --local
+
 git add .
 git commit -m 'Auto-generated changes'
 git push
