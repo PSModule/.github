@@ -4,7 +4,6 @@ param()
 $owner = $env:GITHUB_REPOSITORY_OWNER
 
 LogGroup "Connect to organization [$owner]" {
-    $appContext = Get-GitHubConfig -Name DefaultContext
     $orgInstallation = Get-GitHubAppInstallation | Where-Object { $_.Target_type -eq 'Organization' -and $_.account.login -eq $owner }
 
     if (-not $orgInstallation) {
@@ -19,13 +18,13 @@ LogGroup "Connect to organization [$owner]" {
     $org = $orgInstallation.account
     $orgName = $org.login
     $orgInstallationID = $orgInstallation.id
-    Write-Host "Processing [$orgName] [$orgInstallationID]"
+    Write-Output "Processing [$orgName] [$orgInstallationID]"
     $token = New-GitHubAppInstallationAccessToken -InstallationID $orgInstallationID | Select-Object -ExpandProperty Token
     Connect-GitHub -Token $token -Silent -Owner $orgName
 
-    Write-Host "Owner: $owner"
+    Write-Output "Owner: $owner"
     $rawRepos = Get-GitHubRepository -Owner $owner
-    Write-Host "Found $($rawRepos.Count) repositories"
+    Write-Output "Found $($rawRepos.Count) repositories"
     $repos = $rawRepos | ForEach-Object {
         $rawRepo = $_
         $properties = Get-GitHubRepositoryCustomProperty -Owner $owner -Repo $rawRepo.name
