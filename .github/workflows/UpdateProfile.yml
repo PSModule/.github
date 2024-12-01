@@ -20,11 +20,12 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: Update README
         uses: PSModule/GitHub-Script@v1
         with:
-          Prerelease: true
           ClientID: ${{ secrets.APP_ID }}
           PrivateKey: ${{ secrets.APP_PRIVATE_KEY }}
           Script: . ".\scripts\UpdateReadme.ps1"
