@@ -247,3 +247,13 @@ Update-MDSection -Path '.\profile\README.md' -Name 'ACTION_LIST' -Content $actio
 Update-MDSection -Path '.\profile\README.md' -Name 'FUNCTIONAPP_LIST' -Content $functionAppTable
 Update-MDSection -Path '.\profile\README.md' -Name 'WORKFLOW_LIST' -Content $workflowTable
 #endregion
+
+git config --list --local
+
+git add .
+git commit -m 'Auto-generated changes'
+git push
+
+LogGroup 'Start GitHub Workflow PSModule/PSModule.github.io/Publish-Docs' {
+    Start-GitHubWorkflow -Owner PSModule -Repo PSModule.github.io -ID Publish-Docs.yml -Verbose
+}
