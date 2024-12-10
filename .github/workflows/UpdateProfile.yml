@@ -28,4 +28,6 @@ jobs:
         with:
           ClientID: ${{ secrets.APP_ID }}
           PrivateKey: ${{ secrets.APP_PRIVATE_KEY }}
+          Verbose: true
+          Debug: true 
           Script: .\scripts\UpdateReadme.ps1
