@@ -1,4 +1,8 @@
-﻿[CmdletBinding()]
+﻿[Diagnostics.CodeAnalysis.SuppressMessageAttribute(
+    'PSAvoidLongLines', '',
+    Justification = 'Markdown templates'
+)]
+[CmdletBinding()]
 param()
 
 $owner = $env:GITHUB_REPOSITORY_OWNER
@@ -208,14 +212,37 @@ $workflowTableRows</table>
 
 #region Update README.md
 function Update-MDSection {
+    <#
+        .SYNOPSIS
+        Updates a specific section within a markdown file.
+
+        .DESCRIPTION
+        This function searches for a named section within a markdown file, identified by special comment markers.
+        It replaces the content between the markers with the provided new content. If the markers are not found,
+        an error is thrown. The function supports `-WhatIf` and `-Confirm` parameters for safety.
+
+        .EXAMPLE
+        Update-MDSection -Path '.\profile\README.md' -Name 'MODULE_LIST' -Content 'New module list'
+
+        Output:
+        ```powershell
+        (No explicit output, but the markdown file section is updated)
+        ```
+
+        Updates the section named 'MODULE_LIST' in the specified markdown file with the provided content.
+    #>
+    [outputType([void])]
     [CmdletBinding(SupportsShouldProcess)]
     param(
+        # Path to the markdown file where the section should be updated.
         [Parameter()]
         [string] $Path = '.\profile\README.md',
 
+        # Name of the section to be updated, used in comment markers.
         [Parameter()]
         [string] $Name = 'MODULE_LIST',
 
+        # The new content to insert between the section markers.
         [Parameter()]
         [string] $Content
     )
