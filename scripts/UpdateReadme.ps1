@@ -8,7 +8,7 @@ param()
 $owner = $env:GITHUB_REPOSITORY_OWNER
 
 LogGroup "Connect to organization [$owner]" {
-    Connect-GithubApp -Organization $owner
+    Connect-GithubApp -Organization $owner -Default
     Write-Output "Owner: $owner"
     $rawRepos = Get-GitHubRepository -Owner $owner
     Write-Output "Found $($rawRepos.Count) repositories"
