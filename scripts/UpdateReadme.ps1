@@ -8,24 +8,7 @@ param()
 $owner = $env:GITHUB_REPOSITORY_OWNER
 
 LogGroup "Connect to organization [$owner]" {
-    $orgInstallation = Get-GitHubAppInstallation | Where-Object { $_.Target_type -eq 'Organization' -and $_.account.login -eq $owner }
-
-    if (-not $orgInstallation) {
-        Write-Error "Organization [$owner] not found"
-        return
-    }
-    if ($orgInstallation.Count -gt 1) {
-        Write-Error "Multiple installations found for organization [$owner]"
-        return
-    }
-
-    $org = $orgInstallation.account
-    $orgName = $org.login
-    $orgInstallationID = $orgInstallation.id
-    Write-Output "Processing [$orgName] [$orgInstallationID]"
-    $token = New-GitHubAppInstallationAccessToken -InstallationID $orgInstallationID | Select-Object -ExpandProperty Token
-    Connect-GitHub -Token $token -Silent -Owner $orgName
-
+    Connect-GithubApp -Organization $owner
     Write-Output "Owner: $owner"
     $rawRepos = Get-GitHubRepository -Owner $owner
     Write-Output "Found $($rawRepos.Count) repositories"
