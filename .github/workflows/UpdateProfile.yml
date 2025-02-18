@@ -6,12 +6,7 @@ on:
   schedule:
     - cron: '0 * * * *'
 
-defaults:
-  run:
-    shell: pwsh
-
-permissions:
-  contents: read
+permissions: {}
 
 jobs:
   update_readme:
@@ -26,6 +21,6 @@ jobs:
       - name: Update README
         uses: PSModule/GitHub-Script@v1
         with:
-          ClientID: ${{ secrets.PSMODULE_CLIENT_ID }}
-          PrivateKey: ${{ secrets.PSMODULE_PRIVATE_KEY }}
+          ClientID: ${{ secrets.SCRIBBLER_BOT_CLIENT_ID }}
+          PrivateKey: ${{ secrets.SCRIBBLER_BOT_PRIVATE_KEY }}
           Script: scripts/UpdateReadme.ps1
