@@ -1,36 +1,26 @@
-# A GitHub & PowerShell development framework
+# A GitHub & PowerShell Development Framework
 
-> Accelerate PowerShell developers and users
+> Empowering Automators and Tool-Makers to Transform Ideas into Impact
 
-We empower PowerShell-savvy developers to effortlessly transform their ideas into impactful solutions.
-Our approach centers around a development framework that allows developers to focus on delivering value through their code.
-By leveraging the GitHub platform and PowerShell, we aim to automate the repetitive tasks, enabling developers — whether as consumers or contributors
- — to concentrate on coding without distractions.
+In a world where every line of code creates tangible value, our framework is built for those who automate processes and build tools. Leveraging GitHub and PowerShell together, we provide a platform for you to move seamlessly from concept to reality. By automating repetitive tasks, we free you to focus on authoring modern PowerShell modules, creating bots and apps with Function Apps, and enhancing functionality on GitHub.
 
-## Supported Platforms
+## Designed for Modern Automators and Tool-Makers
 
-This development framework is built to serve the needs of modern developers and environments. We prioritize supporting the latest Long-Term Servicing
-(LTS) version of PowerShell to ensure that we can leverage the most recent features and capabilities, keeping our framework aligned with the demands
-of today’s development landscape. We assume most of the users of this framework work on modern platforms and have access to the latest versions of
-PowerShell or seek to use it to develop solutions intended to run on modern systems, like GitHub Actions, Azure Functions on a developer machine.
+Our framework is engineered for today's creators. We prioritize the latest Long-Term Servicing (LTS) version of PowerShell to harness the most recent features and capabilities, ensuring that our tools meet the evolving demands of modern development. Whether you're building on GitHub Actions, deploying serverless solutions with Function Apps, or developing robust, cross-platform modules, our framework is tailored to streamline your workflow.
 
-### The Trade-Off: Not Supporting Windows PowerShell
+### Embracing the Future Over Legacy
 
-We’ve made a deliberate choice not to actively persure to support the older Windows PowerShell (5.1) version, as it limits our ability to use the
-newest PowerShell features. Where its low effort to support Windows PowerShell, we will do so, but we will not actively develop modules for it.
-While we recognize that some users may still rely on Windows PowerShell 5.1, they can run tools developed in this framework by installing
-PowerShell 7 alongside it or on remote systems. This decision ensures that this framework can focus on delivering new features for modern development
-without being constrained by legacy technology, which would otherwize require significant effort to develop and maintain, even if it is available in
-the newer versions of PowerShell.
+Innovation should never be hindered by outdated technology. That’s why we’ve chosen **not** to actively develop for Windows PowerShell 5.1. This focus allows us to fully exploit modern PowerShell features, ensuring our framework remains agile and forward-thinking. For those who rely on legacy systems, our tools remain accessible via a side-by-side installation of PowerShell 7.
 
-## Products and projects we focus on
+## Shaping the Tools of Tomorrow
 
-Our framework is dedicated to advancing the tools and processes that empower modern development and operations teams, with a specific focus on GitHub
-as our primary toolstack. We concentrate on the following key areas:
+Our commitment is to the automators and tool-makers who build the backbone of today’s digital infrastructure. Whether you're creating bots and apps with Function Apps, creating awsome cross-platform modules, or expanding functionality on GitHub, this framework is designed for you.
 
-- PowerShell modules
-- GitHub Actions and Workflows
-- Serverless applications using Function Apps in Azure
+- **PowerShell Modules:** Delivering a feature rich development framework for creating cross-platform modules. 
+- **GitHub Actions and Workflows:** Making PowerShell a preferred automation tool on GitHub.
+- **Serverless Applications:** Building scalable and efficient bots and apps with Azure Function Apps.
+
+This framework is for you—if you're dedicated to crafting tools that power progress and drive change.
 
 ### PowerShell modules
 
