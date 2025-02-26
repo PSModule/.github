@@ -1,6 +1,6 @@
 # A GitHub & PowerShell development framework
 
- - Accelerate PowerShell developers
+> Accelerate PowerShell developers
 
 We empower PowerShell-savvy developers to effortlessly transform their ideas into impactful solutions.
 Our approach centers around a development framework that allows developers to focus on delivering value through their code.
