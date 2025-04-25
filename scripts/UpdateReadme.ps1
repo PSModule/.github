@@ -8,9 +8,9 @@ param()
 $owner = $env:GITHUB_REPOSITORY_OWNER
 
 LogGroup "Connect to organization [$owner]" {
-    Connect-GithubApp -Organization $owner -Default
+    Connect-GitHubApp -Organization $owner -Default
     Write-Output "Owner: $owner"
-    $rawRepos = Get-GitHubRepository -Owner $owner
+    $rawRepos = Get-GitHubRepository -Organization $owner
     Write-Output "Found $($rawRepos.Count) repositories"
     $repos = $rawRepos | ForEach-Object {
         $rawRepo = $_
