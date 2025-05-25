@@ -2,4 +2,4 @@
 
 Infusing GitHub with PowerShell.
 
-![gh+pwsh](https://github.com/user-attachments/assets/1a2a1b44-9c20-499e-b43f-1e4910925b92)
+![Landscape](https://github.com/user-attachments/assets/9e044b8e-13b8-4846-935d-c6fb2c5eaf3e)
