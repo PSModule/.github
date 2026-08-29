@@ -1,21 +1,18 @@
-## Description
+<!-- Lead with one concise paragraph describing the user-facing outcome. -->
 
-<!-- Add your description here -->
+<!-- Add user-facing sections for breaking, new, changed, or fixed behavior when needed. -->
 
-## Type of change
+---
+<details>
+<summary>Technical details</summary>
 
-<!-- Use the check-boxes [x] on the options that are relevant. -->
+<!-- Record the implementation approach, issue-plan progress, standards alignment, and convergence sweep. -->
 
-- [ ] 📖 [Docs]
-- [ ] 🪲 [Fix]
-- [ ] 🩹 [Patch]
-- [ ] ⚠️ [Security fix]
-- [ ] 🚀 [Feature]
-- [ ] 🌟 [Breaking change]
+</details>
 
-## Checklist
+<details>
+<summary>Relevant issues (or links)</summary>
 
-<!-- Use the check-boxes [x] on the options that are relevant. -->
+<!-- Use fully qualified repository references for closing and related work. -->
 
-- [ ] I have performed a self-review of my own code
-- [ ] I have commented my code, particularly in hard-to-understand areas
+</details>

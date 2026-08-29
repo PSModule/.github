@@ -1,18 +1,11 @@
-# VS Code files for those working on multiple tools
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Editors
+.history/
+.idea/
+.vscode/
 *.code-workspace
-
-# Local History for Visual Studio Code
-.history/*
-
-# PSModule framework outputs folder
-outputs/*
-
-# .Net build output
-bin/
-obj/
-libs/
+*.swp
+*~
