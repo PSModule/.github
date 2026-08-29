@@ -1,16 +1,13 @@
 # .github
 
-> Looking for member-only content? See the private [`.github-private`](https://github.com/PSModule/.github-private) repository.
-
 This is the special `.github` repository for the [PSModule](https://github.com/PSModule)
 organization. GitHub gives this repository organization-wide powers: content placed here
 can apply to every repository in the organization, so it is far more than just a profile.
 
 > [!IMPORTANT]
 > This repository must stay **public**. The public organization profile and default
-> community health files are not served from a private `.github` repository. Member-only
-> content belongs in the private
-> [`.github-private`](https://github.com/PSModule/.github-private) repository instead.
+> community health files are not served from a private `.github` repository. Do not
+> commit member-only or sensitive content here.
 
 ## What it can be used for
 
@@ -89,16 +86,3 @@ organization's settings instead.
 This repository is licensed under the [MIT License](LICENSE), except for
 `.github/CODE_OF_CONDUCT.md`, which retains the Contributor Covenant's
 [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).
-
-## Public vs. member-only profile
-
-| Content | Repository | Visibility |
-| ------- | ---------- | ---------- |
-| Public organization profile | `.github` (this repository) | Everyone |
-| Member-only organization profile | `.github-private` | Organization members |
-
-Keep public messaging in this repository's `profile/README.md`, and member-only messaging
-in the [`.github-private`](https://github.com/PSModule/.github-private) repository's
-`profile/README.md`.
-
-**Read more:** [Customizing your organization's profile](https://docs.github.com/en/organizations/collaborating-with-groups-in-organizations/customizing-your-organizations-profile)
