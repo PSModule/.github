@@ -20,9 +20,3 @@ See GitHub's guides to
 [organization profiles](https://docs.github.com/en/organizations/collaborating-with-groups-in-organizations/customizing-your-organizations-profile)
 and
 [default community health files](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/creating-a-default-community-health-file).
-
-## Licensing
-
-Repository content is licensed under the [MIT License](LICENSE), except
-[the code of conduct](.github/CODE_OF_CONDUCT.md), which retains the
-Contributor Covenant's CC BY-SA 4.0 license.
