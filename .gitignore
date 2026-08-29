@@ -9,11 +9,3 @@ Thumbs.db
 *.code-workspace
 *.swp
 *~
-
-# PSModule framework outputs folder
-outputs/
-
-# .NET build output
-bin/
-obj/
-libs/
