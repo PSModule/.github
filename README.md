@@ -41,9 +41,11 @@ maintained in one place. Supported files include:
 | `DISCUSSION_TEMPLATE/` | Discussion category forms |
 
 A repository's own file always wins; otherwise GitHub falls back to this repository,
-looking in the `.github` folder, then the repository root, then `docs/`. A repository
-that defines any of its own issue templates overrides the default `ISSUE_TEMPLATE/`
-folder entirely.
+looking in the `.github` folder, then the repository root, then `docs/`.
+Repository-local files remain the enforceable PSModule surface for people, agents, and
+automation; these defaults are a convenience, not a replacement. A repository that
+defines any of its own issue templates overrides the default `ISSUE_TEMPLATE/` folder
+entirely.
 
 > [!NOTE]
 > You cannot set a default `LICENSE` here — license files must live in each repository so
