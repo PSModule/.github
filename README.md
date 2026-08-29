@@ -84,6 +84,12 @@ organization's settings instead.
 
 **Read more:** [Repository custom instructions](https://docs.github.com/en/copilot/how-tos/configure-custom-instructions/add-repository-instructions) · [Organization custom instructions](https://docs.github.com/en/copilot/how-tos/configure-custom-instructions/add-organization-instructions)
 
+## Licensing
+
+This repository is licensed under the [MIT License](LICENSE), except for
+`.github/CODE_OF_CONDUCT.md`, which retains the Contributor Covenant's
+[CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).
+
 ## Public vs. member-only profile
 
 | Content | Repository | Visibility |

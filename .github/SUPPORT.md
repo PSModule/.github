@@ -1,17 +1,25 @@
 # Support
 
-## PSModule support
+For help with a PSModule repository:
 
-For help with a PSModule repository, open an issue in the GitHub repository for the relevant codebase. Issues let maintainers and other users collaborate on a solution.
+1. Read that repository's README and documentation.
+2. Search its existing issues for a known answer.
+3. Open an issue in the affected repository if the question can be discussed
+   publicly.
 
-For matters that are not suitable for a public issue, contact [psmodule@psmodule.io](mailto:psmodule@psmodule.io).
+Include the repository and version, relevant environment details, expected and
+actual behavior, reproduction steps, and sanitized logs. Remove credentials,
+personal information, and other secrets before posting.
 
-To contribute, see the repository's [contributing guide](CONTRIBUTING.md).
+For a matter that cannot be shared publicly, email
+[psmodule@psmodule.io](mailto:psmodule@psmodule.io).
 
-## Security vulnerabilities
+## Sensitive reports
 
-Do not report security vulnerabilities through GitHub Issues. Follow the repository's [security policy](SECURITY.md) instead.
+Never report a security vulnerability through a public issue. Follow the
+[security policy](SECURITY.md) instead.
 
-## PowerShell Gallery support
+Report community conduct concerns through the private route in the
+[code of conduct](CODE_OF_CONDUCT.md).
 
-For PowerShell Gallery support, contact [cgadmin@microsoft.com](mailto:cgadmin@microsoft.com) or open an issue in [PowerShell/PowerShellGallery](https://github.com/PowerShell/PowerShellGallery/issues).
+To propose a change, follow the [contribution guide](CONTRIBUTING.md).
