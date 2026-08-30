@@ -1,4 +1,4 @@
-# Agent instructions
+# agent
 
 Read nearest first, prefer documentation over memory, and always use the newest
 version.
@@ -17,5 +17,3 @@ version.
    [`src/docs/index.md`](https://github.com/MSXOrg/docs/blob/main/src/docs/index.md)
    or the [published documentation](https://msx.no/docs/). Store a local clone
    at `~/.msxorg/docs`.
-5. `github.com/PSModule/memory` (private) — durable lessons from earlier work.
-   Store a local clone at `~/.psmodule/memory` and read `index.md` last.
