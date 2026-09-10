@@ -1,5 +1,8 @@
 # Contributing
 
-Follow the [PSModule contribution workflow](https://github.com/PSModule/Process-PSModule/)
-for central PSModule documentation and contribution guidance. A repository's
-local README and contributing guidance take precedence over this fallback.
+Follow the central [MSX contribution workflow](https://msx.no/docs/Ways-of-Working/Contribution-Workflow/)
+and [MSX Ways of Working](https://msx.no/docs/Ways-of-Working/) for shared
+contribution guidance.
+
+For framework-specific guidance, review the
+[Process-PSModule documentation](https://psmodule.io/Process-PSModule/).
