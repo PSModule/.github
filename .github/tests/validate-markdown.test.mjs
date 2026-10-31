@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
-import { mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import test from 'node:test';
@@ -14,12 +14,21 @@ const communityFiles = {
   '.github/pull_request_template.md': 'Describe the community outcome.\n',
 };
 
+/** Isolate fixture Git state without changing the real repository environment. */
+function fixtureEnvironment(directory) {
+  return {
+    ...Object.fromEntries(Object.entries(process.env).filter(([name]) => !/^GIT_/i.test(name))),
+    GIT_CONFIG_NOSYSTEM: '1',
+    GIT_CONFIG_GLOBAL: join(directory, '.git', 'fixture-global-config'),
+  };
+}
+
 /** Keep anonymous fixture Git operations isolated from personal hooks. */
 function fixtureGit(directory, args, input) {
   const result = spawnSync('git', [
     '-c', `core.hooksPath=${join(directory, '.git', 'fixture-hooks')}`,
     '-C', directory, ...args,
-  ], { encoding: 'utf8', input });
+  ], { encoding: 'utf8', input, env: fixtureEnvironment(directory) });
   assert.equal(result.status, 0, result.stderr);
   return result.stdout;
 }
@@ -28,7 +37,9 @@ function fixtureGit(directory, args, input) {
 function createFixture(context, files) {
   const directory = mkdtempSync(join(tmpdir(), 'community-markdown-'));
   context.after(() => rmSync(directory, { recursive: true, force: true }));
-  fixtureGit(directory, ['init', '--quiet']);
+  mkdirSync(join(directory, '.git'));
+  writeFileSync(join(directory, '.git', 'fixture-global-config'), '');
+  fixtureGit(directory, ['init', '--quiet', '--template=']);
   fixtureGit(directory, ['config', 'core.excludesfile', join(directory, '.git', 'fixture-excludes')]);
   for (const [name, content] of Object.entries({
     '.gitignore': gitignore,
@@ -43,9 +54,17 @@ function createFixture(context, files) {
 }
 
 /** Run the real validator against disposable, anonymous Markdown files. */
+function runValidator(directory) {
+  return spawnSync(process.execPath, [script, directory], {
+    encoding: 'utf8',
+    env: fixtureEnvironment(directory),
+  });
+}
+
+/** Validate a disposable root using the same contract as repository CI. */
 function validateFixture(context, files) {
   const directory = createFixture(context, files);
-  return spawnSync(process.execPath, [script, directory], { encoding: 'utf8' });
+  return runValidator(directory);
 }
 
 test('checks both inherited community paths and the repository README', (context) => {
@@ -147,7 +166,7 @@ test('still validates deliberately tracked Markdown under an ignored directory',
     '.history/tracked.md': '# Authored Markdown\n\n### Invalid heading\n',
   });
   fixtureGit(directory, ['add', '--force', '--', '.history/tracked.md']);
-  const result = spawnSync(process.execPath, [script, directory], { encoding: 'utf8' });
+  const result = runValidator(directory);
   assert.equal(result.status, 1, result.stderr);
   assert.match(result.stderr, /MD001/);
 });
@@ -180,7 +199,7 @@ test('rejects Git symlink entries even when Windows materializes them as regular
   });
   const object = fixtureGit(directory, ['hash-object', '-w', '--stdin'], 'target.txt\n').trim();
   fixtureGit(directory, ['update-index', '--add', '--cacheinfo', `120000,${object},guide.md`]);
-  const result = spawnSync(process.execPath, [script, directory], { encoding: 'utf8' });
+  const result = runValidator(directory);
   assert.notEqual(result.status, 0);
   assert.match(result.stderr, /symlink|symbolic link/i);
   assert.match(result.stderr, /guide\.md/);
@@ -194,7 +213,7 @@ test('rejects a non-Git root rather than silently changing the input contract', 
     mkdirSync(dirname(path), { recursive: true });
     writeFileSync(path, content);
   }
-  const result = spawnSync(process.execPath, [script, directory], { encoding: 'utf8' });
+  const result = runValidator(directory);
   assert.notEqual(result.status, 0);
   assert.match(result.stderr, /Git file discovery failed/);
 });
@@ -205,15 +224,75 @@ test('rejects a repository subdirectory instead of validating only a partial che
     'nested/.github/CONTRIBUTING.md': '# Nested contribution fixture\n',
     'nested/.github/pull_request_template.md': 'Nested template fixture.\n',
   });
-  const result = spawnSync(process.execPath, [script, join(directory, 'nested')], { encoding: 'utf8' });
+  const result = runValidator(join(directory, 'nested'));
   assert.notEqual(result.status, 0);
   assert.match(result.stderr, /repository root/);
+});
+
+test('fixture Git and validator subprocesses cannot use the caller index', (context) => {
+  const caller = mkdtempSync(join(tmpdir(), 'anonymous-caller-'));
+  context.after(() => rmSync(caller, { recursive: true, force: true }));
+  const environment = {
+    ...Object.fromEntries(Object.entries(process.env).filter(([name]) => !/^GIT_/i.test(name))),
+    GIT_CONFIG_NOSYSTEM: '1',
+    GIT_CONFIG_GLOBAL: join(caller, 'empty-global-config'),
+  };
+  writeFileSync(environment.GIT_CONFIG_GLOBAL, '');
+  for (const args of [['init', '--quiet', '--template='], ['add', '--', 'sentinel.txt']]) {
+    writeFileSync(join(caller, 'sentinel.txt'), 'Anonymous caller data.\n');
+    const result = spawnSync('git', [
+      '-c', `core.hooksPath=${join(caller, '.git', 'fixture-hooks')}`,
+      '-C', caller, ...args,
+    ], { encoding: 'utf8', env: environment });
+    assert.equal(result.status, 0, result.stderr);
+  }
+  const index = join(caller, '.git', 'index');
+  const originalIndex = readFileSync(index);
+  const previousIndex = process.env.GIT_INDEX_FILE;
+  try {
+    process.env.GIT_INDEX_FILE = index;
+    const directory = createFixture(context, { ...communityFiles, 'guide.md': 'target.txt\n' });
+    const object = fixtureGit(directory, ['hash-object', '-w', '--stdin'], 'target.txt\n').trim();
+    fixtureGit(directory, ['update-index', '--add', '--cacheinfo', `120000,${object},guide.md`]);
+    const result = runValidator(directory);
+    assert.deepEqual(readFileSync(index), originalIndex, 'Disposable fixtures must not change the caller index.');
+    assert.equal(result.status, 1, result.stderr);
+    assert.match(result.stderr, /symlink/i);
+  } finally {
+    if (previousIndex === undefined) {
+      delete process.env.GIT_INDEX_FILE;
+    } else {
+      process.env.GIT_INDEX_FILE = previousIndex;
+    }
+  }
+});
+
+test('disposable Git initialization copies no user or default templates', (context) => {
+  const template = mkdtempSync(join(tmpdir(), 'anonymous-git-template-'));
+  context.after(() => rmSync(template, { recursive: true, force: true }));
+  mkdirSync(join(template, 'info'));
+  writeFileSync(join(template, 'info', 'exclude'), '*.md\n');
+  const previousTemplate = process.env.GIT_TEMPLATE_DIR;
+  try {
+    process.env.GIT_TEMPLATE_DIR = template;
+    const directory = createFixture(context, communityFiles);
+    const result = runValidator(directory);
+    assert.equal(result.status, 0, result.stderr);
+    assert.equal(existsSync(join(directory, '.git', 'info', 'exclude')), false);
+    assert.match(result.stdout, /Checked 2 Markdown files; result: passed/);
+  } finally {
+    if (previousTemplate === undefined) {
+      delete process.env.GIT_TEMPLATE_DIR;
+    } else {
+      process.env.GIT_TEMPLATE_DIR = previousTemplate;
+    }
+  }
 });
 
 test('rejects a nonexistent root instead of reporting a successful scan', (context) => {
   const directory = mkdtempSync(join(tmpdir(), 'community-markdown-'));
   context.after(() => rmSync(directory, { recursive: true, force: true }));
-  const result = spawnSync(process.execPath, [script, join(directory, 'missing')], { encoding: 'utf8' });
+  const result = runValidator(join(directory, 'missing'));
   assert.notEqual(result.status, 0);
   assert.match(result.stderr, /ENOENT|not a directory/);
 });

@@ -25,6 +25,11 @@ Ignored editor history, dependency trees, and Git metadata do not affect the
 scan. Deliberately tracked Markdown under an ignored directory is still checked;
 `node_modules` stays excluded.
 
+Fixture subprocesses discard inherited Git repository variables and use empty
+global configuration with template copying disabled. This keeps a pre-commit
+hook's real index and contributor configuration outside the disposable roots;
+the subsequent real-repository lint retains its caller environment.
+
 Both `.github/pull_request_template.md` and `.github/CONTRIBUTING.md` must be
 present as regular, nonempty validation inputs. Missing or renamed required
 files, Markdown symlinks, empty scans, blank files, lint findings, and tool
