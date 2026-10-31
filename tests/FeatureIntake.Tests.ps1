@@ -7,7 +7,7 @@
     Check the organization-owned feature intake contract.
 
     .DESCRIPTION
-    Verify GitHub issue-form structure, submission usability, and preserved routing.
+    Verify consumer prompts, GitHub issue-form structure, submission usability, and preserved routing.
 
     .EXAMPLE
     Invoke-Pester -Path .\tests\FeatureIntake.Tests.ps1 -Output Detailed -CI
@@ -39,8 +39,8 @@ Describe 'Feature intake GitHub form structure' {
         $form | Should -BeOfType ([System.Collections.IDictionary])
         @($form.Keys) | Should -HaveCount 5
         @($form.Keys | Where-Object -FilterScript {
-            $_ -notin @('name', 'description', 'title', 'labels', 'body')
-        }) | Should -HaveCount 0
+                $_ -notin @('name', 'description', 'title', 'labels', 'body')
+            }) | Should -HaveCount 0
     }
 
     It 'provides nonempty strings for the template chooser and title' {
@@ -67,8 +67,8 @@ Describe 'Feature intake GitHub form structure' {
     It 'uses the documented textarea element keys' {
         @($response.Keys | Sort-Object) | Should -Be @('attributes', 'id', 'type', 'validations')
         @($response.attributes.Keys | Where-Object -FilterScript {
-            $_ -notin @('label', 'description', 'placeholder')
-        }) | Should -HaveCount 0
+                $_ -notin @('label', 'description', 'placeholder')
+            }) | Should -HaveCount 0
         foreach ($value in @($response.attributes.label, $response.attributes.description)) {
             $value | Should -BeOfType ([string])
             [string]::IsNullOrWhiteSpace($value) | Should -BeFalse
@@ -118,5 +118,68 @@ Describe 'Feature intake preserved routing' {
         @($configuration.Keys) | Should -Be @('blank_issues_enabled')
         $configuration.blank_issues_enabled | Should -BeOfType ([bool])
         $configuration.blank_issues_enabled | Should -BeTrue
+    }
+}
+
+Describe 'Feature intake consumer expectations' -Tag 'ConsumerExpectations' {
+    It 'labels the response as consumer need and expected behavior' {
+        $response.attributes.label | Should -BeExactly 'Consumer need and expected behavior'
+    }
+
+    It 'asks what the contributor wants to do and who benefits' {
+        ($response.attributes.description -split '\r?\n')[0] |
+            Should -BeExactly 'What are you trying to do, and who would benefit?'
+    }
+
+    It 'asks why the need matters and what is difficult or missing' {
+        ($response.attributes.description -split '\r?\n')[1] |
+            Should -BeExactly 'Why does it matter, and what is difficult or missing today?'
+    }
+
+    It 'asks for expected behavior in a real situation' {
+        ($response.attributes.description -split '\r?\n')[2] |
+            Should -BeExactly 'In a real situation, what would you do and expect to happen?'
+    }
+
+    It 'offers optional ordinary-language starters instead of a prefilled answer' {
+        $response.attributes.placeholder | Should -Not -BeNullOrEmpty
+        ($response.attributes.placeholder.TrimEnd() -split '\r?\n') | Should -Be @(
+            'I need to ...'
+            'This matters because ...'
+            'When I ..., I expect ...'
+        )
+    }
+
+    It 'does not solicit implementation choices or prescribe Gherkin syntax' {
+        (@(
+            $introduction.attributes.value
+            $response.attributes.description
+            $response.attributes.placeholder
+        ) -join ' ') |
+            Should -Not -Match '\b(implement(?:ed|ation)?|architecture|Gherkin|Given|Then)\b'
+        $response.attributes.description |
+            Should -Not -Match 'Are there alternatives you.ve considered\?'
+    }
+
+    It 'invites the contributor to use their own words without a technical plan' {
+        $introduction.attributes.value |
+            Should -Match 'in your own words\.\s+No technical plan is needed\.'
+    }
+
+    It 'keeps feedback review and routing with maintainers' {
+        $introduction.attributes.value |
+            Should -Match 'Maintainers will review your feedback and decide how to route it\.'
+    }
+
+    It 'links the canonical MSX issue guidance' {
+        $introduction.attributes.value | Should -Match '\[MSX issue guidance\]\[issues\]'
+        $introduction.attributes.value |
+            Should -Match '(?m)^\[issues\]: https://msx\.no/docs/Ways-of-Working/Issues/\r?$'
+    }
+
+    It 'links the canonical MSX planning guidance' {
+        $introduction.attributes.value | Should -Match '\[planning guidance\]\[planning\]'
+        $introduction.attributes.value |
+            Should -Match '(?m)^\[planning\]: https://msx\.no/docs/Ways-of-Working/Issues/Process/Planning/\r?$'
     }
 }
