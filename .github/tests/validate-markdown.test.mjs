@@ -68,6 +68,9 @@ test('rejects a scan with no Markdown files', (context) => {
   const result = validateFixture(context, { 'unrelated.txt': 'Not Markdown.\n' });
   assert.notEqual(result.status, 0);
   assert.match(result.stderr, /No Markdown files were checked/);
+  const path = result.stderr.match(/No Markdown files were checked in (".*")\. Check the validation root/);
+  assert.ok(path, result.stderr);
+  assert.equal(typeof JSON.parse(path[1]), 'string');
 });
 
 test('rejects blank inherited files even when other files are valid', (context) => {
@@ -78,6 +81,9 @@ test('rejects blank inherited files even when other files are valid', (context) 
   assert.notEqual(result.status, 0);
   assert.match(result.stderr, /Empty Markdown file/);
   assert.match(result.stderr, /CONTRIBUTING\.md/);
+  const path = result.stderr.match(/Empty Markdown file: (".*")\. Restore its content/);
+  assert.ok(path, result.stderr);
+  assert.ok(JSON.parse(path[1]).endsWith('CONTRIBUTING.md'));
 });
 
 test('ignores dependency and Git metadata trees, not hidden community files', (context) => {

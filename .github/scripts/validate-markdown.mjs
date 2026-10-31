@@ -21,11 +21,11 @@ const configurationPath = fileURLToPath(new URL('../linters/.markdown-lint.yml',
 const configuration = await readConfig(configurationPath, [yamlParse]);
 const files = findMarkdownFiles(directory);
 if (files.length === 0) {
-  throw new Error(`No Markdown files were checked in ${directory}. Check the validation root.`);
+  throw new Error(`No Markdown files were checked in ${JSON.stringify(directory)}. Check the validation root.`);
 }
 for (const file of files) {
   if (readFileSync(file, 'utf8').trim().length === 0) {
-    throw new Error(`Empty Markdown file: ${file}. Restore its content before validation.`);
+    throw new Error(`Empty Markdown file: ${JSON.stringify(file)}. Restore its content before validation.`);
   }
 }
 
