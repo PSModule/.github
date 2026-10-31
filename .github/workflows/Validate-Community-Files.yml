@@ -43,8 +43,16 @@ jobs:
         with:
           node-version-file: .node-version
 
-      - name: Record the checked-out candidate
-        run: git rev-parse HEAD
+      - name: Verify the checked-out PR head
+        env:
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $actualHead = git rev-parse HEAD
+          if ($LASTEXITCODE -ne 0 -or $actualHead -ne $env:PR_HEAD_SHA) {
+              throw 'Checked-out commit does not match the PR head.'
+          }
+          Write-Output -InputObject $actualHead
 
       - name: Install locked validation tooling
         run: npm ci --ignore-scripts --no-audit --no-fund

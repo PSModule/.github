@@ -5,6 +5,7 @@ import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import test from 'node:test';
 import { fileURLToPath } from 'node:url';
+import yamlParse from 'markdownlint-cli2/parsers/yaml';
 
 const script = fileURLToPath(new URL('../scripts/validate-markdown.mjs', import.meta.url));
 const gitignore = readFileSync(new URL('../../.gitignore', import.meta.url), 'utf8');
@@ -216,3 +217,22 @@ test('rejects a nonexistent root instead of reporting a successful scan', (conte
   assert.notEqual(result.status, 0);
   assert.match(result.stderr, /ENOENT|not a directory/);
 });
+
+for (const expectedHead of ['not-a-pr-head', '']) {
+  test(`candidate identity rejects ${expectedHead ? 'mismatched' : 'absent'} PR head metadata`, () => {
+    const workflow = yamlParse(readFileSync(
+      new URL('../workflows/Validate-Community-Files.yml', import.meta.url), 'utf8'));
+    const step = workflow.jobs.validate.steps.find((candidate) =>
+      typeof candidate.run === 'string' && candidate.run.includes('git rev-parse HEAD'));
+    assert.ok(step, 'The workflow must verify the checked-out candidate.');
+    const result = spawnSync('pwsh', ['-NoProfile', '-NonInteractive', '-Command', step.run], {
+      cwd: fileURLToPath(new URL('../../', import.meta.url)),
+      encoding: 'utf8',
+      env: { ...process.env, PR_HEAD_SHA: expectedHead },
+    });
+    assert.ifError(result.error);
+    assert.notEqual(result.status, 0, result.stdout);
+    assert.match(result.stderr, /Checked-out commit does not match the PR head/);
+    assert.equal(step.env?.PR_HEAD_SHA, '${{ github.event.pull_request.head.sha }}');
+  });
+}

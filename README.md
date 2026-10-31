@@ -6,8 +6,8 @@ own corresponding file.
 
 ## Validate changes
 
-Use Git and the Node.js LTS version in `.node-version`, install the locked
-tooling, and run the same validation command used by the PR check:
+Use Git, PowerShell 7 (`pwsh`), and the Node.js LTS version in `.node-version`.
+Install the locked tooling and run the same validation command used by the PR check:
 
 ```powershell
 npm ci --ignore-scripts
@@ -40,7 +40,9 @@ correspondence, release decisions, or fallback propagation. Repositories with
 local community files keep their own files.
 
 Normal PR events targeting `main`, including drafts, run the named
-`Community file validation` job against the actual head. GitHub does not start
+`Community file validation` job against the actual head. The checkout must match
+the PR-head metadata; absent or mismatched identity fails instead of accepting
+a default checkout. GitHub does not start
 `pull_request` workflows for PRs with merge conflicts; resolve the conflicts
 and obtain a fresh current-head result before readiness. There is no path or
 draft filter, manual-dispatch substitute, elevated trigger, write token, or
