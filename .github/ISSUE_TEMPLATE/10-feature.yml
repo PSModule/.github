@@ -1,5 +1,6 @@
 # https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/syntax-for-issue-forms
 # https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/syntax-for-githubs-form-schema
+---
 name: 🚀 [Feature]
 description: Suggest/request a new feature
 title: '🚀[Feature]: '
@@ -8,14 +9,26 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thank you for suggesting a new feature. Please provide as much information as possible so we can understand your request better.
+        Thank you for suggesting a feature. Tell us about your need and
+        the result you expect in your own words. No technical plan is needed.
+        Maintainers will review your feedback and decide how to route it.
+
+        See the [MSX issue guidance][issues] and
+        [planning guidance][planning] for how feedback becomes planned work.
+
+        [issues]: https://msx.no/docs/Ways-of-Working/Issues/
+        [planning]: https://msx.no/docs/Ways-of-Working/Issues/Process/Planning/
   - type: textarea
     id: description
     attributes:
-      label: Description
+      label: Consumer need and expected behavior
       description: |
-        Please describe your idea/request
-        Feel free to add suggestions how you would like to see this implemented.
-        Are there alternatives you've considered?
+        What are you trying to do, and who would benefit?
+        Why does it matter, and what is difficult or missing today?
+        In a real situation, what would you do and expect to happen?
+      placeholder: |
+        I need to ...
+        This matters because ...
+        When I ..., I expect ...
     validations:
       required: true
