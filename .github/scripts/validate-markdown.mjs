@@ -49,11 +49,9 @@ const { files, symlinks } = findMarkdownFiles(directory);
 if (files.length === 0) {
   throw new Error(`No Markdown files were checked in ${JSON.stringify(directory)}. Check the validation root.`);
 }
-for (const name of ['pull_request_template.md', 'CONTRIBUTING.md']) {
-  const file = join(directory, '.github', name);
-  if (!files.includes(file)) {
-    throw new Error(`Required community file is missing from the validation input: ${JSON.stringify(file)}. Restore the file or explicitly change the contract.`);
-  }
+const contributionSource = join(directory, '.github', 'CONTRIBUTING.md');
+if (!files.includes(contributionSource)) {
+  throw new Error(`Required community file is missing from the validation input: ${JSON.stringify(contributionSource)}. Restore the file or explicitly change the contract.`);
 }
 for (const file of files) {
   const metadata = lstatSync(file);

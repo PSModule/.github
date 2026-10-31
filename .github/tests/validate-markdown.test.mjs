@@ -11,7 +11,6 @@ const script = fileURLToPath(new URL('../scripts/validate-markdown.mjs', import.
 const gitignore = readFileSync(new URL('../../.gitignore', import.meta.url), 'utf8');
 const communityFiles = {
   '.github/CONTRIBUTING.md': '# Contributing\n',
-  '.github/pull_request_template.md': 'Describe the community outcome.\n',
 };
 
 /** Isolate fixture Git state without changing the real repository environment. */
@@ -67,21 +66,21 @@ function validateFixture(context, files) {
   return runValidator(directory);
 }
 
-test('checks both inherited community paths and the repository README', (context) => {
-  const result = validateFixture(context, {
+test('validates central sources without any PR-template file', (context) => {
+  const directory = createFixture(context, {
     ...communityFiles,
     'README.md': '# Community defaults\n',
     '.github/CONTRIBUTING.md': '# Contributing\n\nFollow the shared workflow.\n',
-    '.github/pull_request_template.md':
-      '<!-- Describe the outcome. -->\n\n---\n\n<details>\n<summary>Technical details</summary>\n\nImplementation evidence.\n\n</details>\n',
   });
+  assert.equal(existsSync(join(directory, '.github', 'pull_request_template.md')), false);
+  const result = runValidator(directory);
   assert.equal(result.status, 0, result.stderr);
-  assert.match(result.stdout, /Checked 3 Markdown files; result: passed/);
+  assert.match(result.stdout, /Checked 2 Markdown files; result: passed/);
   assert.match(result.stdout, /\.github[/\\]+CONTRIBUTING\.md/);
-  assert.match(result.stdout, /\.github[/\\]+pull_request_template\.md/);
+  assert.match(result.stdout, /README\.md/);
 });
 
-for (const name of ['.github/pull_request_template.md', '.github/CONTRIBUTING.md']) {
+for (const name of ['guide.md', '.github/CONTRIBUTING.md']) {
   test(`rejects malformed Markdown in ${name}`, (context) => {
     const result = validateFixture(context, {
       ...communityFiles,
@@ -103,13 +102,11 @@ test('rejects duplicate document titles', (context) => {
   assert.match(result.stderr, /MD025/);
 });
 
-test('accepts source-shaped announcement and result-scoped blocks as Markdown', (context) => {
-  const sections = ['Breaking', 'Removed', 'New', 'Changed', 'Fixed'].map((classifier) =>
-    `## ${classifier}: Example result\n\nReaders inspect the affected setting and verify the documented result. No additional action applies to unaffected uses.\n\n<details>\n<summary>Technical details</summary>\n\nAnonymous validation evidence.\n\n</details>\n\n<details>\n<summary>Related references</summary>\n\nOptional supporting context.\n\n</details>\n`);
+test('validates ordinary authored Markdown with supporting HTML blocks', (context) => {
   const result = validateFixture(context, {
     ...communityFiles,
-    '.github/pull_request_template.md':
-      `Readers receive complete adoption instructions for the affected uses.\n\n<!-- ANNOUNCEMENT STOP -->\n\n${sections.join('\n')}`,
+    'guide.md':
+      '# Usage guide\n\nReaders follow the documented instructions.\n\n<details>\n<summary>Supporting details</summary>\n\nAdditional context.\n\n</details>\n',
   });
   assert.equal(result.status, 0, result.stderr);
   assert.match(result.stdout, /Checked 2 Markdown files; result: passed/);
@@ -124,7 +121,7 @@ test('rejects a scan with no Markdown files', (context) => {
   assert.equal(typeof JSON.parse(path[1]), 'string');
 });
 
-test('rejects blank inherited files even when other files are valid', (context) => {
+test('rejects the blank central contribution source even when other files are valid', (context) => {
   const result = validateFixture(context, {
     ...communityFiles,
     'README.md': '# Community defaults\n',
@@ -146,7 +143,7 @@ test('ignores dependency and Git metadata trees, not hidden community files', (c
     '.git/README.md': '# Git metadata\n\n### Invalid heading\n',
   });
   assert.equal(result.status, 0, result.stderr);
-  assert.match(result.stdout, /Checked 2 Markdown files; result: passed/);
+  assert.match(result.stdout, /Checked 1 Markdown files; result: passed/);
 });
 
 test('ignores untracked editor history using the repository ignore rules', (context) => {
@@ -157,7 +154,7 @@ test('ignores untracked editor history using the repository ignore rules', (cont
     '.vscode/notes.md': '# Editor notes\n\n### Invalid heading\n',
   });
   assert.equal(result.status, 0, result.stderr);
-  assert.match(result.stdout, /Checked 2 Markdown files; result: passed/);
+  assert.match(result.stdout, /Checked 1 Markdown files; result: passed/);
 });
 
 test('still validates deliberately tracked Markdown under an ignored directory', (context) => {
@@ -222,7 +219,6 @@ test('rejects a repository subdirectory instead of validating only a partial che
   const directory = createFixture(context, {
     ...communityFiles,
     'nested/.github/CONTRIBUTING.md': '# Nested contribution fixture\n',
-    'nested/.github/pull_request_template.md': 'Nested template fixture.\n',
   });
   const result = runValidator(join(directory, 'nested'));
   assert.notEqual(result.status, 0);
@@ -252,7 +248,7 @@ test('preserves Markdown parent aliases whose targets stay inside the repository
   symlinkSync(target, join(directory, '.github'), process.platform === 'win32' ? 'junction' : 'dir');
   const result = runValidator(directory);
   assert.equal(result.status, 0, result.stderr);
-  assert.match(result.stdout, /Checked 4 Markdown files; result: passed/);
+  assert.match(result.stdout, /Checked 2 Markdown files; result: passed/);
 });
 
 test('fixture Git and validator subprocesses cannot use the caller index', (context) => {
@@ -293,7 +289,7 @@ test('fixture Git and validator subprocesses cannot use the caller index', (cont
   }
 });
 
-test('disposable Git initialization copies no user or default templates', (context) => {
+test('disposable Git initialization copies no user or default Git templates', (context) => {
   const template = mkdtempSync(join(tmpdir(), 'anonymous-git-template-'));
   context.after(() => rmSync(template, { recursive: true, force: true }));
   mkdirSync(join(template, 'info'));
@@ -305,7 +301,7 @@ test('disposable Git initialization copies no user or default templates', (conte
     const result = runValidator(directory);
     assert.equal(result.status, 0, result.stderr);
     assert.equal(existsSync(join(directory, '.git', 'info', 'exclude')), false);
-    assert.match(result.stdout, /Checked 2 Markdown files; result: passed/);
+    assert.match(result.stdout, /Checked 1 Markdown files; result: passed/);
   } finally {
     if (previousTemplate === undefined) {
       delete process.env.GIT_TEMPLATE_DIR;

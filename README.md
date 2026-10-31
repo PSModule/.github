@@ -11,7 +11,9 @@ require module-local template or `CONTRIBUTING.md` copies.
 ## Validate central sources
 
 This validator protects the current source files in `PSModule/.github` only.
-Its two required paths are not an ordinary-repository baseline.
+Its remaining required contribution source is not an ordinary-repository baseline.
+PR-template files are not required, generated, or distributed by validation;
+their intentional absence is valid.
 
 Use Git, PowerShell 7 (`pwsh`), and the Node.js LTS version in `.node-version`.
 Install the locked tooling and run the same validation command used by the PR check:
@@ -37,15 +39,12 @@ global configuration with template copying disabled. This keeps a pre-commit
 hook's real index and contributor configuration outside the disposable roots;
 the subsequent real-repository lint retains its caller environment.
 
-In this special defaults repository, both `.github/pull_request_template.md`
-and `.github/CONTRIBUTING.md` must be regular, nonempty validation inputs.
-Missing or renamed required
-files, Markdown symlinks, empty scans, blank files, lint findings, and tool
-errors fail. Symlinks are rejected rather than followed, including Git symlinks
-materialized as path-text files on Windows. An intentional deletion or rename
-requires an explicit change to this contract, not a skipped check. An isolated
-test root passed to the helper models these central sources in a Git repository
-root with the same two-file contract.
+In this special defaults repository, `.github/CONTRIBUTING.md` remains a
+required regular, nonempty source. Missing or renamed contribution sources,
+Markdown symlinks, empty scans, blank files, lint findings, and tool errors fail.
+Symlinks are rejected rather than followed, including Git links materialized as
+path-text files on Windows. Isolated test roots contain ordinary authored
+Markdown and the contribution source without copying a PR template.
 
 Resolved Markdown inputs must stay inside this central repository. Parent
 directory aliases to outside targets fail before their content is read.
@@ -53,7 +52,7 @@ directory aliases to outside targets fail before their content is read.
 The rule file is an unchanged snapshot of the linked merged revision. Refresh
 it from its owning source rather than adding repository-specific rule overrides.
 The check measures Markdown syntax/style, not PR-authoring completeness, source
-correspondence, release decisions, or fallback propagation. Repositories with
+correspondence, release decisions, or template distribution. Repositories with
 local community files keep their own files.
 
 Normal PR events targeting `main`, including drafts, run the named
