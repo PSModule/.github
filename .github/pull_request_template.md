@@ -43,7 +43,9 @@ is sufficient. }}
 <details>
 <summary>Technical details</summary>
 
-{{ Implementation and validation evidence for this result. }}
+{{ Implementation and validation evidence, closing delivery-leaf plan progress,
+and issue-convergence search scope and outcome for this result, even when no
+additional issue converges. }}
 
 | Changed surface | Standards checked | Framework docs checked | Result |
 | --- | --- | --- | --- |
@@ -82,7 +84,9 @@ is sufficient. }}
 <details>
 <summary>Technical details</summary>
 
-{{ Implementation and validation evidence for this result. }}
+{{ Implementation and validation evidence, closing delivery-leaf plan progress,
+and issue-convergence search scope and outcome for this result, even when no
+additional issue converges. }}
 
 | Changed surface | Standards checked | Framework docs checked | Result |
 | --- | --- | --- | --- |
@@ -121,7 +125,9 @@ is sufficient. }}
 <details>
 <summary>Technical details</summary>
 
-{{ Implementation and validation evidence for this result. }}
+{{ Implementation and validation evidence, closing delivery-leaf plan progress,
+and issue-convergence search scope and outcome for this result, even when no
+additional issue converges. }}
 
 | Changed surface | Standards checked | Framework docs checked | Result |
 | --- | --- | --- | --- |
@@ -160,7 +166,9 @@ is sufficient. }}
 <details>
 <summary>Technical details</summary>
 
-{{ Implementation and validation evidence for this result. }}
+{{ Implementation and validation evidence, closing delivery-leaf plan progress,
+and issue-convergence search scope and outcome for this result, even when no
+additional issue converges. }}
 
 | Changed surface | Standards checked | Framework docs checked | Result |
 | --- | --- | --- | --- |
@@ -199,7 +207,9 @@ is sufficient. }}
 <details>
 <summary>Technical details</summary>
 
-{{ Implementation and validation evidence for this result. }}
+{{ Implementation and validation evidence, closing delivery-leaf plan progress,
+and issue-convergence search scope and outcome for this result, even when no
+additional issue converges. }}
 
 | Changed surface | Standards checked | Framework docs checked | Result |
 | --- | --- | --- | --- |
