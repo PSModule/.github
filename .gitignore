@@ -9,3 +9,6 @@ Thumbs.db
 *.code-workspace
 *.swp
 *~
+
+# Local validation dependencies
+node_modules/
