@@ -4,7 +4,14 @@
 GitHub uses its community files when a PSModule repository does not define its
 own corresponding file.
 
-## Validate changes
+Ordinary PSModule repositories inherit these defaults. Keep a local community
+file only when repository-specific content is needed; inheritance does not
+require module-local template or `CONTRIBUTING.md` copies.
+
+## Validate central sources
+
+This validator protects the current source files in `PSModule/.github` only.
+Its two required paths are not an ordinary-repository baseline.
 
 Use Git, PowerShell 7 (`pwsh`), and the Node.js LTS version in `.node-version`.
 Install the locked tooling and run the same validation command used by the PR check:
@@ -30,13 +37,15 @@ global configuration with template copying disabled. This keeps a pre-commit
 hook's real index and contributor configuration outside the disposable roots;
 the subsequent real-repository lint retains its caller environment.
 
-Both `.github/pull_request_template.md` and `.github/CONTRIBUTING.md` must be
-present as regular, nonempty validation inputs. Missing or renamed required
+In this special defaults repository, both `.github/pull_request_template.md`
+and `.github/CONTRIBUTING.md` must be regular, nonempty validation inputs.
+Missing or renamed required
 files, Markdown symlinks, empty scans, blank files, lint findings, and tool
 errors fail. Symlinks are rejected rather than followed, including Git symlinks
 materialized as path-text files on Windows. An intentional deletion or rename
 requires an explicit change to this contract, not a skipped check. An isolated
-root passed to the helper must be a Git repository root with the same two-file contract.
+test root passed to the helper models these central sources in a Git repository
+root with the same two-file contract.
 
 The rule file is an unchanged snapshot of the linked merged revision. Refresh
 it from its owning source rather than adding repository-specific rule overrides.
