@@ -17,11 +17,13 @@ function readGitOutput(directory, args) {
   return result.stdout;
 }
 
-/** Select tracked and nonignored Markdown, retaining Git symlink metadata. */
+/** Select existing tracked and nonignored Markdown, retaining Git symlink metadata. */
 function findMarkdownFiles(directory) {
+  const deleted = new Set(readGitOutput(directory, ['ls-files', '--deleted', '-z']).split('\0'));
   const files = readGitOutput(directory, [
     'ls-files', '--cached', '--others', '--exclude-standard', '--deduplicate', '-z',
   ]).split('\0')
+    .filter((name) => !deleted.has(name))
     .filter((name) => /\.(?:md|markdown)$/i.test(name) && !name.split('/').includes('node_modules'))
     .map((name) => join(directory, ...name.split('/')))
     .sort();

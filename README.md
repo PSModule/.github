@@ -33,6 +33,8 @@ including hidden community directories, with MSX's [shared Markdown rules][share
 Ignored editor history, dependency trees, and Git metadata do not affect the
 scan. Deliberately tracked Markdown under an ignored directory is still checked;
 `node_modules` stays excluded.
+Git-reported deletions of optional Markdown are excluded even before staging.
+Deleting the required contribution source or every Markdown input still fails.
 
 Fixture subprocesses discard inherited Git repository variables and use empty
 global configuration with template copying disabled. This keeps a pre-commit

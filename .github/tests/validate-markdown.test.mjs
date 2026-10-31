@@ -80,6 +80,43 @@ test('validates central sources without any PR-template file', (context) => {
   assert.match(result.stdout, /README\.md/);
 });
 
+test('accepts an unstaged deletion of optional tracked Markdown', (context) => {
+  const directory = createFixture(context, {
+    ...communityFiles,
+    'guide.md': '# Optional guide\n',
+  });
+  fixtureGit(directory, ['add', '--', '.github/CONTRIBUTING.md', 'guide.md']);
+  rmSync(join(directory, 'guide.md'));
+  const result = runValidator(directory);
+  assert.equal(result.status, 0, result.stderr);
+  assert.match(result.stdout, /Checked 1 Markdown files; result: passed/);
+});
+
+test('still rejects an unstaged deletion of the required contribution source', (context) => {
+  const directory = createFixture(context, {
+    ...communityFiles,
+    'README.md': '# Community defaults\n',
+  });
+  fixtureGit(directory, ['add', '--', '.github/CONTRIBUTING.md', 'README.md']);
+  rmSync(join(directory, '.github', 'CONTRIBUTING.md'));
+  const result = runValidator(directory);
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /Required community file/);
+});
+
+test('rejects an empty scan when all tracked Markdown was deleted', (context) => {
+  const directory = createFixture(context, {
+    ...communityFiles,
+    'guide.md': '# Optional guide\n',
+  });
+  fixtureGit(directory, ['add', '--', '.github/CONTRIBUTING.md', 'guide.md']);
+  rmSync(join(directory, '.github', 'CONTRIBUTING.md'));
+  rmSync(join(directory, 'guide.md'));
+  const result = runValidator(directory);
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /No Markdown files were checked/);
+});
+
 for (const name of ['guide.md', '.github/CONTRIBUTING.md']) {
   test(`rejects malformed Markdown in ${name}`, (context) => {
     const result = validateFixture(context, {
