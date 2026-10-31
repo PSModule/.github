@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
-import { existsSync, mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdtempSync, mkdirSync, readFileSync, renameSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import test from 'node:test';
@@ -227,6 +227,32 @@ test('rejects a repository subdirectory instead of validating only a partial che
   const result = runValidator(join(directory, 'nested'));
   assert.notEqual(result.status, 0);
   assert.match(result.stderr, /repository root/);
+});
+
+test('rejects Markdown reached through a parent link outside the repository', (context) => {
+  const directory = createFixture(context, communityFiles);
+  fixtureGit(directory, ['add', '--', '.github']);
+  const outside = mkdtempSync(join(tmpdir(), 'anonymous-outside-sources-'));
+  context.after(() => rmSync(outside, { recursive: true, force: true }));
+  for (const [name, content] of Object.entries(communityFiles)) {
+    writeFileSync(join(outside, name.split('/').at(-1)), content);
+  }
+  renameSync(join(directory, '.github'), join(directory, 'original-sources'));
+  symlinkSync(outside, join(directory, '.github'), process.platform === 'win32' ? 'junction' : 'dir');
+  const result = runValidator(directory);
+  assert.notEqual(result.status, 0, result.stdout);
+  assert.match(result.stderr, /outside the repository root/);
+});
+
+test('preserves Markdown parent aliases whose targets stay inside the repository', (context) => {
+  const directory = createFixture(context, communityFiles);
+  fixtureGit(directory, ['add', '--', '.github']);
+  const target = join(directory, 'central-sources');
+  renameSync(join(directory, '.github'), target);
+  symlinkSync(target, join(directory, '.github'), process.platform === 'win32' ? 'junction' : 'dir');
+  const result = runValidator(directory);
+  assert.equal(result.status, 0, result.stderr);
+  assert.match(result.stdout, /Checked 4 Markdown files; result: passed/);
 });
 
 test('fixture Git and validator subprocesses cannot use the caller index', (context) => {

@@ -1,6 +1,6 @@
 import { spawnSync } from 'node:child_process';
 import { lstatSync, readFileSync, realpathSync } from 'node:fs';
-import { join, relative, resolve } from 'node:path';
+import { isAbsolute, join, relative, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { lint, readConfig } from 'markdownlint-cli2/markdownlint/promise';
 import yamlParse from 'markdownlint-cli2/parsers/yaml';
@@ -39,7 +39,8 @@ if (!lstatSync(directory).isDirectory()) {
   throw new Error(`Validation root is not a directory: ${JSON.stringify(directory)}`);
 }
 const repositoryRoot = readGitOutput(directory, ['rev-parse', '--show-toplevel']).replace(/\r?\n$/, '');
-if (realpathSync(directory) !== realpathSync(repositoryRoot)) {
+const resolvedRepositoryRoot = realpathSync(directory);
+if (resolvedRepositoryRoot !== realpathSync(repositoryRoot)) {
   throw new Error(`Validation must run from the repository root: ${JSON.stringify(repositoryRoot)}`);
 }
 const configurationPath = fileURLToPath(new URL('../linters/.markdown-lint.yml', import.meta.url));
@@ -61,6 +62,10 @@ for (const file of files) {
   }
   if (!metadata.isFile()) {
     throw new Error(`Markdown input must be a regular file: ${JSON.stringify(file)}`);
+  }
+  const resolvedLocation = relative(resolvedRepositoryRoot, realpathSync(file));
+  if (resolvedLocation === '..' || resolvedLocation.startsWith(`..${sep}`) || isAbsolute(resolvedLocation)) {
+    throw new Error(`Markdown input resolves outside the repository root: ${JSON.stringify(file)}. Use a repository-local source.`);
   }
   if (readFileSync(file, 'utf8').trim().length === 0) {
     throw new Error(`Empty Markdown file: ${JSON.stringify(file)}. Restore its content before validation.`);

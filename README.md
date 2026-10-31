@@ -47,6 +47,9 @@ requires an explicit change to this contract, not a skipped check. An isolated
 test root passed to the helper models these central sources in a Git repository
 root with the same two-file contract.
 
+Resolved Markdown inputs must stay inside this central repository. Parent
+directory aliases to outside targets fail before their content is read.
+
 The rule file is an unchanged snapshot of the linked merged revision. Refresh
 it from its owning source rather than adding repository-specific rule overrides.
 The check measures Markdown syntax/style, not PR-authoring completeness, source
