@@ -1,29 +1,67 @@
-import { readFileSync, readdirSync } from 'node:fs';
-import { extname, join, relative, resolve } from 'node:path';
+import { spawnSync } from 'node:child_process';
+import { lstatSync, readFileSync, realpathSync } from 'node:fs';
+import { join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { lint, readConfig } from 'markdownlint-cli2/markdownlint/promise';
 import yamlParse from 'markdownlint-cli2/parsers/yaml';
 
-/** Find authored Markdown without traversing dependency or Git metadata trees. */
+/** Read repository file metadata without invoking a shell. */
+function readGitOutput(directory, args) {
+  const result = spawnSync('git', ['-C', directory, ...args], { encoding: 'utf8' });
+  if (result.error) {
+    throw result.error;
+  }
+  if (result.status !== 0) {
+    throw new Error(`Git file discovery failed in ${JSON.stringify(directory)}: ${JSON.stringify(result.stderr.trim())}`);
+  }
+  return result.stdout;
+}
+
+/** Select tracked and nonignored Markdown, retaining Git symlink metadata. */
 function findMarkdownFiles(directory) {
-  return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
-    const path = join(directory, entry.name);
-    if (entry.isDirectory()) {
-      return ['.git', 'node_modules'].includes(entry.name) ? [] : findMarkdownFiles(path);
-    }
-    return entry.isFile() && extname(entry.name).toLowerCase() === '.md' ? [path] : [];
-  });
+  const files = readGitOutput(directory, [
+    'ls-files', '--cached', '--others', '--exclude-standard', '--deduplicate', '-z',
+  ]).split('\0')
+    .filter((name) => /\.(?:md|markdown)$/i.test(name) && !name.split('/').includes('node_modules'))
+    .map((name) => join(directory, ...name.split('/')))
+    .sort();
+  // Git symlinks can be ordinary path-text files in Windows checkouts.
+  const symlinks = new Set(readGitOutput(directory, ['ls-files', '--stage', '-z'])
+    .split('\0')
+    .filter((record) => record.startsWith('120000 '))
+    .map((record) => join(directory, ...record.slice(record.indexOf('\t') + 1).split('/'))));
+  return { files, symlinks };
 }
 
 // Optional first argument selects an isolated root; the shared rules stay fixed.
 const directory = resolve(process.argv[2] ?? process.cwd());
+if (!lstatSync(directory).isDirectory()) {
+  throw new Error(`Validation root is not a directory: ${JSON.stringify(directory)}`);
+}
+const repositoryRoot = readGitOutput(directory, ['rev-parse', '--show-toplevel']).replace(/\r?\n$/, '');
+if (realpathSync(directory) !== realpathSync(repositoryRoot)) {
+  throw new Error(`Validation must run from the repository root: ${JSON.stringify(repositoryRoot)}`);
+}
 const configurationPath = fileURLToPath(new URL('../linters/.markdown-lint.yml', import.meta.url));
 const configuration = await readConfig(configurationPath, [yamlParse]);
-const files = findMarkdownFiles(directory);
+const { files, symlinks } = findMarkdownFiles(directory);
 if (files.length === 0) {
   throw new Error(`No Markdown files were checked in ${JSON.stringify(directory)}. Check the validation root.`);
 }
+for (const name of ['pull_request_template.md', 'CONTRIBUTING.md']) {
+  const file = join(directory, '.github', name);
+  if (!files.includes(file)) {
+    throw new Error(`Required community file is missing from the validation input: ${JSON.stringify(file)}. Restore the file or explicitly change the contract.`);
+  }
+}
 for (const file of files) {
+  const metadata = lstatSync(file);
+  if (metadata.isSymbolicLink() || symlinks.has(file)) {
+    throw new Error(`Markdown symlinks are not allowed: ${JSON.stringify(file)}. Use a regular file instead.`);
+  }
+  if (!metadata.isFile()) {
+    throw new Error(`Markdown input must be a regular file: ${JSON.stringify(file)}`);
+  }
   if (readFileSync(file, 'utf8').trim().length === 0) {
     throw new Error(`Empty Markdown file: ${JSON.stringify(file)}. Restore its content before validation.`);
   }

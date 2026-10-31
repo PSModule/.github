@@ -1,27 +1,55 @@
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
-import { mkdtempSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import test from 'node:test';
 import { fileURLToPath } from 'node:url';
 
 const script = fileURLToPath(new URL('../scripts/validate-markdown.mjs', import.meta.url));
+const gitignore = readFileSync(new URL('../../.gitignore', import.meta.url), 'utf8');
+const communityFiles = {
+  '.github/CONTRIBUTING.md': '# Contributing\n',
+  '.github/pull_request_template.md': 'Describe the community outcome.\n',
+};
 
-/** Run the real validator against disposable, anonymous Markdown files. */
-function validateFixture(context, files) {
+/** Keep anonymous fixture Git operations isolated from personal hooks. */
+function fixtureGit(directory, args, input) {
+  const result = spawnSync('git', [
+    '-c', `core.hooksPath=${join(directory, '.git', 'fixture-hooks')}`,
+    '-C', directory, ...args,
+  ], { encoding: 'utf8', input });
+  assert.equal(result.status, 0, result.stderr);
+  return result.stdout;
+}
+
+/** Create a disposable Git root with the same authored-input contract. */
+function createFixture(context, files) {
   const directory = mkdtempSync(join(tmpdir(), 'community-markdown-'));
   context.after(() => rmSync(directory, { recursive: true, force: true }));
-  for (const [name, content] of Object.entries(files)) {
+  fixtureGit(directory, ['init', '--quiet']);
+  fixtureGit(directory, ['config', 'core.excludesfile', join(directory, '.git', 'fixture-excludes')]);
+  for (const [name, content] of Object.entries({
+    '.gitignore': gitignore,
+    '.git/fixture-excludes': '',
+    ...files,
+  })) {
     const path = join(directory, name);
     mkdirSync(dirname(path), { recursive: true });
     writeFileSync(path, content);
   }
+  return directory;
+}
+
+/** Run the real validator against disposable, anonymous Markdown files. */
+function validateFixture(context, files) {
+  const directory = createFixture(context, files);
   return spawnSync(process.execPath, [script, directory], { encoding: 'utf8' });
 }
 
 test('checks both inherited community paths and the repository README', (context) => {
   const result = validateFixture(context, {
+    ...communityFiles,
     'README.md': '# Community defaults\n',
     '.github/CONTRIBUTING.md': '# Contributing\n\nFollow the shared workflow.\n',
     '.github/pull_request_template.md':
@@ -36,6 +64,7 @@ test('checks both inherited community paths and the repository README', (context
 for (const name of ['.github/pull_request_template.md', '.github/CONTRIBUTING.md']) {
   test(`rejects malformed Markdown in ${name}`, (context) => {
     const result = validateFixture(context, {
+      ...communityFiles,
       'README.md': '# Community defaults\n',
       [name]: '# Community file\n\n### Skipped heading level\n',
     });
@@ -47,6 +76,7 @@ for (const name of ['.github/pull_request_template.md', '.github/CONTRIBUTING.md
 
 test('rejects duplicate document titles', (context) => {
   const result = validateFixture(context, {
+    ...communityFiles,
     '.github/CONTRIBUTING.md': '# Contributing\n\n# Another title\n',
   });
   assert.equal(result.status, 1, result.stderr);
@@ -57,11 +87,12 @@ test('accepts source-shaped announcement and result-scoped blocks as Markdown', 
   const sections = ['Breaking', 'Removed', 'New', 'Changed', 'Fixed'].map((classifier) =>
     `## ${classifier}: Example result\n\nReaders inspect the affected setting and verify the documented result. No additional action applies to unaffected uses.\n\n<details>\n<summary>Technical details</summary>\n\nAnonymous validation evidence.\n\n</details>\n\n<details>\n<summary>Related references</summary>\n\nOptional supporting context.\n\n</details>\n`);
   const result = validateFixture(context, {
+    ...communityFiles,
     '.github/pull_request_template.md':
       `Readers receive complete adoption instructions for the affected uses.\n\n<!-- ANNOUNCEMENT STOP -->\n\n${sections.join('\n')}`,
   });
   assert.equal(result.status, 0, result.stderr);
-  assert.match(result.stdout, /Checked 1 Markdown files; result: passed/);
+  assert.match(result.stdout, /Checked 2 Markdown files; result: passed/);
 });
 
 test('rejects a scan with no Markdown files', (context) => {
@@ -75,6 +106,7 @@ test('rejects a scan with no Markdown files', (context) => {
 
 test('rejects blank inherited files even when other files are valid', (context) => {
   const result = validateFixture(context, {
+    ...communityFiles,
     'README.md': '# Community defaults\n',
     '.github/CONTRIBUTING.md': ' \n\t\n',
   });
@@ -88,12 +120,93 @@ test('rejects blank inherited files even when other files are valid', (context) 
 
 test('ignores dependency and Git metadata trees, not hidden community files', (context) => {
   const result = validateFixture(context, {
+    ...communityFiles,
     '.github/CONTRIBUTING.md': '# Contributing\n',
     'node_modules/dependency/README.md': '# Dependency\n\n### Invalid heading\n',
     '.git/README.md': '# Git metadata\n\n### Invalid heading\n',
   });
   assert.equal(result.status, 0, result.stderr);
-  assert.match(result.stdout, /Checked 1 Markdown files; result: passed/);
+  assert.match(result.stdout, /Checked 2 Markdown files; result: passed/);
+});
+
+test('ignores untracked editor history using the repository ignore rules', (context) => {
+  const result = validateFixture(context, {
+    ...communityFiles,
+    '.history/README_old.md': '# Old snapshot\n\n### Invalid heading\n',
+    '.idea/notes.md': '# Editor notes\n\n### Invalid heading\n',
+    '.vscode/notes.md': '# Editor notes\n\n### Invalid heading\n',
+  });
+  assert.equal(result.status, 0, result.stderr);
+  assert.match(result.stdout, /Checked 2 Markdown files; result: passed/);
+});
+
+test('still validates deliberately tracked Markdown under an ignored directory', (context) => {
+  const directory = createFixture(context, {
+    ...communityFiles,
+    '.history/tracked.md': '# Authored Markdown\n\n### Invalid heading\n',
+  });
+  fixtureGit(directory, ['add', '--force', '--', '.history/tracked.md']);
+  const result = spawnSync(process.execPath, [script, directory], { encoding: 'utf8' });
+  assert.equal(result.status, 1, result.stderr);
+  assert.match(result.stderr, /MD001/);
+});
+
+test('validates the .markdown extension instead of silently skipping it', (context) => {
+  const result = validateFixture(context, {
+    ...communityFiles,
+    'README.markdown': '# Markdown document\n\n### Invalid heading\n',
+  });
+  assert.equal(result.status, 1, result.stderr);
+  assert.match(result.stderr, /MD001/);
+});
+
+for (const name of Object.keys(communityFiles)) {
+  test(`rejects missing required ${name} even when other Markdown remains`, (context) => {
+    const files = { ...communityFiles, 'README.md': '# Community defaults\n' };
+    delete files[name];
+    const result = validateFixture(context, files);
+    assert.notEqual(result.status, 0);
+    assert.match(result.stderr, /Required community file/);
+    assert.ok(result.stderr.includes(name.split('/').at(-1)));
+  });
+}
+
+test('rejects Git symlink entries even when Windows materializes them as regular path text', (context) => {
+  const directory = createFixture(context, {
+    ...communityFiles,
+    'guide.md': 'target.txt\n',
+    'target.txt': '# Invalid target\n\n### Skipped heading level\n',
+  });
+  const object = fixtureGit(directory, ['hash-object', '-w', '--stdin'], 'target.txt\n').trim();
+  fixtureGit(directory, ['update-index', '--add', '--cacheinfo', `120000,${object},guide.md`]);
+  const result = spawnSync(process.execPath, [script, directory], { encoding: 'utf8' });
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /symlink|symbolic link/i);
+  assert.match(result.stderr, /guide\.md/);
+});
+
+test('rejects a non-Git root rather than silently changing the input contract', (context) => {
+  const directory = mkdtempSync(join(tmpdir(), 'community-markdown-'));
+  context.after(() => rmSync(directory, { recursive: true, force: true }));
+  for (const [name, content] of Object.entries(communityFiles)) {
+    const path = join(directory, name);
+    mkdirSync(dirname(path), { recursive: true });
+    writeFileSync(path, content);
+  }
+  const result = spawnSync(process.execPath, [script, directory], { encoding: 'utf8' });
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /Git file discovery failed/);
+});
+
+test('rejects a repository subdirectory instead of validating only a partial checkout', (context) => {
+  const directory = createFixture(context, {
+    ...communityFiles,
+    'nested/.github/CONTRIBUTING.md': '# Nested contribution fixture\n',
+    'nested/.github/pull_request_template.md': 'Nested template fixture.\n',
+  });
+  const result = spawnSync(process.execPath, [script, join(directory, 'nested')], { encoding: 'utf8' });
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /repository root/);
 });
 
 test('rejects a nonexistent root instead of reporting a successful scan', (context) => {
