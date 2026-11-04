@@ -8,11 +8,11 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thanks for taking the time to fill out this form! Please provide as much information as possible so we can help you quickly.
+        Give a description of the change in the field below.
   - type: textarea
     id: description
     attributes:
       label: Describe the change
-      description: A clear and concise description of what you would want to change.
+      description: Give a description of what you want to change.
     validations:
       required: true
