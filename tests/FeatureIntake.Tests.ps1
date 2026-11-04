@@ -122,31 +122,44 @@ Describe 'Feature intake preserved routing' {
 }
 
 Describe 'Feature intake consumer expectations' -Tag 'ConsumerExpectations' {
-    It 'labels the response as consumer need and expected behavior' {
-        $response.attributes.label | Should -BeExactly 'Consumer need and expected behavior'
+    It 'labels the response as current situation and desired change' {
+        $response.attributes.label | Should -BeExactly 'Current situation and desired change'
     }
 
-    It 'asks what the contributor wants to do and who benefits' {
+    It 'starts with how things work today and what is difficult or missing' {
         ($response.attributes.description -split '\r?\n')[0] |
-            Should -BeExactly 'What are you trying to do, and who would benefit?'
+            Should -BeExactly 'How do things work today, and what is difficult or missing?'
     }
 
-    It 'asks why the need matters and what is difficult or missing' {
+    It 'establishes user value before asking for the desired change' {
         ($response.attributes.description -split '\r?\n')[1] |
-            Should -BeExactly 'Why does it matter, and what is difficult or missing today?'
+            Should -BeExactly 'Who would benefit from a change, and why would it be valuable?'
+    }
+
+    It 'asks for the additional need or desired change after its value' {
+        ($response.attributes.description -split '\r?\n')[2] |
+            Should -BeExactly 'What additional need or change would you like to see?'
     }
 
     It 'asks for expected behavior in a real situation' {
-        ($response.attributes.description -split '\r?\n')[2] |
+        ($response.attributes.description -split '\r?\n')[3] |
             Should -BeExactly 'In a real situation, what would you do and expect to happen?'
     }
 
     It 'offers optional ordinary-language starters instead of a prefilled answer' {
         $response.attributes.placeholder | Should -Not -BeNullOrEmpty
         ($response.attributes.placeholder.TrimEnd() -split '\r?\n') | Should -Be @(
-            'I need to ...'
-            'This matters because ...'
+            'Today, ...'
+            'This would help ... because ...'
+            'I would like to ...'
             'When I ..., I expect ...'
+        )
+    }
+
+    It 'introduces the current situation before the value and desired change' {
+        $introduction.attributes.value | Should -Match (
+            'Start with how things work today\.\s+' +
+            'Then explain why a change would help the user and what should change\.'
         )
     }
 
@@ -156,7 +169,7 @@ Describe 'Feature intake consumer expectations' -Tag 'ConsumerExpectations' {
             $response.attributes.description
             $response.attributes.placeholder
         ) -join ' ') |
-            Should -Not -Match '\b(implement(?:ed|ation)?|architecture|Gherkin|Given|Then)\b'
+            Should -Not -Match '\b(implement(?:ed|ation)?|architecture|Gherkin)\b|Given\s*/\s*When\s*/\s*Then'
         $response.attributes.description |
             Should -Not -Match 'Are there alternatives you.ve considered\?'
     }

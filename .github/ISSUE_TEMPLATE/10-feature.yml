@@ -9,8 +9,10 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thank you for suggesting a feature. Tell us about your need and
-        the result you expect in your own words. No technical plan is needed.
+        Thank you for suggesting a feature. Start with how things work today.
+        Then explain why a change would help the user and what should change.
+        Describe the result you expect in your own words.
+        No technical plan is needed.
         Maintainers will review your feedback and decide how to route it.
 
         See the [MSX issue guidance][issues] and
@@ -21,14 +23,16 @@ body:
   - type: textarea
     id: description
     attributes:
-      label: Consumer need and expected behavior
+      label: Current situation and desired change
       description: |
-        What are you trying to do, and who would benefit?
-        Why does it matter, and what is difficult or missing today?
+        How do things work today, and what is difficult or missing?
+        Who would benefit from a change, and why would it be valuable?
+        What additional need or change would you like to see?
         In a real situation, what would you do and expect to happen?
       placeholder: |
-        I need to ...
-        This matters because ...
+        Today, ...
+        This would help ... because ...
+        I would like to ...
         When I ..., I expect ...
     validations:
       required: true
