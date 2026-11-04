@@ -9,14 +9,14 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thank you for suggesting a feature. Start with how things work today.
-        Then explain why a change would help the user and what should change.
-        Describe the result you expect in your own words.
-        No technical plan is needed.
-        Maintainers will review your feedback and decide how to route it.
+        Start with how things work today.
+        Tell us who the change helps and why.
+        Then tell us what should change and what result you expect.
+        Use your own words. A technical plan is not necessary.
+        Maintainers review and refine feedback, then select the issue type.
 
         See the [MSX issue guidance][issues] and
-        [planning guidance][planning] for how feedback becomes planned work.
+        [planning guidance][planning] for the work process.
 
         [issues]: https://msx.no/docs/Ways-of-Working/Issues/
         [planning]: https://msx.no/docs/Ways-of-Working/Issues/Process/Planning/
@@ -25,14 +25,15 @@ body:
     attributes:
       label: Current situation and desired change
       description: |
-        How do things work today, and what is difficult or missing?
-        Who would benefit from a change, and why would it be valuable?
-        What additional need or change would you like to see?
-        In a real situation, what would you do and expect to happen?
+        Tell us how things work today. Include what is not easy or is missing.
+        Tell us who the change helps and why.
+        Tell us what you want to add or change.
+        Give a real example. Include the situation, your action,
+        and the result you expect.
       placeholder: |
         Today, ...
-        This would help ... because ...
-        I would like to ...
+        The change helps ... because ...
+        I want to ...
         When I ..., I expect ...
     validations:
       required: true
