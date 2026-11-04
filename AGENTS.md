@@ -2,5 +2,5 @@
 
 Read in this order:
 
-1. `README.md` — what this repository provides and how its defaults are enforced.
-2. `.github/CONTRIBUTING.md` — how a change is made and reviewed.
+1. Read `README.md` for the repository purpose and GitHub's default-file behavior.
+2. Read `.github/CONTRIBUTING.md` before you make or review a change.
