@@ -4,5 +4,5 @@ Follow the central [MSX contribution workflow](https://msx.no/docs/Ways-of-Worki
 and [MSX Ways of Working](https://msx.no/docs/Ways-of-Working/) for shared
 contribution guidance.
 
-For framework-specific guidance, review the
+For framework-specific guidance, read the
 [Process-PSModule documentation](https://psmodule.io/Process-PSModule/).
