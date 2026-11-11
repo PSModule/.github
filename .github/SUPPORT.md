@@ -7,8 +7,8 @@ For help with a PSModule repository:
 3. Open an issue in the affected repository for a public question.
 
 Include the repository and version, relevant environment details, expected and
-actual behavior, reproduction steps, and sanitized logs. Remove credentials,
-personal information, and other secrets before posting.
+actual behavior, reproduction steps, and sanitized logs. Before you post, remove
+credentials, personal information, and other secrets.
 
 Private support matters go to
 [support@psmodule.io](mailto:support@psmodule.io).
