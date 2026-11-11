@@ -8,11 +8,11 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thanks for taking the time to fill out this form! Please provide as much information as possible so we can help you quickly.
+        Give information about the issue in the field below.
   - type: textarea
     id: description
     attributes:
       label: Description
-      description: A clear and concise description.
+      description: Give a description of the issue.
     validations:
       required: true
